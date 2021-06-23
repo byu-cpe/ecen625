@@ -19,7 +19,7 @@ icon: fas fa-calendar-alt
 |9 (Mar 8)      |           |Final Project Discussion               |                                                   |Student Lectures                                       |           | 
 |10 (Mar 15)    |           |Student Lectures                       |**Asst 5 Due, 11:59pm**                            |Student Lectures / RTL Debug                           |           | 
 |11 (Mar 22)    |           |HLS Debug                              |                                                   |Vitis/OpenCL                                           |**Project Proposal Due**            |
-|12 (Mar 29)    |           |Research Paper                         |                                                   |Research Paper                                         |           |
-|13 (Apr 5)     |           |Research Paper                         |                                                   | _Project Presentations_                               |           |
+|12 (Mar 29)    |           |Dataflow                               |                                                   |Research Paper (Dynamic HLS)                           |           |
+|13 (Apr 5)     |           |NO CLASS                               |                                                   | _Project Presentations_                               |           |
 |14 (Apr 12)    |           | _Project Presentations_               |**BYU Last Day of Class**                          |                                                       |           |
 |15 (Apr 19)    |           |                                       |**Final Project Report Due, 11:59pm**              |                                                       |           |
