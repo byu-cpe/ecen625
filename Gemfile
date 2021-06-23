@@ -28,3 +28,4 @@ gem "wdm", "~> 0.1.0" if Gem.win_platform?
 gem "jekyll"
 gem "kramdown-parser-gfm"
 gem "jekyll-watch"
+gem 'html-proofer'
