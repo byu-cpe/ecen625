@@ -110,7 +110,7 @@ NIGraphNodeList topologicalSort(const NIGraph &graph) {
 }
 ```
 
-The function has a single input, an `NIGraph`, and returns a topologically sorted list of nodes (`NIGraphNode*`).  Topological order is such that for every directed edge $uv$ from node $u$ to node $v$, $u$ comes before $v$ in the ordering.  Since a topological sort is only possible for directed acyclic graphs (DAGs), you will need to <ins>ignore the feedback edges</ins>.  
+The function has a single input, an `NIGraph`, and returns a topologically sorted list of nodes (`NIGraphNode*`).    Since a topological sort is only possible for directed acyclic graphs (DAGs), you will need to <ins>ignore the feedback edges</ins>.  
 
 ### Part 3: Longest Path
 
@@ -133,8 +133,8 @@ Again, to ensure the graph is a DAG, you will \uline{need to ignore feedback edg
 
 * Make sure your code is pushed up to your Github repo.   
 
-* Add a 1 page report, that includes a short paragraph about how your topological sorting algorithm works.  Include a [scatter plot](https://en.wikipedia.org/wiki/Scatter_plot), which plots the run-time for your topological sort code for  **ALL** 2333 of the provided graphs.  The plot should be of the following format:
-    * The x-axis should show the size of the graph ($V + E$)
+* Add a 1 page PDF report, that includes a short paragraph about how your topological sorting algorithm works.  Include a [scatter plot](https://en.wikipedia.org/wiki/Scatter_plot), which plots the run-time for your topological sort code for  **ALL** 2333 of the provided graphs.  The plot should be of the following format:
+    * The x-axis should show the size of the graph (V + E)
 	* The y-axis should show the runtime of the topological sorting.
 	* Both the x and y axis should be in logarithmic scale, with appropriate ranges to fit your data points.
 
@@ -167,6 +167,5 @@ n88
 
 ## Submission Instructions
 
-Submit your code using a Github tag: `lab1_submission`
-
+Submit your code using a Github tag: `lab1_submission`.
 Instructions are provided [here]({% link _pages/lab_setup.md %}#submitting-code)

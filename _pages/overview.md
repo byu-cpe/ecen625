@@ -6,8 +6,6 @@ sidebar: true
 icon: fas fa-chalkboard-teacher
 ---
 
-
-
 ## Content
 
 This course will investigate high-level automated compilation strategies for digital circuits. This course will focus on the theoretical foundations of behavioral synthesis as well as applied practice of high-level synthesis (HLS) with modern tools. The major topics addressed in this course include: 
@@ -34,9 +32,10 @@ Parallel Programming for FPGAs.  [http://kastner.ucsd.edu/hlsbook/]()
 |---------------------------|---------------|
 | Class Participation       | 5             |
 | Mini-Lecture              | 10            |
-| Labs                      | 50            |
+| Labs                      | 40            |
+| Paper Reviews             | 10            |
 | Project & Presentation    | 20            |
-| Exam                      | 15            |
+| Midterm Exam              | 15            |
 
 
 ## Class Participation
@@ -46,10 +45,12 @@ Active participation by all students is an essential component of learning in th
 Several classes will be spent on student-led lectures from the “Parallel Programming for FPGAs” textbook.   Each student will participate in one presentation, as part of a group of two.
 
 ## Labs
-There are 5 labs.  While none of the labs require you to write a huge amount of code (most can be completed in ~100 lines), you may find the coding challenging as you will be working with new tools and C++ features you may not have used before. Start early and give yourself lots of time to debug and ask questions on Piazza.
+There are 5 labs.  While none of the labs require you to write a huge amount of code (most can be completed in ~100 lines), you may find the coding challenging as you will be working with new tools and C++ features you may not have used before. Start early and give yourself lots of time to debug and ask questions on Slack.
+
+## Paper Reviews
 
 ## Mid-Term Exam
-One midterm examination will be given to test your understanding of the course material.  This examination will be closed book and taken at the testing center.  The test is scheduled for the following three days: March TBD. Make sure you complete the test during this time. No makeup examinations will be given.
+One midterm examination will be given to test your understanding of the course material.  This examination will be closed book and taken at the testing center.  The test is scheduled for the following three days: TBD. Make sure you complete the test during this time. No makeup examinations will be given.
 
 ## Project and Presentation
 Each student will be required to complete a project related to the topics covered in the course and present the results from this project in a class presentation. The project will begin during the second half of the semester and the presentations will occur during the last week of class. Details of the project requirements and grading will be given at a later time.
