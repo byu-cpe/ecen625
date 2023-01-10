@@ -29,3 +29,5 @@ gem "jekyll"
 gem "kramdown-parser-gfm"
 gem "jekyll-watch"
 gem 'html-proofer'
+gem 'jekyll-sass-converter'
+
