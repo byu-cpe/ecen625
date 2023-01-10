@@ -93,13 +93,13 @@ If you look inside `run.tcl` you will see it creates five projects with the same
 different digit (0-9). Each hexadecimal string in *training_set_#* represents a 49-bit training
 instance for digit #**. The 49 bits of each instance encodes a 7x7 matrix of binary values (i.e., a bitmap). For example, e3664d8e00<sub>16</sub> in *training_set_0* is a training instance for digit 0 and translates into the following binary 2D matrix and bitmap:
 
-<img src="{% link media/vitis/binary_string0.png %}" height="200">
-<img src="{% link media/vitis/img1.png %}" height="200" class="pixelated">
+<img src="{% link media/vitis/binary_string0.png %}" height="200" alt="Binary image of number 0">
+<img src="{% link media/vitis/img1.png %}" height="200" class="pixelated" alt="Bitmap image of number 0">
 
  41c0820410<sub>16</sub> in training set 7 is a training instance for digit 7 and translates into the binary 2D matrix and bitmap shown below:
 
-<img src="{% link media/vitis/binary_string1.png %}" height="200">
-<img src="{% link media/vitis/img2.png %}" height="200" class="pixelated">
+<img src="{% link media/vitis/binary_string1.png %}" height="200" alt="Binary image of number 7">
+<img src="{% link media/vitis/img2.png %}" height="200" class="pixelated" alt="Bitmap image of number 7">
  
 As you can see, the resolution of the digit is limited by the number of bits (49 bits in our assignment) used to represent it. Typically, increasing the number of bits per instance would improve the resolution and possibly the accuracy of recognition. 
 

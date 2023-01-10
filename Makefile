@@ -16,5 +16,5 @@ build_docker:
 	docker run --rm --volume="$$PWD:/srv/jekyll" -it jekyll/jekyll:4.0 jekyll build
 
 check_links: build
-	bundle exec htmlproofer --empty_alt_ignore --url-swap "^\/ecen625:" --url-ignore "/www.newark.com/" ./_site
+	bundle exec htmlproofer --swap-urls "^\/ecen625:"  --allow_missing_href=true --ignore-status-codes "0,301" ./_site
 

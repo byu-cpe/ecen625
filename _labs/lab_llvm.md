@@ -19,7 +19,7 @@ The goals of this assignment are to:
 ### Motivation
 In this assignment you will get to write your own compiler optimization pass!  You will use LLVM (a commonly used compiler, like GCC).  The goal of the transformation will be to identify adder trees in the IR, and perform tree balancing, as shown below.  This optimization is especially helpful when targeting hardware.
 
-<img src="{% link media/llvm/balancer_example.svg %}" width="600">
+<img src="{% link media/llvm/balancer_example.svg %}" width="600" alt="Example of adder balancer">
 
 Consider the following code (from [simple.c](https://github.com/byu-cpe/ecen625_student/blob/main/benchmarks/simple/simple.c)) that sums the values of a 100-entry array.
 ```
@@ -152,7 +152,7 @@ We are using LLVM version 9.0.  The documentation can be found at <https://relea
 
 ### The LLVM Classes
 
-LLVM is an object-oriented code base, with **lots** of inheritance.  You can find auto-generated documentation for each class.  For example, check out the [Instruction](http://llvm.org/doxygen/classllvm_1_1Instruction.html) class.  Usually the quickest way to find these documentation pages is a google search.
+LLVM is an object-oriented code base, with **lots** of inheritance.  You can find auto-generated documentation for each class.  For example, check out the [Instruction](https://llvm.org/doxygen/classllvm_1_1Instruction.html) class.  Usually the quickest way to find these documentation pages is a google search.
 
 Take a look at the illustrated class hierarchy on that webpage.  You will see that `Instruction` inherits from `User`, which in turn inherits from `Value`.  **From LLVM programmers manual**: 
 * `Value`: The Value class is the most important class in the LLVM Source base. It represents a typed value that may be used (among other things) as an operand to an instruction. There are many different types of Values, such as Constants, Arguments. Even Instructions and Functions are Values.

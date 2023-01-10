@@ -31,7 +31,7 @@ make unzip_graphs
 
 
 ### Inspect the code
-* `niGraphs/` -- This folder contains 2333 graphs of customer designs from National Instrument's HLS tool (LabVIEW Communications System Design Suite -- <http://www.ni.com/labview-communications/>).  Feel free to look at these files.  You will see each file defines a set of nodes and edges with associated properties.  As we progress through the class material you will learn more about these properties, but you can ignore most of them for now, aside from a few that are specifically mentioned in this assignment.
+* `niGraphs/` -- This folder contains 2333 graphs of customer designs from National Instrument's HLS tool (LabVIEW Communications System Design Suite -- <https://www.ni.com/labview-communications/>).  Feel free to look at these files.  You will see each file defines a set of nodes and edges with associated properties.  As we progress through the class material you will learn more about these properties, but you can ignore most of them for now, aside from a few that are specifically mentioned in this assignment.
 * `src/niGraphReader/` -- This contains the NIGraphReader class, which will parse the graph files into NIGraph* data structures.
 * `src/niGraph/` -- This contains the NIGraph class, as well as NIGraphNode and NIGraphEdge classes, which are the data structures for the graphs.
 * `src/main.cpp` -- You will need to implement several functions in this file.  You are free to split your code into additional files if you desire.
@@ -83,7 +83,7 @@ void createDOT(const NIGraph &graph, const std::string outputPath,
 }
 ```
 
-See <http://www.graphviz.org/content/dot-language> for the specification of the DOT language.  For example, a simple DAG with two nodes (`a` and `b`) and one edge (`delay = 3`) may have a DOT file like this:
+See <https://www.graphviz.org/content/dot-language> for the specification of the DOT language.  For example, a simple DAG with two nodes (`a` and `b`) and one edge (`delay = 3`) may have a DOT file like this:
 
 ```
 strict digraph {
