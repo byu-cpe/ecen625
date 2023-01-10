@@ -31,7 +31,7 @@ Some notes on software tools we will be using.
 * The earlier labs will only use open-source software available via apt.  Make sure you have sudo permissions on your Linux machine so that you can install the necessary packages (ie. you can't complete the class labs using the CAEDM servers).
 
 ## Class Repository
-1. You must use this invitation link to set up a Github classroom repo for the class: <https://classroom.github.com/classrooms/75706105-byu-ecen625-winter2023>
+1. You must use this invitation link to set up a Github classroom repo for the class: <https://classroom.github.com/a/DryPhSIw>
 
 2. This will create a blank repository for you.  On the github website for your repo, click the **Import Code** button (shown below), and import from <https://github.com/byu-cpe/ecen625_student>.
 ![Screen shot of how to import code]({% link assets/import-code.png %})
