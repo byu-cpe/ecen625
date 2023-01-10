@@ -121,7 +121,7 @@ How you choose to implement the algorithm may affect the resulting accuracy of y
 
 ### Design Exploration
 The second part of the assignment is to explore the impact of the *k* value on your digit recognition design. Specifically, you are expected to experiment with the *k* values ranging from 1 through 5, and collect the performance and area numbers of the synthesized design for each specific *k*.
-* The actual *k* value can be provided to the Makefile (`make K=4`) and changed in *run.tcl*. You can run simulation and synthesis in batch with *run.tcl*. This script will also automatically collect important stats (i.e., accuracy, performance, and resource usage) from the Vivado HLS reports and generate a \emph{knn\_result.csv} file under the result folder.
+* The actual *k* value can be provided to the Makefile (`make K=4`) and changed in *run.tcl*. You can run simulation and synthesis in batch with *run.tcl*. This script will also automatically collect important stats (i.e., accuracy, performance, and resource usage) from the Vivado HLS reports and generate a \emph{knn_result.csv} file under the result folder.
 * In this assignment, you will use a fixed 10ns clock period targeting a specific Xilinx Zynq FPGA device. Clock period and target device have been specified in the run Tcl script.
 
 

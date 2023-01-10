@@ -14,7 +14,7 @@ The goals of this assignment are to:
 * Practice C++ skills.
 
 ## Preliminary
-This assignent is located in the [asst_graphs](https://github.com/byu-cpe/ecen625_student/tree/main/lab_graphs) folder.  All commands shown assume you are located in that folder in your terminal.
+This assignent is located in the [lab_graphs](https://github.com/byu-cpe/ecen625_student/tree/main/lab_graphs) folder.  All commands shown assume you are located in that folder in your terminal.
 
 ### Install Packages
 You will need the following packages:
@@ -50,12 +50,12 @@ This will produce an executable located in `build/main`.  If you change any file
 
 ## Requirements
 
-The goal of this lab is to perform a topological sort of a dataflow graph, identify the longest delay path, and create a graph visualization.  [Graph 0]({% link media/graphs/graph0.pdf %}) shows a the graph for `DelayGraph\_0.graphml`. 
+The goal of this lab is to perform a topological sort of a dataflow graph, identify the longest delay path, and create a graph visualization.  [Graph 0]({% link media/graphs/graph0.pdf %}) shows a the graph for `DelayGraph_0.graphml`. 
 Your graphs should have the following properties:
 * Show all nodes and edges. Some nodes don't have edges.
 * Nodes should be labeled with the node `id`, and the longest delay path to reach the node.
 * Edges should be labeled with the edge `delay`.
-* Edges along the longest delay path (ie, the critical path), should be colored red.
+* Edges along the longest delay path (ie, the critical path), should be colored red.  Some edges have delay=0; these edges can optionally be included in your critical path (it doesn't matter if you include them or not).
 * The provided graphs are **_almost_** directed acyclic graphs (DAGs), except for a few _feedback edges_, which create cycles.  These feedback edges should be colored in blue.
 
 ### main()
@@ -157,7 +157,7 @@ There are many ways to do a topological sort.  For full marks, your chart data s
 |DelayGraph_10 |  | 
 
 	
-* Include the longest path for DelayGraph\_3.  For example, the longest path for DelayGraph\_0 is:
+* Include the longest path for DelayGraph_3.  For example, the longest path for DelayGraph_0 is:
 ```
 n0 -> n14 -> n15 -> n19 -> n21 -> n23 -> n24 -> n25 -> n26 -> n27 -> 
 n29 -> n43 -> n44 -> n50 -> n51 -> n56 -> n60 -> n70 -> n71 -> n74 -> 
