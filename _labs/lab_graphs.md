@@ -1,7 +1,7 @@
 ---
 layout: lab
 toc: true
-title: Graphs
+title: Graphs & C++ Warmup
 number: 1
 repo: lab_graphs
 ---
@@ -46,6 +46,18 @@ make
 
 This will produce an executable located in `build/main`.  If you change any file contents, you only need to re-run `make` to recompile.  If you add new files, you will need to edit the [src/CMakeLists.txt](https://github.com/byu-cpe/ecen625_student/blob/main/lab_graphs/src/CMakeLists.txt) file.	
 
+### main()
+
+The provided main function can be run in two modes:
+
+* **Mode 1: Selective graphs**: You can provide a list of graph numbers as arguments to main: 
+```
+./main 1 7 1300
+```
+For each graph this will perform topological sorting and print the sorted list of nodes, find the longest path, and generate a DOT file and PDF.  Statistics are printed to a `results.txt` file. _Note: Generating PDF files may not be possible for large graphs, and the program will stall._
+	
+* **Mode 2: All graphs**: If you provide no arguments, all graphs will be processed.  The sorted graph nodes won't be printed, and no DOT files will be generated.
+
 
 
 ## Requirements
@@ -58,17 +70,12 @@ Your graphs should have the following properties:
 * Edges along the longest delay path (ie, the critical path), should be colored red.  Some edges have delay=0; these edges can optionally be included in your critical path (it doesn't matter if you include them or not).
 * The provided graphs are **_almost_** directed acyclic graphs (DAGs), except for a few _feedback edges_, which create cycles.  These feedback edges should be colored in blue.
 
-### main()
+### Code Checking
+In addition to completing the code functionality described above, you code should also:
+1. Build without warnings.  I have configured *clang-tidy* to be run when you compile your code.  This will enforce some extra checking that you might have not seen in the past.  Hopefully this will help you learn more about C++ best practises and improving your coding skills.  
+1. Run in Valgrind without any reported issues.
 
-The provided main function can be run in two modes:
-
-* **Mode 1: Selective graphs**: You can provide a list of graph numbers as arguments to main: 
-```
-./main 1 7 1300
-```
-For each graph this will perform topological sorting and print the sorted list of nodes, find the longest path, and generate a DOT file and PDF.  Statistics are printed to a `results.txt` file. _Note: Generating PDF files may not be possible for large graphs, and the program will stall._
-	
-* **Mode 2: All graphs**: If you provide no arguments, all graphs will be processed.  The sorted graph nodes won't be printed, and no DOT files will be generated.
+These two checks are new for this year, so please reach out on Slack if you have questions.
 
 
 ### Part 1: Visualizing Graphs
