@@ -25,7 +25,7 @@ Students should be familiar with RTL (Verilog or VHDL), and be comfortable writi
 
 ## Textbook
 
-Parallel Programming for FPGAs.  [http://kastner.ucsd.edu/hlsbook/]()
+Parallel Programming for FPGAs. <https://kastner.ucsd.edu/hlsbook/>
 
 
 ## Grade Breakdown
