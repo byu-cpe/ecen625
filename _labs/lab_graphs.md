@@ -86,8 +86,6 @@ You must write code to output an `NIGraph` structure in DOT language.  The code 
 void createDOT(const NIGraph &graph, const std::string outputPath,
     NIGraphNodeList &longestPath,
     std::map<NIGraphNode *, int> &nodeDelays);
-  
-}
 ```
 
 See <https://www.graphviz.org/content/dot-language> for the specification of the DOT language.  For example, a simple DAG with two nodes (`a` and `b`) and one edge (`delay = 3`) may have a DOT file like this:
