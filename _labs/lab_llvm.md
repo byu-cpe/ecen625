@@ -33,6 +33,7 @@ To implement this in hardware, we could build an RTL circuit with a state machin
 The code could be made much faster by performing multiple loop iterations in parallel.  This is referred to as _loop unrolling_.  
 
 
+
 The following code, (from [simple_unrolled_partitioned/simple.c](https://github.com/byu-cpe/ecen625_student/tree/main/benchmarks/simple_unrolled_partitioned)), shows the array summation  unrolled by a factor of 10.  One issue with unrolling like this is that it is usually not possible to load 10 values from memory at once.  If values are loaded sequentially, there will be little to no benefits to loop unrolling.  To get around this problem, the code also includes _memory banking_, where the  `A` array is split into 5 equal sized arrays, `A1`, `A2`, `A3`, `A4`, and `A5`.  Each of these can be placed in a separate dual-ported memory, allowing us to read 10 values from memory simultaneously.  (_While this C code implements loop unrolling and memory banking manually, modern HLS tools will do this for you when requested.  Certain tools may even be smart enough to do it automatically._)
 
 
@@ -51,13 +52,13 @@ for (int i = 0; i < 20; i += 2) {
            A5[i] + A5[i + 1];
 ```
 
-The above code will end up creating a cascading adder tree as shown in the left side of the figure above.  We would like to automatically optimize the IR to balance the adder tree, producing a structure similar to the right-hand side of \cref{fig:balancer_example}.  This optimization can improve the critical path of the resulting hardware, or if timing constraints are imposed, reduce the latency of each loop iteration.
+The above code will end up creating a cascading adder tree as shown in the left side of the figure above.  We would like to automatically optimize the IR to balance the adder tree, producing a structure similar to the right-hand side of the figure above.  This optimization can improve the critical path of the resulting hardware, or if timing constraints are imposed, reduce the latency of each loop iteration.
 
 ## Getting Started
 
 ### Required Packages
 ```
-sudo apt install llvm-9 llvm-9-dev libclang-common-9-dev clang-9 liblpsolve55-dev texlive-latex-base texlive-pictures
+sudo apt install llvm-12 llvm-12-dev libclang-common-12-dev clang-12 liblpsolve55-dev texlive-latex-base texlive-pictures
 ```
 
 ### Running LLVM 
@@ -70,15 +71,15 @@ cd benchmarks/simple
 make clang
 ```
 
-The provided [Makefile](https://github.com/byu-cpe/ecen625_student/blob/main/benchmarks/simple_unrolled_partitioned/Makefile) will first run `clang-9` to produce a binary IR file (`simple.clang.bc`), after which it will run `llvm-dis-9` to dissassemble the binary into human readable IR (`simple.clang.ll`)
+The provided [Makefile](https://github.com/byu-cpe/ecen625_student/blob/main/benchmarks/simple_unrolled_partitioned/Makefile) will first run `clang` to produce a binary IR file (`simple.clang.bc`), after which it will run `llvm-dis` to dissassemble the binary into human readable IR (`simple.clang.ll`)
 
 Look through the LLVM IR file and try to understand how it implements the `simple.c` program.  Then go to the `simple_unrolled_partitioned` bechmark and look at the IR that program produces.  Make sure you can find the long sequence of cascaing add instructions.
 
 ### Writing an LLVM pass
 
-While you could download the LLVM source code, and add your pass code to it, compiling LLVM from source can take 20-30 minutes.  Instead, we are going to develop your pass _out-of-tree_.  Above you should have installed the LLVM 9 binaries using the Ubuntu package manger.  We are going to compile your pass code into a shared library object (.so) file, than can be loaded by LLVM at runtime.
+While you could download the LLVM source code, and add your pass code to it, compiling LLVM from source can take 20-30 minutes.  Instead, we are going to develop your pass _out-of-tree_.  Above you should have installed the LLVM binaries using the Ubuntu package manger.  We are going to compile your pass code into a shared library object (.so) file, than can be loaded by LLVM at runtime.
 
-Your pass code and [CMakeLists.txt](https://github.com/byu-cpe/ecen625_student/blob/main/lab_llvm/src/CMakeLists.txt) file are provided in the `src` directory. For this assignment we will be using a `BasicBlockPass` in LLVM.  That is, it is a transformation pass that modifies code contained with a single basic block.  
+Your pass code and [CMakeLists.txt](https://github.com/byu-cpe/ecen625_student/blob/main/lab_llvm/src/CMakeLists.txt) file are provided in the `src` directory. For this assignment we will be using a `FunctionPasfs` in LLVM.  That is, it is a transformation pass that modifies code contained with a single function.  
 
 Take a look at [AdderTreeBalancer.cpp](https://github.com/byu-cpe/ecen625_student/blob/main/lab_llvm/src/AdderTreeBalancer.cpp), specifically these lines:
 
@@ -86,16 +87,16 @@ Take a look at [AdderTreeBalancer.cpp](https://github.com/byu-cpe/ecen625_studen
 char AdderTreeBalancer::ID = 0;
 static RegisterPass<AdderTreeBalancer> X("ATB_625", "Adder Tree Balancer Pass");
 
-bool AdderTreeBalancer::runOnBasicBlock(BasicBlock &BB) {
+bool AdderTreeBalancer::runOnFunction(Function &f) {
 	...
 }
 ```
 
 
-The `RegisterPass` registers your pass with LLVM and specifies that it can be called using the `-ATB_625` flag.  The `AdderTreeBalancer` class is a subclass of `llvm::BasicBlockPass `, meaning this pass should be called for every BasicBlock in the code.  Specifically, the `runOnBasicBlock()` function will be called for each BasicBlock.
+The `RegisterPass` registers your pass with LLVM and specifies that it can be called using the `-ATB_625` flag.  The `AdderTreeBalancer` class is a subclass of `llvm::FunctionPass `, meaning this pass should be called for every *Function* in the code.  Specifically, the `runOnFunction()` function will be called for each *Function*.
 
 
-You can also create passes that operate at different scopes, including Module (entire C program), Function, Loop, Region, and more.  More information on these types of passes can be found at [WritingAnLLVMPass](https://releases.llvm.org/9.0.0/docs/WritingAnLLVMPass.html).
+You can also create passes that operate at different scopes, including Module (entire C program), Loop, Region, and more.  More information on these types of passes can be found at [WritingAnLLVMPass](https://releases.llvm.org/12.0.0/docs/WritingAnLLVMPass.html).
 
 
 Go ahead and compile the provided code:
@@ -146,9 +147,9 @@ Here are a few suggestions to help you with the LLVM API.  If you are still unsu
 
 ### Resources
 
-We are using LLVM version 9.0.  The documentation can be found at <https://releases.llvm.org/9.0.0/docs/>.  Some useful pages:
-* The [Language Reference Manual](https://releases.llvm.org/9.0.0/docs/LangRef.html) describes each LLVM IR instruction.
-* The [Programmers Manual](https://releases.llvm.org/9.0.0/docs/ProgrammersManual.html) is a good place to start reading about coding in LLVM.
+We are using LLVM version 12.0.  The documentation can be found at <https://releases.llvm.org/12.0.0/docs/>.  Some useful pages:
+* The [Language Reference Manual](https://releases.llvm.org/12.0.0/docs/LangRef.html) describes each LLVM IR instruction.
+* The [Programmers Manual](https://releases.llvm.org/12.0.0/docs/ProgrammersManual.html) is a good place to start reading about coding in LLVM.
 
 ### The LLVM Classes
 
@@ -203,7 +204,7 @@ BinaryOperator * bo = BinaryOperator::Create(BinaryOperator::Add, in1, in2, "myI
 The last argument in this case is a pointer to an existing `Instruction`, and the new Instruction will be inserted preceeding it. If you pass in NULL, the new instruction is not inserted into the code, but you will need to do so later.
 
 ### Inserting Instructions
-There are many ways to insert instructions into a basic block.  These are discussed in the [Programmers Manual](https://releases.llvm.org/9.0.0/docs/ProgrammersManual.html#creating-and-inserting-new-instructions), although I have found this is somewhat out of date. In particular, the pages gives this example, but it is missing the required `->getIterator()` on the existing Instruction.
+There are many ways to insert instructions into a basic block.  These are discussed in the [Programmers Manual](https://releases.llvm.org/12.0.0/docs/ProgrammersManual.html#creating-and-inserting-new-instructions), although I have found this is somewhat out of date. In particular, the pages gives this example, but it is missing the required `->getIterator()` on the existing Instruction.
 
 ### Replacing Instructions or Usage
 	
