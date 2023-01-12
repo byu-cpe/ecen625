@@ -80,12 +80,12 @@ These two checks are new for this year, so please reach out on Slack if you have
 
 ### Part 1: Visualizing Graphs
 
-You must write code to output an `NIGraph` structure in DOT language.  The code should be added to the following function:
+You must write code to output an `NIGraph` structure in DOT language.  The code should be added to the following function, that you should implement in *solution.cpp*.
 
 ```
 void createDOT(const NIGraph &graph, const std::string outputPath,
     NIGraphNodeList &longestPath,
-    std::map<NIGraphNode *, int> &nodeDelays) {
+    std::map<NIGraphNode *, int> &nodeDelays);
   
 }
 ```
@@ -108,26 +108,21 @@ Although the graph visualization relies on the longest path data, it is included
 You will write code to perform a topological sort of a graph.  See lecture slides or <https://en.wikipedia.org/wiki/Topological_sorting>.
 
 
-The code should be added here:
+The code should be implemented in this function, as part of *solution.cpp*:
 ```
-NIGraphNodeList topologicalSort(const NIGraph &graph) {
-  NIGraphNodeList q; 
-  // add code here	  
-  return q;
-}
+NIGraphNodeList topologicalSort(const NIGraph &graph);
 ```
 
 The function has a single input, an `NIGraph`, and returns a topologically sorted list of nodes (`NIGraphNode*`).    Since a topological sort is only possible for directed acyclic graphs (DAGs), you will need to <ins>ignore the feedback edges</ins>.  
 
 ### Part 3: Longest Path
 
-In this last section you will write code to find the longest delay path in the graph, using the topologically sorted nodes from Part 2.  This code should be written in this function:
+In this last section you will write code to find the longest delay path in the graph, using the topologically sorted nodes from Part 2. The code should be implemented in this function, as part of *solution.cpp*:
+
 ```
 int longestDelayPath(const NIGraphNodeList &topolSortedNodes,
     NIGraphNodeList &longestPath,
-    std::map<NIGraphNode *, int> &nodeDelays) {
-  // add code here
-}
+    std::map<NIGraphNode *, int> &nodeDelays);
 ```
 The first arugment to this function is the topologically sorted list of nodes in the graph.  The function populates two data structures: `longestPath` should be populated with a list of nodes that make up the longest path, from start to finish, and `nodeDelays` provides a map indicating the longest delay to each node in the graph.  The delay of the longest path is returned from the function.
 
