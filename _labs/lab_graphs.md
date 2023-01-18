@@ -19,7 +19,7 @@ This assignent is located in the [lab_graphs](https://github.com/byu-cpe/ecen625
 ### Install Packages
 You will need the following packages:
 ```
-sudo apt install cmake graphviz clang-tidy-12 valgrind
+sudo apt install cmake graphviz clang-12 clang-tidy-12 valgrind
 ```
 
 ### Extract Graphs
