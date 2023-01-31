@@ -6,23 +6,23 @@ toc: false
 icon: fas fa-calendar-alt
 ---
 
-| Week          | Monday    |   Tuesday                             |   Wednesday                                       |   Thursday                                            | Friday    |
-|---------------| ----------|---------------------------------------|---------------------------------------------------|-------------------------------------------------------|-----------|
-|1 (Jan 9)      |           |Course Overview, Graphs                |                                                   |Lab 1 Overview, Specialized Computing                  |           |
-|2 (Jan 16)     |**HOLIDAY**| NO CLASS                              |**Asst 1 Due, 11:59pm**                            |NO CLASS                                               |
-|3 (Jan 23)     |           |Compilers                                       |                                          |Lab 2, LLVM Tutorial                                   |
-|4 (Jan 30)     |           |                                       |**Asst 2 Due, 11:59pm**                            |                                                       |
-|5 (Feb 6)      |           |                                       |                                                   |                                                       |
-|6 (Feb 13)     |           | NO CLASS                              |                                                   |                                                       |
-|7 (Feb 20)     |           |                                       |                                                   |                                                       |
-|8 (Feb 27)     |           | NO CLASS                              |                                                   | NO CLASS                                              |
-|9 (Mar 6)      |           |                                       |                                                   |                                                       |
-|10 (Mar 13)    |           |                                       |                                                   |                                                       |
-|11 (Mar 20)    |           |                                       |                                                   |                                                       |
-|12 (Mar 26)    |           |                                       |                                                   |                                                       |
-|13 (Apr 3)     |           |                                       |                                                   |                                                       |
-|14 (Apr 10)    |           |                                       |                                                   |                                                       |
-|14 (Apr 17)    |           | (Last Day of Class)                   |                                                   | NO CLASS                                              |
+| Week          | Monday                |   Tuesday                             |   Wednesday               |   Thursday                                            | Friday    |
+|---------------| ----------------------|---------------------------------------|---------------------------|-------------------------------------------------------|-----------|
+|1 (Jan 9)      |                       |Course Overview, Graphs                |                           |Lab 1 Overview, Specialized Computing                  |           |
+|2 (Jan 16)     |**HOLIDAY**            | NO CLASS                              |**Asst 1 Due, 11:59pm**    |NO CLASS                                               |
+|3 (Jan 23)     |                       |Compilers                              |                           |Guest Speaerk, Lab 2                                   |
+|4 (Jan 30)     |                       |LLVM Tutorial                          |                           |                                                       |
+|5 (Feb 6)      |**Asst 2 Due, 11:59pm**|                                       |                           |                                                       |
+|6 (Feb 13)     |                       | NO CLASS                              |                           |                                                       |
+|7 (Feb 20)     |                       |                                       |                           |                                                       |
+|8 (Feb 27)     |                       | NO CLASS                              |                           | NO CLASS                                              |
+|9 (Mar 6)      |                       |                                       |                           |                                                       |
+|10 (Mar 13)    |                       |                                       |                           |                                                       |
+|11 (Mar 20)    |                       |                                       |                           |                                                       |
+|12 (Mar 26)    |                       |                                       |                           |                                                       |
+|13 (Apr 3)     |                       |                                       |                           |                                                       |
+|14 (Apr 10)    |                       |                                       |                           |                                                       |
+|14 (Apr 17)    |                       | (Last Day of Class)                   |                           | NO CLASS                                              |
 
 ### 2021 Schedule
 
