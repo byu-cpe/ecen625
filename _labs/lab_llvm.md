@@ -238,7 +238,7 @@ ReplaceInstWithValue(BB.getInstList(), BI, adderTree);
 2. Include a 1-page PDF document (`lab_llvm/report.pdf`) that includes the following:
 
 
-For the `simple_unrolled_partitioned` program, obtain the missing results in the following tables (there are 8 cells to fill in), and include the completed tables in your report.  You can find the HLS schedule by looking at the `main.schedule.rpt` file, and the longest path by looking at the `main.timing.rpt` file, which lists the longest path for each BasicBlock.  The cycles per loop iteration can be obtained from the scheduling report (or Gantt chart PDF), by manually looking at how many states are created for the summation loop.  The total summation time is simply the product of the longest path, loop iteration latency, and number of iterations (20).
+For the `simple_unrolled_partitioned` program, obtain the missing results in the following tables (there are 8 cells to fill in), and include the completed tables in your report.  You can find the HLS schedule by looking at the `main.schedule.rpt` file, and the longest path by looking at the `main.timing.rpt` file, which lists the longest path for each BasicBlock.  The cycles per loop iteration can be obtained from the scheduling report (or Gantt chart PDF), by manually looking at how many states are created for the summation loop.  The total summation time is simply the product of the longest path, loop iteration latency, and number of iterations (10).
 
 #### CLOCK_PERIOD <= 20ns 
 
