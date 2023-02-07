@@ -212,7 +212,7 @@ If you want to swap out an Instruction for a different one, there are a few opti
 ```
 void ReplaceInstWithInst(Instruction *From, Instruction *To);
 ```
-This adds the instruction `To` to a basic block, such that it is positioned immediately before `From`, replaces all uses of `From` with `To` and then removes `From.
+This adds the instruction `To` to a basic block, such that it is positioned immediately before `From`, replaces all uses of `From` with `To` and then removes `From`.  **Important**: This function will add the new `To` instruction to the basic block, so make sure you have not already added it.  If you have, you can use this method instead:
 	
 ```
 /// Replace all uses of an instruction (specified by BI) with a value, then
