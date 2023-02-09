@@ -22,7 +22,7 @@ sudo apt install llvm-9 libclang-common-9-dev clang-9 liblpsolve55-dev texlive-l
 ```
 
 ### How this lab works
-In this lab you are going to write an HLS scheduler that operates on LLVM intermediate representation (assembly-like code).  You are going to formulate a schedule (ie, pick a cycle number for each instruction), such that the schedule completes are soon as possible.  But you can't just run all the instructions at once! You need to respect data and memory dependencies, as well as respecting functional unit limits (ie. you can't read unlimited things from memory at once), and the critical path constraint.
+In this lab you are going to write an HLS scheduler that operates on LLVM intermediate representation.  You are going to formulate a schedule (ie, pick a cycle number for each instruction), such that the schedule completes are soon as possible.  But you can't just run all the instructions at once! You need to respect data and memory dependencies, as well as respecting functional unit limits (ie. you can't read unlimited things from memory at once), and the critical path constraint.
 
 This provided code isn't part of a real HLS tool (your schedule won't be used to produce any RTL), but the concepts and techniques are very similar to what is done in commerical HLS tools.
 
@@ -130,7 +130,7 @@ Documentation on these functions can be found online.  Post on Piazza if you hav
 
 ## Implementation
 
-### Part 1: ASAP Scheduler (20% of grade)
+### Part 1: ASAP Scheduler (25% of grade)
 
 For this deliverable you must write code to perform unconstrained ASAP scheduling.  See section 5.3.1 from the textbook.  Unconstrained means you do not need to consider resource or timing constraints.  You still need to consider data dependencies.
 
@@ -158,7 +158,7 @@ This program is simple enough that you should end up with a valid scheduling, ev
 
 Look at the design and make sure you understand why it introduces issues with resource usage.
 
-### Part 2: ASAP Scheduler with Resource Constraints (50% of grade)
+### Part 2: ASAP Scheduler with Resource Constraints (40% of grade)
 For this deliverable you must write code to perform resource-constrained ASAP scheduling.  You will use an ILP formulation to determine an optimal scheduling.  Use the following approach:
 * Use an ILP variable to represent the _start cycle_ of each Instruction.  This code is already provided to you.
 * An extra variable is used to represent the NOP at the end of the schedule.
@@ -173,7 +173,7 @@ Once you have this implemented, test out the `simple_unrolled` example to see th
 make schedule MYSCHEDULER=1 ILP=1 
 ```
 
-### Part 3: Adding timing constraints (20% of grade)
+### Part 3: Adding timing constraints (25% of grade)
 
 You can apply a 10ns clock period constraint to the schedule like so:
 ```
@@ -182,7 +182,7 @@ make schedule MYSCHEDULER=1 ILP=1 PERIOD=10.0
 
 This will cause the Schedule validation code to also check that the delay of each combinational path is within the target period.  If you run this on the `simple` or `simple_runrolled` benchmarks, you should see that your scheduler now fails.
 
-Add additional constraints to your ILP formulation to prevent long combinational chaining.  It's up to you to come up with a solution for this.  In my solutions I use a recursive function to search for all combinational paths that exist from one Instruction (I<sub>1</sub>) to another (I<sub>2</sub>) that exceed the target period, and esure that S(I<sub>2</sub>) > S(I<sub>1</sub>).  This will be challenging, and I don't expect everyone to finish this part, which is why it is worth less points than the previous section.
+Add additional constraints to your ILP formulation to prevent long combinational chaining.  It's up to you to come up with a solution for this.  In my solutions I use a recursive function to search for all combinational paths that exist from one Instruction (I<sub>1</sub>) to another (I<sub>2</sub>) that exceed the target period, and esure that S(I<sub>2</sub>) > S(I<sub>1</sub>). 
 
 ### Report (10% of grade) 
 Include a short PDF report, located at `lab_scheduling/report.pdf`.  Include the following items:
