@@ -18,7 +18,7 @@ The goals of this assignment are to:
 
 ### Required Packages
 ```
-sudo apt install llvm-9 libclang-common-9-dev clang-9 liblpsolve55-dev texlive-latex-base texlive-pictures
+sudo apt install llvm-12 libclang-common-12-dev clang-12 liblpsolve55-dev texlive-latex-base texlive-pictures
 ```
 
 ### How this lab works
