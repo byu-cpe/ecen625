@@ -6,23 +6,23 @@ toc: false
 icon: fas fa-calendar-alt
 ---
 
-| Week          | Monday                |   Tuesday                             |   Wednesday               |   Thursday                                            | Friday    |
-|---------------| ----------------------|---------------------------------------|---------------------------|-------------------------------------------------------|-----------|
-|1 (Jan 9)      |                       |Course Overview, Graphs                |                           |Lab 1 Overview, Specialized Computing                  |           |
-|2 (Jan 16)     |**HOLIDAY**            | NO CLASS                              |**Asst 1 Due, 11:59pm**    |NO CLASS                                               |
-|3 (Jan 23)     |                       |Compilers                              |                           |Guest Speaerk, Lab 2                                   |
-|4 (Jan 30)     |                       |LLVM Tutorial                          |                           |HLS Flow, Arch. Exploration                            |
-|5 (Feb 6)      |**Asst 2 Due, 11:59pm**|Scheduling Intro, ILP                  |                           |ILP Scheduling, Lab 3                                  |
-|6 (Feb 13)     |                       | NO CLASS                              |                           |Pipelining & Modulo Scheduling                         |
-|7 (Feb 20)     |                       | NO CLASS, **Asst 3 Due, 11:59pm**     |                           |Vitis HLS Tutorial                                     |
-|8 (Feb 27)     |                       | NO CLASS - Work on Student Lecture    |                           |NO CLASS - Work on Student Lecture                     |
-|9 (Mar 6)      |                       | Student Lectures                      |                           |Student Lectures                                       |
-|10 (Mar 13)    |                       | NO CLASS                              | **Asst 4 Due, 11:59pm**   |                                                       |
-|11 (Mar 20)    |                       |                                       |                           |                                                       |
-|12 (Mar 26)    |                       |                                       | **Asst 5 Due, 11:59pm**   |                                                       |
-|13 (Apr 3)     |                       |                                       |                           |                                                       |
-|14 (Apr 10)    |                       |                                       |                           |                                                       |
-|14 (Apr 17)    |                       | (Last Day of Class)                   |                           | NO CLASS                                              |
+| Week          | Monday                |   Tuesday                             |   Wednesday                           |   Thursday                                            | Friday    |
+|---------------| ----------------------|---------------------------------------|---------------------------            |-------------------------------------------------------|-----------|
+|1 (Jan 9)      |                       |Course Overview, Graphs                |                                       |Lab 1 Overview, Specialized Computing                  |           |
+|2 (Jan 16)     |**HOLIDAY**            | NO CLASS                              |**Asst 1 Due, 11:59pm**                |NO CLASS                                               |
+|3 (Jan 23)     |                       |Compilers                              |                                       |Guest Speaerk, Lab 2                                   |
+|4 (Jan 30)     |                       |LLVM Tutorial                          |                                       |HLS Flow, Arch. Exploration                            |
+|5 (Feb 6)      |**Asst 2 Due, 11:59pm**|Scheduling Intro, ILP                  |                                       |ILP Scheduling, Lab 3                                  |
+|6 (Feb 13)     |                       | NO CLASS                              |                                       |Pipelining & Modulo Scheduling                         |
+|7 (Feb 20)     |                       | NO CLASS, **Asst 3 Due, 11:59pm**     |                                       |Vitis HLS Tutorial                                     |
+|8 (Feb 27)     |                       | NO CLASS - Work on Student Lecture    |                                       |NO CLASS - Work on Student Lecture                     |
+|9 (Mar 6)      |                       | Student Lectures                      |                                       |Student Lectures                                       |
+|10 (Mar 13)    |                       | NO CLASS                              | **Asst 4 Due, 11:59pm**               |                                                       |
+|11 (Mar 20)    |                       |                                       |                                       |                                                       |
+|12 (Mar 26)    |                       |                                       | **Asst 5 Due, 11:59pm**, Midterm Exam |Midterm Exam                                           |Midterm Exam
+|13 (Apr 3)     |                       |                                       |                                       |                                                       |
+|14 (Apr 10)    |                       |                                       |                                       |                                                       |
+|14 (Apr 17)    |                       | (Last Day of Class)                   |                                       | NO CLASS                                              |
 
 <!-- ### 2021 Schedule -->
 
