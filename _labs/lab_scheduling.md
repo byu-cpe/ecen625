@@ -132,7 +132,7 @@ Documentation on these functions can be found online.  Post on Piazza if you hav
 
 ### Part 1: ASAP Scheduler (25% of grade)
 
-For this deliverable you must write code to perform unconstrained ASAP scheduling.  See section 5.3.1 from the textbook.  Unconstrained means you do not need to consider resource or timing constraints.  You still need to consider data dependencies.
+For this deliverable you must write code to perform unconstrained ASAP scheduling.  See class notes or section 5.3.1 from the De Micheli textbook.  Unconstrained means you do not need to consider resource or timing constraints.  You still need to consider data dependencies.
 
 This is to be completed in the following function:
 ```

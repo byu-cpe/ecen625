@@ -25,7 +25,8 @@ Students should be familiar with RTL (Verilog or VHDL), and be comfortable writi
 
 ## Textbook
 
-Parallel Programming for FPGAs. <https://kastner.ucsd.edu/hlsbook/>
+* Parallel Programming for FPGAs. <https://kastner.ucsd.edu/hlsbook/>
+* *(Optional)* Giovanni De Micheli, "Synthesis and Optimization of Digital Circuits".
 
 
 ## Grade Breakdown
