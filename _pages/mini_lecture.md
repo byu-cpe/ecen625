@@ -5,7 +5,7 @@ title: Student Mini Lecture
 sidebar: false
 ---
 
-Each of you will have the opportunity to teach a portion of a class period.
+Each of you will have the opportunity to teach a portion of a class period.  You will teach as a group of 2-3.  Please sign up for a time/topic on Slack.
 
 ### Guidelines and Suggestions
 * Each mini-lecture should cover half of the class period. Plan for about 35 minutes, accounting for questions along the way.
