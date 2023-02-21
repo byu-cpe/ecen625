@@ -31,6 +31,7 @@ This semester the topics will cover materials from the [Vitis High-Level Synthes
     * Chapter 6 has a lot of information, so focus on the "Standard Types", "Arbitrary Precision (AP) Data Types", and "Global Variables".  
     * You may want to discuss pointers briefly, but don't spend time on the interfaces, as we will cover "Chapter 8: Interfaces of the HLS Design" in a later lecture.
 
+If you aren't sure if a particular sub-topic is important to cover, please reach out to me and ask.
 
 **Note:** You are strongly encouraged to consult the textbook: [Parallel Programming for FPGAs](https://kastner.ucsd.edu/hlsbook/), which has many concrete examples of how these concepts can be applied to accelerating real-world algorithms.  A portion of the grading scheme evaluates whether you have examples in your presentation.  You don't have to use examples from this textbook, but it's a good place to start.
 
