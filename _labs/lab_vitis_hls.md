@@ -50,7 +50,7 @@ the program to check results (enter `make`).
 
 ### Setting up Vitis HLS
 For this assignment we will be using Vitis HLS. 
-You can install Vitis on your local machine (<https://www.xilinx.com/support/download.html>).  If you do this, you should install Vitis 2020.2 on an Ubuntu 18.04 (or newer) machine.  
+You can install Vitis on your local machine (<https://www.xilinx.com/support/download.html>).  If you do this, you should install Vitis 2022.2 on an Ubuntu 22.04 (or newer) machine.  
 
 _Note: If you prefer, you can install Vitis on a Windows machine.  I haven't tested this.  It should work with the assignment, with a few extra considerations.  For example, the Makefile which has been provided to quickly compile and run your design may not work unless you have a build system setup.  You can still build and run within Vitis HLS, so it is not a big difference, but keep in mind you may run into problems such as this._
 
@@ -60,9 +60,9 @@ _Note: If you prefer, you can install Vitis on a Windows machine.  I haven't tes
 export LM_LICENSE_FILE=2100@ece-xilinx.byu.edu
 ``` -->
 
-To run the Vitis tools you should do the following:
+To run the Vitis tools you should do the following (*Note:* Exporting the *LIBRARY_PATH* was necessary on a prevous version of Vitis, but may have been fixed in 2022 and may not be necessary):
 ```
-source /tools/Xilinx/Vitis_HLS/2020.2/settings64.sh
+source /tools/Xilinx/Vitis_HLS/2022.2/settings64.sh
 export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LIBRARY_PATH
 vitis_hls
 ```

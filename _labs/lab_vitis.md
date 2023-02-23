@@ -55,7 +55,7 @@ The way your kNN accelerator is currently configured, the training samples are s
 
 Modify your design in order to build a system where the training data is stored within main memory.  To do this, the training arrays should be declared in your software code, not in the code that is synthesized to hardware.
 
-The [Vitis HLS manual](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1399-vitis-hls.pdf) contains descriptions of how you can alter the interfaces to your IP block (Chapter 15: Managing Interface Synthesis).  At this point you should have already changed the *Block-Level Interface Protocol*, when you added the interface directive to control your HLS core using an AXILite slave connection.
+The [Vitis HLS manual](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2022_2/ug1399-vitis-hls.pdf) contains descriptions of how you can alter the interfaces to your IP block (Chapter 15: Managing Interface Synthesis).  At this point you should have already changed the *Block-Level Interface Protocol*, when you added the interface directive to control your HLS core using an AXILite slave connection.
 
 In order for your HLS core to receive the training data, you will have to add a new argument to your function, `const digit training_data[]`.  You must then decide how you want to provide training data to your HLS core through this new argument, that will become a port on the hardware block.  The section on *Port-Level I/O Protocols* discusses this in detail.  You probably want to implement either an *AXI4-Stream interface* or *AXI4 master*.  It is completely up to you how you implement this, and what protocols you would like to explore.  Make sure you read the section titled *Using AXI4 Interfaces*.
 
