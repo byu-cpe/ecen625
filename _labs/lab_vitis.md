@@ -13,7 +13,7 @@ repo: lab_vitis
 ## Learning Outcomes
 The goals of this assignment are to:
 * Test your HLS hardware from the last lab, and implement it on an SoC platform.
-* Learn how to connect Vivado HLS cores in a larger Vivado hardware project.
+* Learn how to connect Vitis HLS cores in a larger Vivado hardware project.
 * Learn how to call HLS accelerators from software in an SoC environment.
 * Measure performance of your HLS accelerator.
 
@@ -83,7 +83,7 @@ Include a short PDF report, located at `lab_vitis/report.pdf`.  Include the foll
 		
 * **Runtimes:**
 	* Provide software-only runtime (from Part 3)
-	* Provide accelerated runtime (from Part 2).  Does the per item runtime match the latency reported by Vivado HLS? (it should be pretty close)
+	* Provide accelerated runtime (from Part 2).  Does the per item runtime match the latency reported by Vitis HLS? (it should be pretty close)
 
 * **Interfaces:**
 	* Describe the approach you used to provide training data from main memory to your HLS accelerator. 

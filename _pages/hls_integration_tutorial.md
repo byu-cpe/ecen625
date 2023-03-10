@@ -18,7 +18,7 @@ This page discusses how you can export your IP from Vitis HLS to be used in a Vi
 * Set the *INTERFACE* of the *input* parameter to also be the AXI4-Lite bus.
 * Run C Synthesis.
 * Click *Solution->Export RTL*, and make sure the Format Selection is set to * Vivado IP (.zip)*.
-* Close Vivado HLS.
+* Close Vitis HLS.
 * Unzip your IP to a folder, for example, I used `unzip digitrec.zip -d lab_vitis/ip/digitrec/`
 
 **Bug fix**: I ran into a bug in Vitis 2020.2 that I had to fix.  Look in your *\<ip_dir\>/drivers/digitrec_v1_0/src/Makefile* and look for **three** commented out lines that start with '#echo'.  Remove these lines from the Makefile.  See <https://forums.xilinx.com/t5/High-Level-Synthesis-HLS/Bug-HLS-2020-2-generated-makefile-compilation-error-in-vitis/td-p/1206772>

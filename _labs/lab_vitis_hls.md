@@ -8,7 +8,7 @@ repo: lab_vitis_hls
 
 ## Learning Outcomes
 The goals of this assignment are to:
-* Gain experience using a commerical HLS tool, Xilinx's Vivado HLS tool.
+* Gain experience using a commerical HLS tool, Xilinx's Vitis HLS tool.
 * Observe how changes to the source code affect the resulting resource usage and performance.
 * Explore HLS design optimization techniques, and the effect on resource usage and performance.
 * Learn about a simple machine learning algorithm.
@@ -44,7 +44,7 @@ in C++.
 experiments with various handwritten input digits.
 * `Makefile`: a makefile for you to easily compile source code into an executable named digitrec and execute
 the program to check results (enter `make`).
-* `run.tcl`: the template project Tcl script that allows you to run Vivado HLS synthesis in command line
+* `run.tcl`: the template project Tcl script that allows you to run Vitis HLS synthesis in command line
 (`vivado_hls -f run.tcl`). 
 
 
@@ -54,7 +54,7 @@ You can install Vitis on your local machine (<https://www.xilinx.com/support/dow
 
 _Note: If you prefer, you can install Vitis on a Windows machine.  I haven't tested this.  It should work with the assignment, with a few extra considerations.  For example, the Makefile which has been provided to quickly compile and run your design may not work unless you have a build system setup.  You can still build and run within Vitis HLS, so it is not a big difference, but keep in mind you may run into problems such as this._
 
-<!-- Vivado HLS requires a license.  You can access the department Xilinx license server by setting the following environment variable.  This means you must either be on the university network, or connected to the CAEDM VPN.
+<!-- Vitis HLS requires a license.  You can access the department Xilinx license server by setting the following environment variable.  This means you must either be on the university network, or connected to the CAEDM VPN.
 
 ```
 export LM_LICENSE_FILE=2100@ece-xilinx.byu.edu
@@ -71,7 +71,7 @@ The first step will add the Xilinx binaries to your `PATH`. I second step was ne
 
 
 ### Vivado GUI vs command line
-For this assignment you can use the Vivado HLS GUI, or you can work entirely via command line.  If you are using the GUI, create a new project with this configuration:
+For this assignment you can use the Vitis HLS GUI, or you can work entirely via command line.  If you are using the GUI, create a new project with this configuration:
 * Design Files: 
 	* `digitrec.cpp` (Top Function: `digitrec`)
 * TestBench Files: 
@@ -121,7 +121,7 @@ How you choose to implement the algorithm may affect the resulting accuracy of y
 
 ### Design Exploration
 The second part of the assignment is to explore the impact of the *k* value on your digit recognition design. Specifically, you are expected to experiment with the *k* values ranging from 1 through 5, and collect the performance and area numbers of the synthesized design for each specific *k*.
-* The actual *k* value can be provided to the Makefile (`make K=4`) and changed in *run.tcl*. You can run simulation and synthesis in batch with *run.tcl*. This script will also automatically collect important stats (i.e., accuracy, performance, and resource usage) from the Vivado HLS reports and generate a \emph{knn_result.csv} file under the result folder.
+* The actual *k* value can be provided to the Makefile (`make K=4`) and changed in *run.tcl*. You can run simulation and synthesis in batch with *run.tcl*. This script will also automatically collect important stats (i.e., accuracy, performance, and resource usage) from the Vitis HLS reports and generate a \emph{knn_result.csv} file under the result folder.
 * In this assignment, you will use a fixed 10ns clock period targeting a specific Xilinx Zynq FPGA device. Clock period and target device have been specified in the run Tcl script.
 
 

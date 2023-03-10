@@ -34,7 +34,7 @@ icon: fas fa-calendar-alt
 |3 (Jan 25)     |           |HLS Flow, Arch. Exploration            |                                                   |Scheduling                                             |           |   
 |4 (Feb 1)      |           |ILP                                    |**Asst 2 Due, 11:59pm**                            |SDC Scheduling, Lab 3                                  |           |
 |5 (Feb 8)      |           |Pipelining                             |                                                   |                                      |           |
-|6 (Feb 15)     |           |**NO CLASS (Monday Instruction)**      |**Asst 3 Due, 11:59pm**                            |Lab 4, Vivado HLS                                      |           | 
+|6 (Feb 15)     |           |**NO CLASS (Monday Instruction)**      |**Asst 3 Due, 11:59pm**                            |Lab 4, Vitis HLS                                      |           | 
 |7 (Feb 22)     |           |Resource Sharing and Binding           |                                                   |**Midterm Exam**                                       |           | 
 |8 (Mar 1)      |           |Memory Partitioning                    |**Asst 4 Due, 11:59pm**                            |Interface Synthesis, Lab 5                             |           | 
 |9 (Mar 8)      |           |Final Project Discussion               |                                                   |Student Lectures                                       |           | 
