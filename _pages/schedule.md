@@ -17,8 +17,8 @@ icon: fas fa-calendar-alt
 |7 (Feb 20)     |                       | NO CLASS, **Asst 3 Due, 11:59pm**     |                                       |Vitis HLS Tutorial                                     |
 |8 (Feb 27)     |                       | NO CLASS - Work on Student Lecture    |                                       |NO CLASS - Work on Student Lecture                     |
 |9 (Mar 6)      |                       | Student Lectures                      |                                       |Student Lectures                                       |
-|10 (Mar 13)    |                       | NO CLASS                              | **Asst 4 Due, 11:59pm**               |                                                       |
-|11 (Mar 20)    |                       |                                       |                                       |                                                       |
+|10 (Mar 13)    |                       | NO CLASS                              | **Asst 4 Due, 11:59pm**               |Interfaces                                             |
+|11 (Mar 20)    |                       | Asst 5                                |                                       |                                                       |
 |12 (Mar 26)    |                       |                                       | **Asst 5 Due, 11:59pm**, Midterm Exam |Midterm Exam                                           |Midterm Exam
 |13 (Apr 3)     |                       |                                       |                                       |                                                       |
 |14 (Apr 10)    |                       |                                       |                                       |                                                       |
