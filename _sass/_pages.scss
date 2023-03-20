@@ -31,7 +31,7 @@ h3 {
 }
 
 ul li {
-    margin-bottom: 15px;
+    margin-bottom: 8px;
 }
 
 .btn-brand {
@@ -254,4 +254,19 @@ table {
     .fa-github {
         font-size: 1.3rem;
     }
+}
+
+.list-item-tall {
+    padding-top: 12pt;
+    padding-bottom: 12pt;
+}
+
+.list-item-normal {
+    padding-top: 4pt;
+    padding-bottom: 4pt;
+}
+
+.list-item-narrow {
+    padding-top: 1pt;
+    padding-bottom: 1pt;
 }

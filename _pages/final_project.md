@@ -11,8 +11,7 @@ The project for this course is very open-ended. You are welcome to propose any t
 2. Exploring, improving, or evaluating some aspect of HLS tools (open-source or commercial).
 3. Exploring, improving, or evaluating the growing space of DSL to HLS compilers.
 
-You can work alone, or in a group of 2.  As a rule-of-thumb, the level of difficulty
-expected is: Number of people * level-of-difficulty-for-each-assignment * 2
+You can work alone, or in a group of two.
 
 ### Project Deliverables
 There will be four  deliverables for the project:

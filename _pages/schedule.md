@@ -18,11 +18,11 @@ icon: fas fa-calendar-alt
 |8 (Feb 27)     |                       | NO CLASS - Work on Student Lecture    |                                       |NO CLASS - Work on Student Lecture                     |
 |9 (Mar 6)      |                       | Student Lectures                      |                                       |Student Lectures                                       |
 |10 (Mar 13)    |                       | NO CLASS                              | **Asst 4 Due, 11:59pm**               |Interfaces                                             |
-|11 (Mar 20)    |                       | Asst 5                                |                                       |                                                       |
-|12 (Mar 27)    |                       |                                       | **Asst 5 Due, 11:59pm**, Midterm Exam |Midterm Exam                                           |Midterm Exam
-|13 (Apr 3)     |                       |                                       |                                       |                                                       |
-|14 (Apr 10)    |                       |                                       |                                       |                                                       |
-|14 (Apr 17)    |                       | (Last Day of Class)                   |                                       | NO CLASS                                              |
+|11 (Mar 20)    |                       | Asst 5                                |                                       |Project Discussion & Midterm Q&A                       |
+|12 (Mar 27)    |                       | Research Paper #1                     | **Asst 5 Due, 11:59pm**, Midterm Exam | **Project Proposals** & Midterm Exam                      |Midterm Exam
+|13 (Apr 3)     |                       | Research Paper #2                     |                                       | NO CLASS                                              |
+|14 (Apr 10)    |                       | Research Paper #3                     |                                       | Project Presentations                                 |
+|14 (Apr 17)    |                       | Project Presentations                 |                                       | NO CLASS                                              |
 
 <!-- ### 2021 Schedule -->
 
