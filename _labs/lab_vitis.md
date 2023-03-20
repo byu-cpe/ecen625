@@ -26,6 +26,8 @@ Most of the direction for this lab are included in a set of tutorial pages.  Dep
 * [Vitis Tutorial]({% link _pages/vitis_tutorial.md %}): Running a bare-metal *Hello World* application in Vitis.
 * [HLS Integration Tutorial]({% link _pages/hls_integration_tutorial.md %}): Exporting your HLS accelerator as an AXI4 IP and integrating it into your hardware and software projects.
 
+**Note:** The tutorials were created with an earlier version of Vivado, and are somewhat brief.  You can earn an a bonus 10\% on this assignment if you create a pull request on Github to improve the tutorials in some meaningful way (adding extra explanation text, updating images, etc.; basically anything beyond just fixing a small typo).
+
 ## Implementation
 
 ### Part 1: System Setup
@@ -43,7 +45,7 @@ There are a few different ways you can perform high-resolution timing on your bo
 * Adding an AXI Timer to the FPGA fabric (\url{https://www.xilinx.com/support/documentation/ip_documentation/axi_timer/v2_0/pg079-axi-timer.pdf})
 * If you are using an MPSoC platform, the A53 also has public/privates timers that can be used.  Be sure you understand the API for these timers so that you know you are measuring time accurately. 
 
-In order to minimize the time spent in software, you should disable any printing while timing your code (set `logging` to `false`), and you should set compiler optimizations to *O2* or *O3*.  You can enable compiler optimizations in Vitis by right-clicking your application project (ie, *625_lab5*, not *625_lab5_system*), selecting *Properties*, and in the popup navigate to *C/C++ Build->Settings->Tool Settings->ARM v7 g++ compiler->Optimization*.
+In order to minimize the time spent in software, you should disable any printing while timing your code (set `logging` to `false`), and you should set compiler optimizations to *O2* or *O3*.  You can enable compiler optimizations in Vitis by right-clicking your application project (ie, *625_lab5*, not *625_lab5_system*), selecting *Properties*, and in the popup navigate to *C/C++ Build->Settings->Tool Settings->ARM v7 g++ compiler->Optimization* (may be slightly different for your processor/tool version).
 
 ### Part 3: Software Runtime
 
@@ -73,7 +75,7 @@ If you're not sure where to start, try something like this:
 		* Add a DMA core to your Vivado project that can read data from main memory and send it over an AXI Stream to your IP core.
 		* Modify you your Vivado project to add a Slave interface (*HP Slave AXI Interface*) on your *ZYNQ7 Processing System*.  This can be used to give the DMA core access to the DRAM. 
 
-**Bug Reminder**: Just a reminder of the Vitis HLS 2020.2 driver [Makefile bug]({% link _pages/hls_integration_tutorial.md %}).  When you export your new IP core, remember to fix the Makefile.
+**Bug Reminder**: Just a reminder of the Vitis HLS 2020.2 driver [Makefile bug]({% link _pages/hls_integration_tutorial.md %}).  When you export your new IP core, remember to fix the Makefile.  (I'm not sure if this has been fixed in 2022.2)
 
 Once configured, create a Vitis software application that will run this modified system and measure its runtime.
 

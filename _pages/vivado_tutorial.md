@@ -14,7 +14,7 @@ If you are using a Digilent board, such as the Zedboard, you need to setup the b
 ### Running Vivado
 Before you can run the Vivado tools you should first run the configuration script:
 ```
-source /tools/Xilinx/Vivado/2020.2/settings64.sh
+source /tools/Xilinx/Vivado/2022.2/settings64.sh
 ```
 
 This will add the tools to your _PATH_.  

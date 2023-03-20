@@ -64,7 +64,7 @@ This page discusses how you can export your IP from Vitis HLS to be used in a Vi
 ### Updating Platform Project
 * Launch Vitis and reopen your existing workspace.
 * Right-click on your platform project, and choose *Update Hardware Specifiction*. Make sure you select your new XSA file.
-* If done correctly, you should see your HLS driver located at *ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/ps7_cortexa9_0/libsrc/digitrec_v1_0/src.  Inspect the source code and locate:
+* If done correctly, you should see your HLS driver located at *ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/ps7_cortexa9_0/libsrc/digitrec_v1_0/src*.  Inspect the source code and locate:
 	* *xdigitrec_hw.h* has register offsets for your IP core.  If you followed the steps correctly, you should have:
 	  * control register (*XDIGITREC_CONTROL_ADDR_AP_CTRL*)
 	  * interrupt registers
@@ -76,7 +76,8 @@ This page discusses how you can export your IP from Vitis HLS to be used in a Vi
 ### Using the Driver in Your Code
 * Include the necessary header file in your application code and write software to test that you can start your IP, wait for it to complete, and retrieve the return value.  
 * You will need to initialize the HLS device driver before you can call any of the function.  As with most Xilinx drivers, this is done by calling *_LookupConfig*, providing the device ID from *xparameters.h*, and then calling *_CfgInitialize*:
-```
+
+```c
 XDigitrec digitrec;
 XDigitrec_Config* digitrec_config = XDigitrec_LookupConfig(XPAR_DIGITREC_0_DEVICE_ID);
 XDigitrec_CfgInitialize(&digitrec, digitrec_config);
