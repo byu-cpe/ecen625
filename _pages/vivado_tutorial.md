@@ -9,7 +9,7 @@ title: Vivado Tutorial
 ## Setup
 
 ### Installing Boards
-If you are using a Digilent board, such as the Zedboard, you need to setup the board files in Vivado.  See <https://github.com/Digilent/vivado-boards/>.
+If you are using a Digilent board, such as the Zedboard, you need to setup the board files in Vivado.  See <https://github.com/Xilinx/XilinxBoardStore>.
 
 ### Running Vivado
 Before you can run the Vivado tools you should first run the configuration script:
