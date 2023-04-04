@@ -37,6 +37,8 @@ Include the following in your paper review (in marked sections):
 
 Your review should be one page or less (normal fonts and margins).  Quality is more important than quantity.
 
+[Grading Scheme]({% link media/paper_review_grading.pdf %})
+
 ## Submission Instructions & Late Policy
 Send your review as a direct message on Slack. Because we discuss the paper reviews as a class, no late submissions will be accepted.  Please make sure to get your paper reviews in on time!
 
