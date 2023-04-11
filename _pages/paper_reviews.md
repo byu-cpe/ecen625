@@ -18,7 +18,7 @@ An important part of this course is reading research papers.  High-level synthes
 | # | Due Date | Paper |
 | 1 | **Mar 27, 11:59pm** | [Jason Cong, Jason Lau, Gai Liu, Stephen Neuendorffer, Peichen Pan, Kees Vissers, Zhiru Zhang, "FPGA HLS Today: Successes, Challenges, and Opportunities", TRETS 2022.](https://dl.acm.org/doi/full/10.1145/3530775) |
 | 2 | **Apr 3, 11:59pm** | [Yi-Hsiang Lai, Yuze Chi, Yuwei Hu, Jie Wang, Cody Hao Yu, Yuan Zhou, Jason Cong, Zhiru Zhang, "HeteroCL: A Multi-Paradigm Programming Infrastructure for Software-Defined Reconfigurable Computing", FPGA 2019.](https://dl.acm.org/doi/abs/10.1145/3289602.3293910) |
-| 3 | **Apr 10, 11:59pm**| [Hanchen Ye, Cong Hao, Jianyi Cheng, Hyunmin Jeong, Jack Huang, Stephen Neuendorffer, Deming Chen, "ScaleHLS: A New Scalable High-Level Synthesis Framework on Multi-Level Intermediate Representation", HPCA 2022.](https://dl.acm.org/doi/abs/10.1145/3431920.3439297) |
+| 3 | **Apr 10, 11:59pm**| [Hanchen Ye, Cong Hao, Jianyi Cheng, Hyunmin Jeong, Jack Huang, Stephen Neuendorffer, Deming Chen, "ScaleHLS: A New Scalable High-Level Synthesis Framework on Multi-Level Intermediate Representation", HPCA 2022.](https://ieeexplore.ieee.org/document/9773203) |
 
 
 ## Paper Review Contents
