@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>
+    
+    Vitis Integration • ECEn 625: Compilation Strategies for High-Performance Systems
+    
+</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href=/ecen625/css/main.css>
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://use.typekit.net/jcn6ybb.css">
+
+<!-- <link rel="icon" type="image/png" sizes="96x96" href=/ecen625/icon/favicon-96x96.png>
+<link rel="icon" type="image/png" sizes="32x32" href=/ecen625/icon/favicon-32x32.png>
+<link rel="icon" type="image/png" sizes="16x16" href=/ecen625/icon/favicon-16x16.png> -->
+
+<script src="https://kit.fontawesome.com/d794f0229e.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+<div class="border-right sidebar-color" id="sidebar-wrapper">
+    <div class="sidebar-sticky">
+        <div class="sidebar-heading-big">
+            <a href="/ecen625/">
+                ECEn 625</a>
+        </div>
+        <!-- <div class="sidebar-heading">Pages</div> -->
+        <div class="list-group list-group-flush sidebar-color">
+            
+            
+            <a href="/ecen625/overview/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-chalkboard-teacher"></i>
+                
+                Overview
+            </a>
+            
+            
+            
+            <a href="/ecen625/lab-setup/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-wrench"></i>
+                
+                Lab Setup
+            </a>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a href="/ecen625/links/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-box-open"></i>
+                
+                Links
+            </a>
+            
+            
+            
+            
+            
+            <a href="/ecen625/paper-reviews/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-book-open"></i>
+                
+                Research Papers
+            </a>
+            
+            
+            
+            <a href="/ecen625/schedule/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-calendar-alt"></i>
+                
+                Schedule
+            </a>
+            
+            
+            
+            
+            
+            
+            <a href="https://slack.com/app_redirect?team=T01J887F8MU&channel=C01JF1N6TH8"
+                class="list-item-normal list-group-item list-group-item-action sidebar-item" target="_blank"><i
+                    class="fa fa-question-circle"></i>
+                Slack</a>
+            <!-- <a href="https://learningsuite.byu.edu/.qD2F/cid-B84_MqETGWke/calendar"
+                class="list-group-item list-group-item-action bg-light sidebar-item" target="_blank">
+                <i class="far fa-calendar"></i>
+                Schedule
+            </a> -->
+        </div>
+
+        <div class="sidebar-heading">Labs</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen625/labs/lab-graphs/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">1</span>
+                Graphs & C++ Warmup
+            </a>
+            
+            <a href="/ecen625/labs/lab-llvm/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">2</span>
+                LLVM
+            </a>
+            
+            <a href="/ecen625/labs/lab-scheduling/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">3</span>
+                Scheduling
+            </a>
+            
+            <a href="/ecen625/labs/lab-vitis-hls/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">4</span>
+                Vitis HLS
+            </a>
+            
+            <a href="/ecen625/labs/lab-vitis/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">5</span>
+                Vitis Integration
+            </a>
+            
+            <a href="/ecen625/final-project/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <i class="fa fa-microscope"></i>
+                Final Project
+            </a>
+        </div>
+
+        <div class="list-group list-group-flush">
+
+        </div>
+
+        <!-- <div class="sidebar-heading">Homeworks</div>
+        <div class="list-group list-group-flush">
+            
+        </div> -->
+    </div>
+</div>
+<!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar sticky-top navbar-expand-lg border-bottom">
+        <button class="btn btn-brand" id="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <a href="" class="navbar-brand mb-0 h1 page-title-bar text-center mx-auto" id="page-title-bar"></a>
+
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link btn btn-brand suggest-edits" target="_blank" rel="noopener noreferrer"
+              href="https://github.com/byu-cpe/ecen625/issues/new?labels=website&title=Updates to Vitis Integration page"><i
+                class="fab fa-github"></i> Suggest
+              Edits</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="container">
+        <article class="page lab">
+    <h1 class="page-title" id="page-title">
+        Vitis Integration
+        
+        <a href="https://github.com/byu-cpe/ecen625_student/tree/main/lab_vitis" target="_blank"><i
+                class="fab fa-github"></i></a>
+        
+    </h1>
+
+    <div class="page-content">
+        
+        <div class="lab-toc col-md-6 col-lg-5 bg-light">
+            <h4>Table of Contents</h4>
+            <ul>
+  <li><a href="#learning-outcomes">Learning Outcomes</a></li>
+  <li><a href="#preliminary">Preliminary</a></li>
+  <li><a href="#implementation">Implementation</a>
+    <ul>
+      <li><a href="#part-1-system-setup">Part 1: System Setup</a></li>
+      <li><a href="#part-2-measuring-execution-time">Part 2: Measuring Execution Time</a></li>
+      <li><a href="#part-3-software-runtime">Part 3: Software Runtime</a></li>
+      <li><a href="#part-4-exploring-interfaces">Part 4: Exploring Interfaces</a></li>
+    </ul>
+  </li>
+  <li><a href="#report">Report</a></li>
+  <li><a href="#submission">Submission</a></li>
+</ul>
+
+        </div>
+        
+
+        <h2 id="learning-outcomes">Learning Outcomes</h2>
+<p>The goals of this assignment are to:</p>
+<ul>
+  <li>Test your HLS hardware from the last lab, and implement it on an SoC platform.</li>
+  <li>Learn how to connect Vitis HLS cores in a larger Vivado hardware project.</li>
+  <li>Learn how to call HLS accelerators from software in an SoC environment.</li>
+  <li>Measure performance of your HLS accelerator.</li>
+</ul>
+
+<h2 id="preliminary">Preliminary</h2>
+
+<p>In this lab you will export your HLS accelerator as an IP to include in a Vivado project on the FPGA.  You will then create an embedded software application in Vitis (different from Vitis HLS), that will communicate with your accelerator.</p>
+
+<p>Most of the direction for this lab are included in a set of tutorial pages.  Depending on your experience you may need to complete some or all of these tutorials in order to complete this lab:</p>
+<ul>
+  <li><a href="/ecen625/vivado-tutorial/">Vivado Tutorial</a>: Tutorial on creating a block-design Vivado project with the ARM processor.</li>
+  <li><a href="/ecen625/vitis-tutorial/">Vitis Tutorial</a>: Running a bare-metal <em>Hello World</em> application in Vitis.</li>
+  <li><a href="/ecen625/hls-integration-tutorial/">HLS Integration Tutorial</a>: Exporting your HLS accelerator as an AXI4 IP and integrating it into your hardware and software projects.</li>
+</ul>
+
+<p><strong>Note:</strong> The tutorials were created with an earlier version of Vivado, and are somewhat brief.  You can earn an a bonus 10\% on this assignment if you create a pull request on Github to improve the tutorials in some meaningful way (adding extra explanation text, updating images, etc.; basically anything beyond just fixing a small typo).</p>
+
+<h2 id="implementation">Implementation</h2>
+
+<h3 id="part-1-system-setup">Part 1: System Setup</h3>
+<p>As described in the tutorials, export your HLS IP to RTL, include it in an SoC Vivado project, and write software to run your accelerator.  You can use any version of your HLS IP from the last lab (ie, unoptimized, min area, min latency, etc.)</p>
+<ul>
+  <li>Add your Vivado project Tcl file to your Git repo in the <em>lab_vitis/hw</em> folder.</li>
+  <li>Add your IP files to your Git repo in the <em>lab_vitis/ip</em> folder.</li>
+</ul>
+
+<h3 id="part-2-measuring-execution-time">Part 2: Measuring Execution Time</h3>
+
+<p>You are provided with an incomplete <a href="https://github.com/byu-cpe/ecen625_student/blob/main/lab_vitis/sw/main.cpp">main.cpp</a> that is similar to the test program used in the last lab.  It will test the accuracy of your accelerator with the same set of test data.  Complete the rest of the program and measure the runtime of your accelerator.</p>
+
+<p>There are a few different ways you can perform high-resolution timing on your board.  A few alternatives:</p>
+<ul>
+  <li>For the 7-series ZYNQ, the ZYNQ global timer <em>xtime_l.h</em></li>
+  <li>For the 7-series ZYNQ, the per-core private timer <em>xscutimer.h</em></li>
+  <li>Adding an AXI Timer to the FPGA fabric (\url{https://www.xilinx.com/support/documentation/ip_documentation/axi_timer/v2_0/pg079-axi-timer.pdf})</li>
+  <li>If you are using an MPSoC platform, the A53 also has public/privates timers that can be used.  Be sure you understand the API for these timers so that you know you are measuring time accurately.</li>
+</ul>
+
+<p>In order to minimize the time spent in software, you should disable any printing while timing your code (set <code class="language-plaintext highlighter-rouge">logging</code> to <code class="language-plaintext highlighter-rouge">false</code>), and you should set compiler optimizations to <em>O2</em> or <em>O3</em>.  You can enable compiler optimizations in Vitis by right-clicking your application project (ie, <em>625_lab5</em>, not <em>625_lab5_system</em>), selecting <em>Properties</em>, and in the popup navigate to <em>C/C++ Build-&gt;Settings-&gt;Tool Settings-&gt;ARM v7 g++ compiler-&gt;Optimization</em> (may be slightly different for your processor/tool version).</p>
+
+<h3 id="part-3-software-runtime">Part 3: Software Runtime</h3>
+
+<p>Replace the call to your hardware accelerator with a software implementation of the function.  You should be able to use your existing HLS code with some minor modifications.  Measure and collect the runtime.</p>
+
+<h3 id="part-4-exploring-interfaces">Part 4: Exploring Interfaces</h3>
+<p>The way your kNN accelerator is currently configured, the training samples are stored within the accelerator, which means they are implemented using the FPGA fabric, likely using the BRAMs.</p>
+
+<p>Modify your design in order to build a system where the training data is stored within main memory.  To do this, the training arrays should be declared in your software code, not in the code that is synthesized to hardware.</p>
+
+<p>The <a href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2022_2/ug1399-vitis-hls.pdf">Vitis HLS manual</a> contains descriptions of how you can alter the interfaces to your IP block (Chapter 15: Managing Interface Synthesis).  At this point you should have already changed the <em>Block-Level Interface Protocol</em>, when you added the interface directive to control your HLS core using an AXILite slave connection.</p>
+
+<p>In order for your HLS core to receive the training data, you will have to add a new argument to your function, <code class="language-plaintext highlighter-rouge">const digit training_data[]</code>.  You must then decide how you want to provide training data to your HLS core through this new argument, that will become a port on the hardware block.  The section on <em>Port-Level I/O Protocols</em> discusses this in detail.  You probably want to implement either an <em>AXI4-Stream interface</em> or <em>AXI4 master</em>.  It is completely up to you how you implement this, and what protocols you would like to explore.  Make sure you read the section titled <em>Using AXI4 Interfaces</em>.</p>
+
+<p>If you’re not sure where to start, try something like this:</p>
+<ol>
+  <li>Add a pointer or array argument to your function to provide the training data.</li>
+  <li>Pass in this data from your test function and make sure your solution still passes <em>C Simulation</em>.</li>
+  <li>Choose between a memory-mapped or streaming interface:
+    <ul>
+      <li>Memory Mapped:
+        <ul>
+          <li>Configure the interface for this port to be an memory-mapped AXI Master (<em>m_axi</em>)</li>
+          <li>Read about how the master port determines the address offset to use, and configure your interface appropriately.</li>
+          <li>Modify you your Vivado project to add a Slave interface (<em>HP Slave AXI Interface</em>) on your <em>ZYNQ7 Processing System</em>.  This gives a different block access to the DRAM.</li>
+          <li>Connect your new AXI master port in your HLS IP to this port.give the new master port access to the main memory.</li>
+        </ul>
+      </li>
+      <li>Streaming:
+        <ul>
+          <li>Configure the interface for this port to be an AXI Stream (\emph{axis})</li>
+          <li>Add a DMA core to your Vivado project that can read data from main memory and send it over an AXI Stream to your IP core.</li>
+          <li>Modify you your Vivado project to add a Slave interface (<em>HP Slave AXI Interface</em>) on your <em>ZYNQ7 Processing System</em>.  This can be used to give the DMA core access to the DRAM.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>Bug Reminder</strong>: Just a reminder of the Vitis HLS 2020.2 driver <a href="/ecen625/hls-integration-tutorial/">Makefile bug</a>.  When you export your new IP core, remember to fix the Makefile.  (I’m not sure if this has been fixed in 2022.2)</p>
+
+<p>Once configured, create a Vitis software application that will run this modified system and measure its runtime.</p>
+
+<h2 id="report">Report</h2>
+<p>Include a short PDF report, located at <code class="language-plaintext highlighter-rouge">lab_vitis/report.pdf</code>.  Include the following items:</p>
+<ul>
+  <li>
+    <p>Briefly describe your hardware implementation.  What board did you use?  What version of your HLS accelerator did you use?  For example, you may find your largest configuration does not actually fit on the FPGA.  How did you verify that your HLS core was operating correctly?</p>
+  </li>
+  <li><strong>Runtimes:</strong>
+    <ul>
+      <li>Provide software-only runtime (from Part 3)</li>
+      <li>Provide accelerated runtime (from Part 2).  Does the per item runtime match the latency reported by Vitis HLS? (it should be pretty close)</li>
+    </ul>
+  </li>
+  <li><strong>Interfaces:</strong>
+    <ul>
+      <li>Describe the approach you used to provide training data from main memory to your HLS accelerator.</li>
+      <li>Include HLS resource usage before/after making this change, to demonstrate that BRAMs are no longer being used for the training data.</li>
+      <li>Provide runtime data for this configuration, and comment on how it compares to the previous approach of storing training data within the accelerator.</li>
+      <li>What are the advantages and disadvantages of storing the data in the hardware accelerator versus in main memory?</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="submission">Submission</h2>
+<p>Submit your code on Github using the tag <code class="language-plaintext highlighter-rouge">lab5_submission</code>.</p>
+
+<p>Be sure your Git repo contains at minimum:</p>
+<ul>
+  <li>The .tcl file that can be used to create your project in Vivado.  I’ll run this when grading, so please make sure it works.  This means that you need to have your HLS IP committed into your repo or it won’t work.  This should be committed to the <a href="https://github.com/byu-cpe/ecen625_student/tree/main/lab_vitis/hw">hw</a> directory.</li>
+  <li>The C/C++ source file that you use to run your accelerator and collect runtimes.  This should be committed to the <a href="https://github.com/byu-cpe/ecen625_student/tree/main/lab_vitis/sw">sw</a> directory.</li>
+</ul>
+
+
+    </div>
+</article>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<script src=/ecen625/js/jquery.visible.min.js></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    var prevVisible = $('#page-title').visible();
+
+    $(window).scroll(function () {
+        currentVisible = $('#page-title').visible()
+        if (prevVisible && !currentVisible) {
+            console.log("Do something!");
+            $("#page-title-bar").html($('#page-title').text());
+        }
+
+        if (!prevVisible && currentVisible) {
+            $("#page-title-bar").html("")
+        }
+
+        prevVisible = currentVisible;
+    });
+
+</script>
+
+</body>
+
+</html>

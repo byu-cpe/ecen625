@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>
+    
+    Research Papers • ECEn 625: Compilation Strategies for High-Performance Systems
+    
+</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href=/ecen625/css/main.css>
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://use.typekit.net/jcn6ybb.css">
+
+<!-- <link rel="icon" type="image/png" sizes="96x96" href=/ecen625/icon/favicon-96x96.png>
+<link rel="icon" type="image/png" sizes="32x32" href=/ecen625/icon/favicon-32x32.png>
+<link rel="icon" type="image/png" sizes="16x16" href=/ecen625/icon/favicon-16x16.png> -->
+
+<script src="https://kit.fontawesome.com/d794f0229e.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+<div class="border-right sidebar-color" id="sidebar-wrapper">
+    <div class="sidebar-sticky">
+        <div class="sidebar-heading-big">
+            <a href="/ecen625/">
+                ECEn 625</a>
+        </div>
+        <!-- <div class="sidebar-heading">Pages</div> -->
+        <div class="list-group list-group-flush sidebar-color">
+            
+            
+            <a href="/ecen625/overview/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-chalkboard-teacher"></i>
+                
+                Overview
+            </a>
+            
+            
+            
+            <a href="/ecen625/lab-setup/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-wrench"></i>
+                
+                Lab Setup
+            </a>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a href="/ecen625/links/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-box-open"></i>
+                
+                Links
+            </a>
+            
+            
+            
+            
+            
+            <a href="/ecen625/paper-reviews/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-book-open"></i>
+                
+                Research Papers
+            </a>
+            
+            
+            
+            <a href="/ecen625/schedule/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-calendar-alt"></i>
+                
+                Schedule
+            </a>
+            
+            
+            
+            
+            
+            
+            <a href="https://slack.com/app_redirect?team=T01J887F8MU&channel=C01JF1N6TH8"
+                class="list-item-normal list-group-item list-group-item-action sidebar-item" target="_blank"><i
+                    class="fa fa-question-circle"></i>
+                Slack</a>
+            <!-- <a href="https://learningsuite.byu.edu/.qD2F/cid-B84_MqETGWke/calendar"
+                class="list-group-item list-group-item-action bg-light sidebar-item" target="_blank">
+                <i class="far fa-calendar"></i>
+                Schedule
+            </a> -->
+        </div>
+
+        <div class="sidebar-heading">Labs</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen625/labs/lab-graphs/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">1</span>
+                Graphs & C++ Warmup
+            </a>
+            
+            <a href="/ecen625/labs/lab-llvm/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">2</span>
+                LLVM
+            </a>
+            
+            <a href="/ecen625/labs/lab-scheduling/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">3</span>
+                Scheduling
+            </a>
+            
+            <a href="/ecen625/labs/lab-vitis-hls/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">4</span>
+                Vitis HLS
+            </a>
+            
+            <a href="/ecen625/labs/lab-vitis/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">5</span>
+                Vitis Integration
+            </a>
+            
+            <a href="/ecen625/final-project/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <i class="fa fa-microscope"></i>
+                Final Project
+            </a>
+        </div>
+
+        <div class="list-group list-group-flush">
+
+        </div>
+
+        <!-- <div class="sidebar-heading">Homeworks</div>
+        <div class="list-group list-group-flush">
+            
+        </div> -->
+    </div>
+</div>
+<!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar sticky-top navbar-expand-lg border-bottom">
+        <button class="btn btn-brand" id="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <a href="" class="navbar-brand mb-0 h1 page-title-bar text-center mx-auto" id="page-title-bar"></a>
+
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link btn btn-brand suggest-edits" target="_blank" rel="noopener noreferrer"
+              href="https://github.com/byu-cpe/ecen625/issues/new?labels=website&title=Updates to Research Papers page"><i
+                class="fab fa-github"></i> Suggest
+              Edits</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="container">
+        <article class="page">
+  <h1 class="page-title" id="page-title">
+    
+    <i class="fas fa-book-open"></i>
+    
+    Research Papers
+  </h1>
+
+  <div class="page-content">
+    
+
+    <p>An important part of this course is reading research papers.  High-level synthesis is an active research area and many of the most interesting developments are taking place in the research domain.  In addition, reading and reviewing research papers is a good skill to practise, especially for those of you that go on to a research career.</p>
+
+<h2 id="schedule">Schedule</h2>
+
+<p><strong>Paper reviews are due the day before we discuss the paper in class</strong></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>#</td>
+      <td>Due Date</td>
+      <td>Paper</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td><strong>Mar 27, 11:59pm</strong></td>
+      <td><a href="https://dl.acm.org/doi/full/10.1145/3530775">Jason Cong, Jason Lau, Gai Liu, Stephen Neuendorffer, Peichen Pan, Kees Vissers, Zhiru Zhang, “FPGA HLS Today: Successes, Challenges, and Opportunities”, TRETS 2022.</a></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>Apr 3, 11:59pm</strong></td>
+      <td><a href="https://dl.acm.org/doi/abs/10.1145/3289602.3293910">Yi-Hsiang Lai, Yuze Chi, Yuwei Hu, Jie Wang, Cody Hao Yu, Yuan Zhou, Jason Cong, Zhiru Zhang, “HeteroCL: A Multi-Paradigm Programming Infrastructure for Software-Defined Reconfigurable Computing”, FPGA 2019.</a></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>Apr 10, 11:59pm</strong></td>
+      <td><a href="https://ieeexplore.ieee.org/document/9773203">Hanchen Ye, Cong Hao, Jianyi Cheng, Hyunmin Jeong, Jack Huang, Stephen Neuendorffer, Deming Chen, “ScaleHLS: A New Scalable High-Level Synthesis Framework on Multi-Level Intermediate Representation”, HPCA 2022.</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="paper-review-contents">Paper Review Contents</h2>
+
+<p>Include the following in your paper review (in marked sections):</p>
+<ol>
+  <li>A sentence or two giving an <strong>overview</strong> of the paper.</li>
+  <li>Describe the <strong>2-3 Major Contributions and/or Novelty</strong> of the paper. This should be more than a re-statement of the abstract.  What do you think are the important contributions of the paper?</li>
+  <li>Provide a <strong>critical review, discussing several positive and negative aspects of the paper</strong>.  Try to provide non-trivial arguments, including some points not brought up by the authors.  Do not summarize the paper (that’s what the abstract is for); rather, evaluate the merits of the work done by the authors as presented in the paper. You could comment on things like: (not all in one review):
+    <ul>
+      <li>importance of the problem being solved</li>
+      <li>soundness/correctness of approach</li>
+      <li>appropriateness of methodology</li>
+      <li>quality, completeness or repeatability of results</li>
+      <li>readability</li>
+      <li>perspective and/or comparison with previous work</li>
+    </ul>
+  </li>
+  <li>Identify at least one aspect of the paper that you <strong>didn’t understand</strong>, or want to better understand.</li>
+</ol>
+
+<p>Your review should be one page or less (normal fonts and margins).  Quality is more important than quantity.</p>
+
+<p><a href="/ecen625/media/paper_review_grading.pdf">Grading Scheme</a></p>
+
+<h2 id="submission-instructions--late-policy">Submission Instructions &amp; Late Policy</h2>
+<p>Send your review as a direct message on Slack. Because we discuss the paper reviews as a class, no late submissions will be accepted.  Please make sure to get your paper reviews in on time!</p>
+
+
+  </div>
+</article>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<script src=/ecen625/js/jquery.visible.min.js></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    var prevVisible = $('#page-title').visible();
+
+    $(window).scroll(function () {
+        currentVisible = $('#page-title').visible()
+        if (prevVisible && !currentVisible) {
+            console.log("Do something!");
+            $("#page-title-bar").html($('#page-title').text());
+        }
+
+        if (!prevVisible && currentVisible) {
+            $("#page-title-bar").html("")
+        }
+
+        prevVisible = currentVisible;
+    });
+
+</script>
+
+</body>
+
+</html>

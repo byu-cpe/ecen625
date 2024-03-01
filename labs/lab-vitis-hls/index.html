@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>
+    
+    Vitis HLS • ECEn 625: Compilation Strategies for High-Performance Systems
+    
+</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href=/ecen625/css/main.css>
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://use.typekit.net/jcn6ybb.css">
+
+<!-- <link rel="icon" type="image/png" sizes="96x96" href=/ecen625/icon/favicon-96x96.png>
+<link rel="icon" type="image/png" sizes="32x32" href=/ecen625/icon/favicon-32x32.png>
+<link rel="icon" type="image/png" sizes="16x16" href=/ecen625/icon/favicon-16x16.png> -->
+
+<script src="https://kit.fontawesome.com/d794f0229e.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+<div class="border-right sidebar-color" id="sidebar-wrapper">
+    <div class="sidebar-sticky">
+        <div class="sidebar-heading-big">
+            <a href="/ecen625/">
+                ECEn 625</a>
+        </div>
+        <!-- <div class="sidebar-heading">Pages</div> -->
+        <div class="list-group list-group-flush sidebar-color">
+            
+            
+            <a href="/ecen625/overview/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-chalkboard-teacher"></i>
+                
+                Overview
+            </a>
+            
+            
+            
+            <a href="/ecen625/lab-setup/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-wrench"></i>
+                
+                Lab Setup
+            </a>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a href="/ecen625/links/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-box-open"></i>
+                
+                Links
+            </a>
+            
+            
+            
+            
+            
+            <a href="/ecen625/paper-reviews/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-book-open"></i>
+                
+                Research Papers
+            </a>
+            
+            
+            
+            <a href="/ecen625/schedule/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-calendar-alt"></i>
+                
+                Schedule
+            </a>
+            
+            
+            
+            
+            
+            
+            <a href="https://slack.com/app_redirect?team=T01J887F8MU&channel=C01JF1N6TH8"
+                class="list-item-normal list-group-item list-group-item-action sidebar-item" target="_blank"><i
+                    class="fa fa-question-circle"></i>
+                Slack</a>
+            <!-- <a href="https://learningsuite.byu.edu/.qD2F/cid-B84_MqETGWke/calendar"
+                class="list-group-item list-group-item-action bg-light sidebar-item" target="_blank">
+                <i class="far fa-calendar"></i>
+                Schedule
+            </a> -->
+        </div>
+
+        <div class="sidebar-heading">Labs</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen625/labs/lab-graphs/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">1</span>
+                Graphs & C++ Warmup
+            </a>
+            
+            <a href="/ecen625/labs/lab-llvm/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">2</span>
+                LLVM
+            </a>
+            
+            <a href="/ecen625/labs/lab-scheduling/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">3</span>
+                Scheduling
+            </a>
+            
+            <a href="/ecen625/labs/lab-vitis-hls/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">4</span>
+                Vitis HLS
+            </a>
+            
+            <a href="/ecen625/labs/lab-vitis/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">5</span>
+                Vitis Integration
+            </a>
+            
+            <a href="/ecen625/final-project/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <i class="fa fa-microscope"></i>
+                Final Project
+            </a>
+        </div>
+
+        <div class="list-group list-group-flush">
+
+        </div>
+
+        <!-- <div class="sidebar-heading">Homeworks</div>
+        <div class="list-group list-group-flush">
+            
+        </div> -->
+    </div>
+</div>
+<!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar sticky-top navbar-expand-lg border-bottom">
+        <button class="btn btn-brand" id="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <a href="" class="navbar-brand mb-0 h1 page-title-bar text-center mx-auto" id="page-title-bar"></a>
+
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link btn btn-brand suggest-edits" target="_blank" rel="noopener noreferrer"
+              href="https://github.com/byu-cpe/ecen625/issues/new?labels=website&title=Updates to Vitis HLS page"><i
+                class="fab fa-github"></i> Suggest
+              Edits</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="container">
+        <article class="page lab">
+    <h1 class="page-title" id="page-title">
+        Vitis HLS
+        
+        <a href="https://github.com/byu-cpe/ecen625_student/tree/main/lab_vitis_hls" target="_blank"><i
+                class="fab fa-github"></i></a>
+        
+    </h1>
+
+    <div class="page-content">
+        
+        <div class="lab-toc col-md-6 col-lg-5 bg-light">
+            <h4>Table of Contents</h4>
+            <ul>
+  <li><a href="#learning-outcomes">Learning Outcomes</a></li>
+  <li><a href="#background">Background</a></li>
+  <li><a href="#getting-started">Getting Started</a>
+    <ul>
+      <li><a href="#install-dependencies">Install Dependencies</a></li>
+      <li><a href="#code-organization">Code Organization</a></li>
+      <li><a href="#setting-up-vitis-hls">Setting up Vitis HLS</a></li>
+      <li><a href="#vivado-gui-vs-command-line">Vivado GUI vs command line</a></li>
+    </ul>
+  </li>
+  <li><a href="#design-overview">Design Overview</a></li>
+  <li><a href="#implementation">Implementation</a>
+    <ul>
+      <li><a href="#coding-and-debugging">Coding and Debugging</a></li>
+      <li><a href="#design-exploration">Design Exploration</a></li>
+      <li><a href="#design-optimization">Design Optimization</a></li>
+    </ul>
+  </li>
+  <li><a href="#class-results">Class Results</a></li>
+  <li><a href="#report">Report</a></li>
+  <li><a href="#submission">Submission</a></li>
+  <li><a href="#acknowledgement">Acknowledgement</a></li>
+</ul>
+
+        </div>
+        
+
+        <h2 id="learning-outcomes">Learning Outcomes</h2>
+<p>The goals of this assignment are to:</p>
+<ul>
+  <li>Gain experience using a commerical HLS tool, Xilinx’s Vitis HLS tool.</li>
+  <li>Observe how changes to the source code affect the resulting resource usage and performance.</li>
+  <li>Explore HLS design optimization techniques, and the effect on resource usage and performance.</li>
+  <li>Learn about a simple machine learning algorithm.</li>
+</ul>
+
+<h2 id="background">Background</h2>
+
+<p>Handwriting recognition refers to the computer’s ability to intelligently interpret handwritten inputs and is
+broadly applied in document processing, signature verification, and bank check clearing. An important step in
+handwriting recognition is classification, which classifies data into one of a fixed number of classes. In this lab,
+you will design and implement a handwritten digit recognition system based on the <strong>k-nearest-neighbors
+(k-NN)</strong> classifier algorithm [<a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm">wiki</a>, <a href="https://www.youtube.com/watch?v=UqYde-LULfs">good youtube video</a>].</p>
+
+<p>In the assignment you are provided with a set of already classified handwritten digits (called the training sets), and will implement a k-NN algorithm in C++ that is able to identify any input handwritten digit (called the testing instance) using the training sets. In addition, you will use two commonly-used high-level synthesis (HLS) optimizations to parallelize the synthesized hardware and explore design trade-offs in performance and area.</p>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<h3 id="install-dependencies">Install Dependencies</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt install libc6-dev-i386 libtinfo5 libswt-gtk-4-java
+</code></pre></div></div>
+
+<h3 id="code-organization">Code Organization</h3>
+<p>You are provided the following files:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">digitrec.cpp</code>: an incomplete source file where you write your k-NN based digit recognition algorithm
+in C++.</li>
+  <li><code class="language-plaintext highlighter-rouge">digitrec.h</code>: the header file that defines the interface for the core functions <code class="language-plaintext highlighter-rouge">update_knn</code> and <code class="language-plaintext highlighter-rouge">knn_vote</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">typedefs.h</code>: the header file that defines the key data types used in the design.</li>
+  <li><code class="language-plaintext highlighter-rouge">training_data.h</code>: the header file that contains all the training data.</li>
+  <li><code class="language-plaintext highlighter-rouge">test_data.h</code>: a set of test data with golden values for testing your prediction accuracy.</li>
+  <li><code class="language-plaintext highlighter-rouge">digitrec_test.cpp</code>: a test bench (only useful for simulation) that helps verify your code and perform
+experiments with various handwritten input digits.</li>
+  <li><code class="language-plaintext highlighter-rouge">Makefile</code>: a makefile for you to easily compile source code into an executable named digitrec and execute
+the program to check results (enter <code class="language-plaintext highlighter-rouge">make</code>).</li>
+  <li><code class="language-plaintext highlighter-rouge">run.tcl</code>: the template project Tcl script that allows you to run Vitis HLS synthesis in command line
+(<code class="language-plaintext highlighter-rouge">vivado_hls -f run.tcl</code>).</li>
+</ul>
+
+<h3 id="setting-up-vitis-hls">Setting up Vitis HLS</h3>
+<p>For this assignment we will be using Vitis HLS. 
+You can install Vitis on your local machine (<a href="https://www.xilinx.com/support/download.html">https://www.xilinx.com/support/download.html</a>).  If you do this, you should install Vitis 2022.2 on an Ubuntu 22.04 (or newer) machine.</p>
+
+<p><em>Note: If you prefer, you can install Vitis on a Windows machine.  I haven’t tested this.  It should work with the assignment, with a few extra considerations.  For example, the Makefile which has been provided to quickly compile and run your design may not work unless you have a build system setup.  You can still build and run within Vitis HLS, so it is not a big difference, but keep in mind you may run into problems such as this.</em></p>
+
+<!-- Vitis HLS requires a license.  You can access the department Xilinx license server by setting the following environment variable.  This means you must either be on the university network, or connected to the CAEDM VPN.
+
+```
+export LM_LICENSE_FILE=2100@ece-xilinx.byu.edu
+``` -->
+
+<p>To run the Vitis tools you should do the following (<em>Note:</em> Exporting the <em>LIBRARY_PATH</em> was necessary on a prevous version of Vitis, but may have been fixed in 2022 and may not be necessary):</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>source /tools/Xilinx/Vitis_HLS/2022.2/settings64.sh
+export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LIBRARY_PATH
+vitis_hls
+</code></pre></div></div>
+
+<p>The first step will add the Xilinx binaries to your <code class="language-plaintext highlighter-rouge">PATH</code>. I second step was needed on my machine to solve a bug (might not be needed with different Ubuntu versions).  The last command runs Vitis HLS.  If you don’t want to setup your own machine, contact me and I can give you access to a server with Vitis 2020.2 installed.</p>
+
+<h3 id="vivado-gui-vs-command-line">Vivado GUI vs command line</h3>
+<p>For this assignment you can use the Vitis HLS GUI, or you can work entirely via command line.  If you are using the GUI, create a new project with this configuration:</p>
+<ul>
+  <li>Design Files:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">digitrec.cpp</code> (Top Function: <code class="language-plaintext highlighter-rouge">digitrec</code>)</li>
+    </ul>
+  </li>
+  <li>TestBench Files:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">digitrec_test.cpp</code></li>
+      <li><code class="language-plaintext highlighter-rouge">data</code> <em>(this is a folder)</em></li>
+    </ul>
+  </li>
+  <li>Part: <code class="language-plaintext highlighter-rouge">xc7z020clg484-1</code></li>
+</ul>
+
+<p>When you are ready to collect results you can use the <code class="language-plaintext highlighter-rouge">run.tcl</code> script to automatically run C simulation and synthesis, and extract results for <em>k=1,2,3,4,5</em>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vitis_hls -f run.tcl
+</code></pre></div></div>
+
+<p>If you look inside <code class="language-plaintext highlighter-rouge">run.tcl</code> you will see it creates five projects with the same properties as above, each with a different <code class="language-plaintext highlighter-rouge">k</code> value.</p>
+
+<h2 id="design-overview">Design Overview</h2>
+
+<p><strong>You are given 10 training sets, each of which contains 1800 49-bit training instances for a
+different digit (0-9). Each hexadecimal string in <em>training_set_#</em> represents a 49-bit training
+instance for digit #</strong>. The 49 bits of each instance encodes a 7x7 matrix of binary values (i.e., a bitmap). For example, e3664d8e00<sub>16</sub> in <em>training_set_0</em> is a training instance for digit 0 and translates into the following binary 2D matrix and bitmap:</p>
+
+<p><img src="/ecen625/media/vitis/binary_string0.png" height="200" alt="Binary image of number 0" />
+<img src="/ecen625/media/vitis/img1.png" height="200" class="pixelated" alt="Bitmap image of number 0" /></p>
+
+<p>41c0820410<sub>16</sub> in training set 7 is a training instance for digit 7 and translates into the binary 2D matrix and bitmap shown below:</p>
+
+<p><img src="/ecen625/media/vitis/binary_string1.png" height="200" alt="Binary image of number 7" />
+<img src="/ecen625/media/vitis/img2.png" height="200" class="pixelated" alt="Bitmap image of number 7" /></p>
+
+<p>As you can see, the resolution of the digit is limited by the number of bits (49 bits in our assignment) used to represent it. Typically, increasing the number of bits per instance would improve the resolution and possibly the accuracy of recognition.</p>
+
+<p>We would like to devise an algorithm that takes in a binary string representing a handwritten digit (i.e. the testing instance) and classify it to a particular digit (0-9) by first identifying <em>k</em> training instances that are closest to the testing instance (i.e., the nearest neighbors), and then determining the result based on the most common digit represented by these nearest neighbors.</p>
+
+<p>You are encouraged to read through the links provided above to familiarize yourself with the basic concepts of the k-NN algorithm. <strong>In this assignment, we define the distance between two instances as the number of corresponding bits that are different in the two binary strings.</strong> For example, 1011<sub>2</sub> and 0111<sub>2</sub> differ in the two most significant bits and therefore have a distance of 2. 1011<sub>2</sub> and 1010<sub>2</sub> differ only in the least significant bit and have a distance of 1. As a result, 1011<sub>2</sub> is closer to 1010<sub>2</sub> than to 0111<sub>2</sub>.</p>
+
+<h2 id="implementation">Implementation</h2>
+
+<h3 id="coding-and-debugging">Coding and Debugging</h3>
+<p>Your first task is to complete the digit recognition algorithm based on the code skeleton provided in <code class="language-plaintext highlighter-rouge">digitrec.cpp</code>. In particular, you are expected to fill in the code for the following functions:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">update_knn</code>: Given the testing instance and a (new) training instance, this function maintains/updates an array of <em>k</em> minimum distances per training set.</li>
+  <li><code class="language-plaintext highlighter-rouge">knn_vote</code>: Among <em>10·k</em> minimum distance values, this function finds the <em>k</em> nearest neighbors and determines the final output based on the most common digit represented by these nearest neighbors.</li>
+</ul>
+
+<p>Note that the skeleton code takes advantage of arbitrary precision integer type <code class="language-plaintext highlighter-rouge">ap_uint</code>. \textbf{A useful reference of arbitrary precision integer data types can be found starting on p.144 and p.485 of the <a href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1399-vitis-hls.pdf">user guide</a>.</p>
+
+<p>How you choose to implement the algorithm may affect the resulting accuracy of your design as reported by the test bench. <strong>We expect that your design would achieve an error of less than 10% on the provided testing set</strong>. You may use the console output or the generated <em>out.dat</em> file to debug your code.</p>
+
+<h3 id="design-exploration">Design Exploration</h3>
+<p>The second part of the assignment is to explore the impact of the <em>k</em> value on your digit recognition design. Specifically, you are expected to experiment with the <em>k</em> values ranging from 1 through 5, and collect the performance and area numbers of the synthesized design for each specific <em>k</em>.</p>
+<ul>
+  <li>The actual <em>k</em> value can be provided to the Makefile (<code class="language-plaintext highlighter-rouge">make K=4</code>) and changed in <em>run.tcl</em>. You can run simulation and synthesis in batch with <em>run.tcl</em>. This script will also automatically collect important stats (i.e., accuracy, performance, and resource usage) from the Vitis HLS reports and generate a \emph{knn_result.csv} file under the result folder.</li>
+  <li>In this assignment, you will use a fixed 10ns clock period targeting a specific Xilinx Zynq FPGA device. Clock period and target device have been specified in the run Tcl script.</li>
+</ul>
+
+<h3 id="design-optimization">Design Optimization</h3>
+<p>The third part of the assignment is to optimize the design with HLS pragmas or directives. In particular, we
+will focus on exploring the effect of the following optimizations in our design and apply them appropriately
+to <strong>minimize the latency of the synthesized design</strong>.</p>
+<ul>
+  <li><strong>loop pipelining</strong>: Allows for overlapped execution of loop iterations by leveraging pipelining techniques.</li>
+  <li><strong>loop unrolling</strong>: unfolds a loop by creating multiple copies of its loop body and reducing its trip count accordingly. This technique is often used to achieve shorter latency when loop iterations can be executed in parallel.</li>
+  <li><strong>array partitioning</strong>: partitions an array into smaller arrays, which may result in an RTL with multiple small memories or multiple registers instead of one large memory. This effectively increases the amount
+of read and write ports for the storage.</li>
+</ul>
+
+<p>Please refer to the <a href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1399-vitis-hls.pdf">user guide</a> for details on how to apply these optimizations.  You may insert pragmas or set directives to apply optimizations. You can find code snippets with inserted pragmas throughout the user guide, and a full reference is given in Chapter 4.</p>
+
+<p><strong>Your proposed solution must meet the clock period constraint, and must not exceed the resources available on the targeted FPGA (xc7z020clg484-1).</strong></p>
+
+<p>For the sake of simplicity, please try to only use fixed-bound
+<em>for</em> loop(s) in your program. Note that data-dependent <em>for</em> and <em>while</em> loops are synthesizable but may lead to a variable-latency design that would complicate your reporting (<em>You would need to perform C-RTL co-simulation to get the actual cycle count for a design with data-dependent loop bounds</em>).</p>
+
+<h2 id="class-results">Class Results</h2>
+<p>On Slack I will post a link to a Google Sheets document where you should post the results of your best solution.  There will be two categories for rankings:</p>
+<ul>
+  <li><strong>Minimum Latency:</strong> Minimum latency provided the design fits within the resources constraints of the chip, and achieves 90% accuracy.</li>
+  <li><strong>Most resource efficient:</strong>  The goal in this category is to minimize the expression <em>r<sup>2</sup> · L</em>, where <em>r</em> is the resource usage and <em>L</em> is the total latency.  The resource usage will be defined as the maximum fraction of resource usage for any given resource type (BRAM, DSP, FF, LUT).</li>
+</ul>
+
+<h2 id="report">Report</h2>
+
+<p>Include a short report located as <code class="language-plaintext highlighter-rouge">lab_vitis_hls/report.pdf</code> with the following:</p>
+<ul>
+  <li>Describe how you implemented the <em>update_knn</em> and <em>knn_vote</em> functions.</li>
+  <li>Compare different <em>k</em> values with a table that summarizes the key statistics including the error rate (accuracy), area in terms of resource utilization (number of BRAMs, DSP48s, LUTs, and FFs), and and performance in latency in number of clock cycles. Use the csv file generated by the script, or manually inspect <em>knn.prj/solution1/syn/report/</em>.</li>
+  <li>Describe how you added HLS pragmas/directives to minimize the latency of the synthesized design. Please contrast the performance and area of your most optimized design (i.e., with smallest latency) with the baseline design. For this comparison, you only need to set <em>k</em> to 3.</li>
+  <li>Use charts, snippets of code, or any other presentation techniques to communicate your design decisions and results.</li>
+</ul>
+
+<h2 id="submission">Submission</h2>
+
+<p>Submit your code using tag <code class="language-plaintext highlighter-rouge">lab4_submission</code>.</p>
+
+<h2 id="acknowledgement">Acknowledgement</h2>
+<p>This assignment was originally written by Professor Zhiru Zhang from Cornell University.  I have modified it slightly for our class.  The design was originally created by Professor Zhang’s students, Ackerley Tng and Edgar Munoz.</p>
+
+
+    </div>
+</article>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<script src=/ecen625/js/jquery.visible.min.js></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    var prevVisible = $('#page-title').visible();
+
+    $(window).scroll(function () {
+        currentVisible = $('#page-title').visible()
+        if (prevVisible && !currentVisible) {
+            console.log("Do something!");
+            $("#page-title-bar").html($('#page-title').text());
+        }
+
+        if (!prevVisible && currentVisible) {
+            $("#page-title-bar").html("")
+        }
+
+        prevVisible = currentVisible;
+    });
+
+</script>
+
+</body>
+
+</html>

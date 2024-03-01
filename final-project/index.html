@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>
+    
+    Final Project • ECEn 625: Compilation Strategies for High-Performance Systems
+    
+</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href=/ecen625/css/main.css>
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://use.typekit.net/jcn6ybb.css">
+
+<!-- <link rel="icon" type="image/png" sizes="96x96" href=/ecen625/icon/favicon-96x96.png>
+<link rel="icon" type="image/png" sizes="32x32" href=/ecen625/icon/favicon-32x32.png>
+<link rel="icon" type="image/png" sizes="16x16" href=/ecen625/icon/favicon-16x16.png> -->
+
+<script src="https://kit.fontawesome.com/d794f0229e.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+<div class="border-right sidebar-color" id="sidebar-wrapper">
+    <div class="sidebar-sticky">
+        <div class="sidebar-heading-big">
+            <a href="/ecen625/">
+                ECEn 625</a>
+        </div>
+        <!-- <div class="sidebar-heading">Pages</div> -->
+        <div class="list-group list-group-flush sidebar-color">
+            
+            
+            <a href="/ecen625/overview/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-chalkboard-teacher"></i>
+                
+                Overview
+            </a>
+            
+            
+            
+            <a href="/ecen625/lab-setup/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-wrench"></i>
+                
+                Lab Setup
+            </a>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a href="/ecen625/links/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-box-open"></i>
+                
+                Links
+            </a>
+            
+            
+            
+            
+            
+            <a href="/ecen625/paper-reviews/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-book-open"></i>
+                
+                Research Papers
+            </a>
+            
+            
+            
+            <a href="/ecen625/schedule/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-calendar-alt"></i>
+                
+                Schedule
+            </a>
+            
+            
+            
+            
+            
+            
+            <a href="https://slack.com/app_redirect?team=T01J887F8MU&channel=C01JF1N6TH8"
+                class="list-item-normal list-group-item list-group-item-action sidebar-item" target="_blank"><i
+                    class="fa fa-question-circle"></i>
+                Slack</a>
+            <!-- <a href="https://learningsuite.byu.edu/.qD2F/cid-B84_MqETGWke/calendar"
+                class="list-group-item list-group-item-action bg-light sidebar-item" target="_blank">
+                <i class="far fa-calendar"></i>
+                Schedule
+            </a> -->
+        </div>
+
+        <div class="sidebar-heading">Labs</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen625/labs/lab-graphs/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">1</span>
+                Graphs & C++ Warmup
+            </a>
+            
+            <a href="/ecen625/labs/lab-llvm/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">2</span>
+                LLVM
+            </a>
+            
+            <a href="/ecen625/labs/lab-scheduling/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">3</span>
+                Scheduling
+            </a>
+            
+            <a href="/ecen625/labs/lab-vitis-hls/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">4</span>
+                Vitis HLS
+            </a>
+            
+            <a href="/ecen625/labs/lab-vitis/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">5</span>
+                Vitis Integration
+            </a>
+            
+            <a href="/ecen625/final-project/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <i class="fa fa-microscope"></i>
+                Final Project
+            </a>
+        </div>
+
+        <div class="list-group list-group-flush">
+
+        </div>
+
+        <!-- <div class="sidebar-heading">Homeworks</div>
+        <div class="list-group list-group-flush">
+            
+        </div> -->
+    </div>
+</div>
+<!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar sticky-top navbar-expand-lg border-bottom">
+        <button class="btn btn-brand" id="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <a href="" class="navbar-brand mb-0 h1 page-title-bar text-center mx-auto" id="page-title-bar"></a>
+
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link btn btn-brand suggest-edits" target="_blank" rel="noopener noreferrer"
+              href="https://github.com/byu-cpe/ecen625/issues/new?labels=website&title=Updates to Final Project page"><i
+                class="fab fa-github"></i> Suggest
+              Edits</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="container">
+        <article class="page">
+  <h1 class="page-title" id="page-title">
+    
+    Final Project
+  </h1>
+
+  <div class="page-content">
+    
+
+    <p>The project for this course is very open-ended. You are welcome to propose any topic that is related to the class material.  See the lecture slides about the final project for more ideas.  As discussed a few options include:</p>
+
+<ol>
+  <li>Implementing and optimizing an algorithm of your choice in HLS.</li>
+  <li>Exploring, improving, or evaluating some aspect of HLS tools (open-source or commercial).</li>
+  <li>Exploring, improving, or evaluating the growing space of DSL to HLS compilers.</li>
+</ol>
+
+<p>You can work alone, or in a group of two.</p>
+
+<h3 id="project-deliverables">Project Deliverables</h3>
+<p>There will be four  deliverables for the project:</p>
+
+<h3 id="project-proposal">Project Proposal</h3>
+<ol>
+  <li>
+    <p>A project proposal. You will present your proposal in a 5 minute <strong>presentation in class on March 30th</strong>.  You should indicate the project title and the members of your group (if you are not working on your own).  Prepare a few slides about: 1) what you are going to work on, 2) issues/risks you anticipate and how you plan to mitigate them, and 3) what results you plan to collect.</p>
+  </li>
+  <li>
+    <p>An interim class presentation on the last two day of class. In this presentation, you will describe the problem you are trying to solve, any relevant previous work, and your approach.  You should have some results to present.  Like the mini-lecture, your goal is to make sure that the class understands what you are tying to do, and why you are trying to do it.  Presentations should be close to 15 minutes.</p>
+  </li>
+  <li>
+    <p>The final technical report.  This should be prepared in IEEE conference format (11pt, two columns), with a 4 page limit (6 page limit for groups of two).  The paper should be of similar writing quality to a IEEE conference paper.  Introduce your problem, describe what you did, and include results.  Use figures where appropriate to help describe your project.  If your project is better presented in another format (jupyter notebook page, wiki page), discuss this with the instructor. <strong>The final report is due Wednesday, April 26st, 11:59pm</strong></p>
+  </li>
+  <li>
+    <p>Commit any code or code products to your Github repo.  Include some basic documentation that outlines the organization of your files and how someone would use them.</p>
+  </li>
+</ol>
+
+<h3 id="grading-breakdown">Grading Breakdown</h3>
+
+<p>Your final project will be graded on these categories:</p>
+<ul>
+  <li>50%: Work completed for project. (Difficulty of problem tackled, amount of work completed, auality and clarity of results, etc.)</li>
+  <li>20%: Class presentation (Clarity, organization, engagement)</li>
+  <li>20%: Report (Clarity of presentation, context with related work, writing quality, qualtiy of graphics and/or figures)</li>
+  <li>10%: Organization and documentation of code products</li>
+</ul>
+
+
+  </div>
+</article>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<script src=/ecen625/js/jquery.visible.min.js></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    var prevVisible = $('#page-title').visible();
+
+    $(window).scroll(function () {
+        currentVisible = $('#page-title').visible()
+        if (prevVisible && !currentVisible) {
+            console.log("Do something!");
+            $("#page-title-bar").html($('#page-title').text());
+        }
+
+        if (!prevVisible && currentVisible) {
+            $("#page-title-bar").html("")
+        }
+
+        prevVisible = currentVisible;
+    });
+
+</script>
+
+</body>
+
+</html>
