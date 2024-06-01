@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>
+    
+    Scheduling • ECEn 625: Compilation Strategies for High-Performance Systems
+    
+</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href=/ecen625/css/main.css>
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://use.typekit.net/jcn6ybb.css">
+
+<!-- <link rel="icon" type="image/png" sizes="96x96" href=/ecen625/icon/favicon-96x96.png>
+<link rel="icon" type="image/png" sizes="32x32" href=/ecen625/icon/favicon-32x32.png>
+<link rel="icon" type="image/png" sizes="16x16" href=/ecen625/icon/favicon-16x16.png> -->
+
+<script src="https://kit.fontawesome.com/d794f0229e.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+<div class="border-right sidebar-color" id="sidebar-wrapper">
+    <div class="sidebar-sticky">
+        <div class="sidebar-heading-big">
+            <a href="/ecen625/">
+                ECEn 625</a>
+        </div>
+        <!-- <div class="sidebar-heading">Pages</div> -->
+        <div class="list-group list-group-flush sidebar-color">
+            
+            
+            <a href="/ecen625/overview/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-chalkboard-teacher"></i>
+                
+                Overview
+            </a>
+            
+            
+            
+            <a href="/ecen625/lab-setup/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-wrench"></i>
+                
+                Lab Setup
+            </a>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a href="/ecen625/links/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-box-open"></i>
+                
+                Links
+            </a>
+            
+            
+            
+            
+            
+            <a href="/ecen625/paper-reviews/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-book-open"></i>
+                
+                Research Papers
+            </a>
+            
+            
+            
+            <a href="/ecen625/schedule/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-calendar-alt"></i>
+                
+                Schedule
+            </a>
+            
+            
+            
+            
+            
+            
+            <a href="https://slack.com/app_redirect?team=T01J887F8MU&channel=C01JF1N6TH8"
+                class="list-item-normal list-group-item list-group-item-action sidebar-item" target="_blank"><i
+                    class="fa fa-question-circle"></i>
+                Slack</a>
+            <!-- <a href="https://learningsuite.byu.edu/.qD2F/cid-B84_MqETGWke/calendar"
+                class="list-group-item list-group-item-action bg-light sidebar-item" target="_blank">
+                <i class="far fa-calendar"></i>
+                Schedule
+            </a> -->
+        </div>
+
+        <div class="sidebar-heading">Labs</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen625/labs/lab-graphs/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">1</span>
+                Graphs & C++ Warmup
+            </a>
+            
+            <a href="/ecen625/labs/lab-llvm/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">2</span>
+                LLVM
+            </a>
+            
+            <a href="/ecen625/labs/lab-scheduling/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">3</span>
+                Scheduling
+            </a>
+            
+            <a href="/ecen625/labs/lab-vitis-hls/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">4</span>
+                Vitis HLS
+            </a>
+            
+            <a href="/ecen625/labs/lab-vitis/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">5</span>
+                Vitis Integration
+            </a>
+            
+            <a href="/ecen625/final-project/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <i class="fa fa-microscope"></i>
+                Final Project
+            </a>
+        </div>
+
+        <div class="list-group list-group-flush">
+
+        </div>
+
+        <!-- <div class="sidebar-heading">Homeworks</div>
+        <div class="list-group list-group-flush">
+            
+        </div> -->
+    </div>
+</div>
+<!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar sticky-top navbar-expand-lg border-bottom">
+        <button class="btn btn-brand" id="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <a href="" class="navbar-brand mb-0 h1 page-title-bar text-center mx-auto" id="page-title-bar"></a>
+
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link btn btn-brand suggest-edits" target="_blank" rel="noopener noreferrer"
+              href="https://github.com/byu-cpe/ecen625/issues/new?labels=website&title=Updates to Scheduling page"><i
+                class="fab fa-github"></i> Suggest
+              Edits</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="container">
+        <article class="page lab">
+    <h1 class="page-title" id="page-title">
+        Scheduling
+        
+        <a href="https://github.com/byu-cpe/ecen625_student/tree/main/lab_scheduling" target="_blank"><i
+                class="fab fa-github"></i></a>
+        
+    </h1>
+
+    <div class="page-content">
+        
+        <div class="lab-toc col-md-6 col-lg-5 bg-light">
+            <h4>Table of Contents</h4>
+            <ul>
+  <li><a href="#learning-outcomes">Learning Outcomes</a></li>
+  <li><a href="#getting-started">Getting Started</a>
+    <ul>
+      <li><a href="#required-packages">Required Packages</a></li>
+      <li><a href="#how-this-lab-works">How this lab works</a></li>
+      <li><a href="#compiling-your-llvm-pass">Compiling your LLVM pass</a></li>
+      <li><a href="#running-your-scheduler">Running Your Scheduler</a></li>
+      <li><a href="#how-scheduling-works">How Scheduling Works</a></li>
+    </ul>
+  </li>
+  <li><a href="#code-framework">Code Framework</a>
+    <ul>
+      <li><a href="#debugging">Debugging</a></li>
+      <li><a href="#getting-the-info-you-need">Getting the Info You Need</a></li>
+      <li><a href="#integer-linear-programming">Integer Linear Programming</a></li>
+    </ul>
+  </li>
+  <li><a href="#implementation">Implementation</a>
+    <ul>
+      <li><a href="#part-1-asap-scheduler-25-of-grade">Part 1: ASAP Scheduler (25% of grade)</a></li>
+      <li><a href="#part-2-asap-scheduler-with-resource-constraints-40-of-grade">Part 2: ASAP Scheduler with Resource Constraints (40% of grade)</a></li>
+      <li><a href="#part-3-adding-timing-constraints-25-of-grade">Part 3: Adding timing constraints (25% of grade)</a></li>
+      <li><a href="#report-10-of-grade">Report (10% of grade)</a></li>
+    </ul>
+  </li>
+  <li><a href="#submission">Submission</a></li>
+</ul>
+
+        </div>
+        
+
+        <h2 id="learning-outcomes">Learning Outcomes</h2>
+<p>The goals of this assignment are to:</p>
+<ul>
+  <li>Familiarize yourself with HLS scheduling algorithms.</li>
+  <li>Use and explore a popular open-source HLS tool, LegUp, which is built on a widely used open-source compiler framework, LLVM.</li>
+  <li>Gain experience formulating and coding linear programming solutions.</li>
+  <li>Practice C++ skills.</li>
+</ul>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<h3 id="required-packages">Required Packages</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt install llvm-12 libclang-common-12-dev clang-12 liblpsolve55-dev texlive-latex-base texlive-pictures
+</code></pre></div></div>
+
+<h3 id="how-this-lab-works">How this lab works</h3>
+<p>In this lab you are going to write an HLS scheduler that operates on LLVM intermediate representation.  You are going to formulate a schedule (ie, pick a cycle number for each instruction), such that the schedule completes are soon as possible.  But you can’t just run all the instructions at once! You need to respect data and memory dependencies, as well as respecting functional unit limits (ie. you can’t read unlimited things from memory at once), and the critical path constraint.</p>
+
+<p>This provided code isn’t part of a real HLS tool (your schedule won’t be used to produce any RTL), but the concepts and techniques are very similar to what is done in commerical HLS tools.</p>
+
+<p>Like the last lab, you will be writing an LLVM pass.  Your pass won’t be changing the LLVM code, but rather reading the LLVM IR for a basic block (DAG), and using information about the hardware units for each instructions in order to determine a good HLS schedule.</p>
+
+<h3 id="compiling-your-llvm-pass">Compiling your LLVM pass</h3>
+<p>Your pass code and <a href="https://github.com/byu-cpe/ecen625_student/blob/main/lab_scheduling/src/CMakeLists.txt">CMakeLists.txt</a> file are provided in the <code class="language-plaintext highlighter-rouge">src</code> directory. Your LLVM pass will be a <code class="language-plaintext highlighter-rouge">FunctionPass</code>, and will be run via the <code class="language-plaintext highlighter-rouge">runOnFunction()</code> function:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bool Scheduler625::runOnFunction(Function &amp;F) {
+  ...
+}
+</code></pre></div></div>
+<p>The code for this function is already given to you.   You can look through it and see that it will call <code class="language-plaintext highlighter-rouge">scheduleASAP()</code> and <code class="language-plaintext highlighter-rouge">scheduleILP()</code> to perform the scheduling, and then generate the reports that you should have already used last lab.</p>
+
+<p>You can compile this pass in the same manner as last lab:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd build
+cmake ../src
+make
+</code></pre></div></div>
+
+<p>This will produce your library <code class="language-plaintext highlighter-rouge">scheduler_625.so</code>.<br />
+<!-- You can now go back and try re-compiling the `simple` benchmark.  You should now see an "Invalid schedule" error, since you haven't coded up the scheduler yet! --></p>
+
+<h3 id="running-your-scheduler">Running Your Scheduler</h3>
+<p>You can run your scheduler the same way you ran the provided scheduler in the last lab, except you should define <code class="language-plaintext highlighter-rouge">MYSCHEDULER=1</code>.  For example, you can schedule the  <code class="language-plaintext highlighter-rouge">simple</code> benchmark:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd benchmarks/simple
+make schedule MYSCHEDULER=1
+</code></pre></div></div>
+
+<p>You don’t need to run your ATB pass from last lab, so just always run <code class="language-plaintext highlighter-rouge">make schedule</code> and not <code class="language-plaintext highlighter-rouge">make atb_schedule</code> when gathering your results.  (Of course you’re always welcome to try your scheduler out on your ATB-generated IR code if you want to try it out.)</p>
+
+<h3 id="how-scheduling-works">How Scheduling Works</h3>
+
+<p>In our pretend HLS tool, we’re going to assume that it will create a circuit that executes the instructions from one basic block at a time. That is, all instructions within a basic block will execute before transitioning to the next basic block (this approach is used in many HLS tools).  This means that we really only need to worry about scheduling the instructions relative to each other within each <em>Basic Block</em>.  If our schedule was used by an actual HLS tool, it would generate controlling logic that would then sequence the execution of these different basic blocks.</p>
+
+<p>The provided code will schedule the Instructions within each Basic Block one at a time:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Loop through basic blocks
+for (auto &amp;bb : F.getBasicBlockList()) {
+  if (ILPFlag)
+    scheduleILP(bb);
+  else
+    scheduleASAP(bb);
+}
+</code></pre></div></div>
+
+<p>The bulk of this assignment will be implementing these two scheduling approaches: <code class="language-plaintext highlighter-rouge">scheduleASAP()</code> and <code class="language-plaintext highlighter-rouge">scheduleILP()</code>.</p>
+
+<h2 id="code-framework">Code Framework</h2>
+
+<p>In the two scheduling functions you should write code that schedules the <code class="language-plaintext highlighter-rouge">Instruction</code>s of a basic block to a set of cycle numbers (0, 1, 2, 3, …, n).  You can do this by populating the following data structure:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>std::map&lt;Instruction *, int&gt; Scheduler625::schedule;
+</code></pre></div></div>
+<p>Not all instructions need to be scheduled.  Some instructions don’t get translated into hardware logic.  You can check using the following:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>static bool SchedHelper::needsScheduling(Instruction &amp;I);
+</code></pre></div></div>
+<p>For example, the following code is a very simple (and invalid) scheduler that would schedule all Instructions to cycle number 0.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for (auto &amp; I : bb) {
+  if (!SchedHelper::needsScheduling(I))
+    continue;
+  schedule[&amp;I] = 0;
+}
+</code></pre></div></div>
+
+<h3 id="debugging">Debugging</h3>
+
+<p>I’ve given you a few aids to help you debug your code.  You will see that after calling your scheduling functions I will print the schedule out, and then validate it.  The validation checks that the schedule is functionally correct, that is, it checks that you have assigned all instructions to states, that data dependencies are met, that available functional units are not exeeded. If you specify a target period (discussed later), it will also check that the critical path is within the constraint.  It does not check that your solution is good!  You could create a very bad schedule that simply executed each instruction in a different cycle, which may pass validation, but will not get you a very good grade on the assignment.</p>
+
+<h3 id="getting-the-info-you-need">Getting the Info You Need</h3>
+
+<p>LLVM has no idea that you are going to perform mock HLS scheduling, and knows nothing about the potential hardware we are going to target.  As such, you are given some extra classes that contain the information you need:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">FunctionHLS</code>: This is a wrapper aound each <code class="language-plaintext highlighter-rouge">Function</code> and contains HLS-specific information for the function.  This object is available as a private variable <code class="language-plaintext highlighter-rouge">fHLS</code> inside your Scheduler class.  It provides the following information:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">FunctionalUnit *getFU(Instruction &amp;I)</code> returns the <code class="language-plaintext highlighter-rouge">FunctionalUnit</code> for an Instruction. This will return NULL for certain Instructions that don’t require hardware units (ie control-flow instructions).</li>
+      <li><code class="language-plaintext highlighter-rouge">std::vector&lt;Instruction *&gt; &amp;getDeps(Instruction &amp;I)</code> returns a list of Instructions that the scheduling of Instruction <code class="language-plaintext highlighter-rouge">I</code> is dependent upon.  These dependencies will always be Instructions that execute earlier in the same BasicBlock.  This includes:
+        <ul>
+          <li><em>Data dependencies:</em> For example, if <code class="language-plaintext highlighter-rouge">I</code>=<code class="language-plaintext highlighter-rouge">%3 = add %1, %2</code> then both the <code class="language-plaintext highlighter-rouge">%1 = ...</code> and <code class="language-plaintext highlighter-rouge">%2 = ...</code> Instructions could be in the list.</li>
+          <li><em>Memory dependencies:</em> For example, if you have two instructions that access the same physical memory, <code class="language-plaintext highlighter-rouge">store %A, %1</code> and <code class="language-plaintext highlighter-rouge">load %A, %2</code>, then the former would be included in the dependency list of the latter.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">bool needsScheduling(Instruction &amp;I)</code>: Not all Instructions need to be scheduled.  Make sure you check this value before trying to schedule an Instruction.  For example, if you pass a non-scheduled Instruction to <code class="language-plaintext highlighter-rouge">getDeps()</code> it will throw an error.</li>
+  <li><code class="language-plaintext highlighter-rouge">int SchedHelper::getInsnLatency(Instruction &amp;I)</code>: Returns the number of cycles of latency for Instruction <code class="language-plaintext highlighter-rouge">I</code>.  For example, a latency of 1 means the data produced by this operation can be used in the next cycle.  A latency of 0 means that this Instruction is implemented by purely combinational logic, and it’s output can be <em>chained</em> into the input of another operation in the same cycle.</li>
+  <li><code class="language-plaintext highlighter-rouge">double getInsnDelay(Instruction &amp;I)</code>: Returns the estimated nanosecond delay for Instruction <code class="language-plaintext highlighter-rouge">I</code>.  This is useful if you want to limit <em>chaining</em> to meet a certain clock frequency.</li>
+  <li><code class="language-plaintext highlighter-rouge">FunctionalUnit</code>: This class represents a hardware functional unit that implements an operation.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">int getNumUnits()</code>: The represents how many Instructions can use this unit at one time.  For example, <code class="language-plaintext highlighter-rouge">load</code> and <code class="language-plaintext highlighter-rouge">store</code> Instructions will access dual-ported RAMs on the FPGA that allow <strong>two</strong> memory operations to be issued at once.  Most operations (addition, subtraction, comparison, etc) can be implemented using the FPGA fabric.  For the “fabric” FunctionalUnit, a 0 is returned, indicating there is no limit placed on the number of these functional units.</li>
+      <li><code class="language-plaintext highlighter-rouge">int getInitiationInterval()</code>: Even though some FunctionalUnits may have a multi-cycle latency, <em>pipelining</em> allows for these units to accept new data more often than the latency.  This function returns the cycle interval that new data can be provided.  For example, a <code class="language-plaintext highlighter-rouge">load</code> operation will take two cycles to retrieve the data, but a new read request can be issued each cycle.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="integer-linear-programming">Integer Linear Programming</h3>
+
+<p>In this assignment we will use the <code class="language-plaintext highlighter-rouge">lp_solve</code>} linear programmer tool.  We will discuss formulating ILP problems in class.  Generally you should use the following functions (in this order), to set up and solve an ILP problem:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">lprec *</code> Not a function, but the structure which contains your ILP problem.  This will be initialized from <code class="language-plaintext highlighter-rouge">make_lp()</code> and you will pass it into every other function you call.   Unfortunately lp_solve is not object oriented.</li>
+  <li><code class="language-plaintext highlighter-rouge">make_lp()</code> To create a new ILP problem.</li>
+  <li><code class="language-plaintext highlighter-rouge">add_constraintex()</code> To add a new constraint using sparse column format.</li>
+  <li><code class="language-plaintext highlighter-rouge">set_obj_fnex()</code> To set the objective function using sparse column format.</li>
+  <li><code class="language-plaintext highlighter-rouge">set_minim()</code> or <code class="language-plaintext highlighter-rouge">set_maxim()</code> To select minimization or maximization of objective.</li>
+  <li><code class="language-plaintext highlighter-rouge">write_LP()</code> if you wish to output the ILP after it is formed.</li>
+  <li><code class="language-plaintext highlighter-rouge">solve()</code> To solve the problem.</li>
+  <li><code class="language-plaintext highlighter-rouge">get_variables()</code> To extract the solution.</li>
+</ul>
+
+<p>Documentation on these functions can be found online.  Post on Piazza if you have further questions.</p>
+
+<h2 id="implementation">Implementation</h2>
+
+<h3 id="part-1-asap-scheduler-25-of-grade">Part 1: ASAP Scheduler (25% of grade)</h3>
+
+<p>For this deliverable you must write code to perform unconstrained ASAP scheduling.  See class notes or section 5.3.1 from the De Micheli textbook.  Unconstrained means you do not need to consider resource or timing constraints.  You still need to consider data dependencies.</p>
+
+<p>This is to be completed in the following function:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>void Scheduler625::scheduleASAP(BasicBlock &amp;bb) {}
+</code></pre></div></div>
+
+<p>For this function, don’t create an ILP solution.  You can simply treat the instructions in the basic block as a topologically sorted DAG and propagate start times as you work through the list of instructions.  This should be a fairly simple task, especially considering the previous assignment, and is mainly to get you used to the APIs and data structures.</p>
+
+<p>A few pieces of advice:</p>
+<ul>
+  <li>Remember, not every <code class="language-plaintext highlighter-rouge">Instruction</code> in the <code class="language-plaintext highlighter-rouge">BasicBlock</code> needs to be scheduled.  Call <code class="language-plaintext highlighter-rouge">SchedHelper::needsScheduling()</code> to check.</li>
+  <li>The terminating Instruction (branch, return) should always be scheduled in the last cycle.  This can be done like so:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>schedule[bb.getTerminator()] = getMaxCycle(bb);
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>Try this scheduler out on the <code class="language-plaintext highlighter-rouge">simple</code> benchmark:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd benchmarks/simple
+make schedule MYSCHEDULER=1 ASAP=1
+</code></pre></div></div>
+
+<p>This program is simple enough that you should end up with a valid scheduling, even when ignoring resource constraints.  You can then test out the <code class="language-plaintext highlighter-rouge">simple_unrolled</code> example, to see that this scheduling technique fails on a more complicated design.</p>
+
+<p>Look at the design and make sure you understand why it introduces issues with resource usage.</p>
+
+<h3 id="part-2-asap-scheduler-with-resource-constraints-40-of-grade">Part 2: ASAP Scheduler with Resource Constraints (40% of grade)</h3>
+<p>For this deliverable you must write code to perform resource-constrained ASAP scheduling.  You will use an ILP formulation to determine an optimal scheduling.  Use the following approach:</p>
+<ul>
+  <li>Use an ILP variable to represent the <em>start cycle</em> of each Instruction.  This code is already provided to you.</li>
+  <li>An extra variable is used to represent the NOP at the end of the schedule.</li>
+  <li>Add constraints to ensure data dependencies are met.  If there is a dependency I<sub>1</sub>-&gt;I<sub>2</sub>, then create a dependency “S(I<sub>2</sub>) &gt;= S(I<sub>1</sub>) + latency(I<sub>1</sub>)”, where S(I) is the start cycle of Instruction I.</li>
+  <li>Add resource constraints.  We will discuss for this in class, but the approach is that for each FunctionalUnit, you should find all Instructions that use it, then choose a heuristic ordering in order to <em>bind</em> the Instructions to the available FunctionalUnits.  Then, for the various Instructions bound to each individual FunctionalUnit instance, their start times must be separated by at least the <em>InitiationInterval</em> of the FunctionalUnit.</li>
+  <li>Set the objective function to be start time of the terminating NOP.</li>
+</ul>
+
+<p>The code to execute the ILP solver and extract the schedule is provided to you.</p>
+
+<p>Once you have this implemented, test out the <code class="language-plaintext highlighter-rouge">simple_unrolled</code> example to see that a valid schedule is obtained.  Run your design like so:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make schedule MYSCHEDULER=1 ILP=1 
+</code></pre></div></div>
+
+<h3 id="part-3-adding-timing-constraints-25-of-grade">Part 3: Adding timing constraints (25% of grade)</h3>
+
+<p>You can apply a 10ns clock period constraint to the schedule like so:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make schedule MYSCHEDULER=1 ILP=1 PERIOD=10.0
+</code></pre></div></div>
+
+<p>This will cause the Schedule validation code to also check that the delay of each combinational path is within the target period.  If you run this on the <code class="language-plaintext highlighter-rouge">simple</code> or <code class="language-plaintext highlighter-rouge">simple_runrolled</code> benchmarks, you should see that your scheduler now fails.</p>
+
+<p>Add additional constraints to your ILP formulation to prevent long combinational chaining.  It’s up to you to come up with a solution for this.  In my solutions I use a recursive function to search for all combinational paths that exist from one Instruction (I<sub>1</sub>) to another (I<sub>2</sub>) that exceed the target period, and esure that S(I<sub>2</sub>) &gt; S(I<sub>1</sub>).</p>
+
+<h3 id="report-10-of-grade">Report (10% of grade)</h3>
+<p>Include a short PDF report, located at <code class="language-plaintext highlighter-rouge">lab_scheduling/report.pdf</code>.  Include the following items:</p>
+<ul>
+  <li>Why did we need to include the terminating NOP instruction in our problem formulation?</li>
+  <li>Given an example of something else you could use ILP for.  Try to come up with something relating to your research.</li>
+  <li>Report the number of constraints you used for the <code class="language-plaintext highlighter-rouge">simple_unrolled</code> benchmark.  You can report the total for all your ILP forumlations (across all BasicBlocks), or just the maximum of any BasicBlock.  Either is fine, just state in your report what you chose.  You can get this by keeping track yourself as you add the constraints, or printing the entire ILP formulation after you are done. There is no need to perform any optimizations to try and minimize the number of constraints; this is only included so that you can get a feel for the size of the ILP problem you are formulating.</li>
+  <li>If you completed Part 3, explain in a paragraph the approach you took.</li>
+</ul>
+
+<h2 id="submission">Submission</h2>
+<p>Submit your code on Github using the tag <code class="language-plaintext highlighter-rouge">lab3_submission</code></p>
+
+
+    </div>
+</article>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<script src=/ecen625/js/jquery.visible.min.js></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    var prevVisible = $('#page-title').visible();
+
+    $(window).scroll(function () {
+        currentVisible = $('#page-title').visible()
+        if (prevVisible && !currentVisible) {
+            console.log("Do something!");
+            $("#page-title-bar").html($('#page-title').text());
+        }
+
+        if (!prevVisible && currentVisible) {
+            $("#page-title-bar").html("")
+        }
+
+        prevVisible = currentVisible;
+    });
+
+</script>
+
+</body>
+
+</html>

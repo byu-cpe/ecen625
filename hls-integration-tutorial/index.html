@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>
+    
+    Vitis HLS Integration Tutorial • ECEn 625: Compilation Strategies for High-Performance Systems
+    
+</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href=/ecen625/css/main.css>
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://use.typekit.net/jcn6ybb.css">
+
+<!-- <link rel="icon" type="image/png" sizes="96x96" href=/ecen625/icon/favicon-96x96.png>
+<link rel="icon" type="image/png" sizes="32x32" href=/ecen625/icon/favicon-32x32.png>
+<link rel="icon" type="image/png" sizes="16x16" href=/ecen625/icon/favicon-16x16.png> -->
+
+<script src="https://kit.fontawesome.com/d794f0229e.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+<div class="border-right sidebar-color" id="sidebar-wrapper">
+    <div class="sidebar-sticky">
+        <div class="sidebar-heading-big">
+            <a href="/ecen625/">
+                ECEn 625</a>
+        </div>
+        <!-- <div class="sidebar-heading">Pages</div> -->
+        <div class="list-group list-group-flush sidebar-color">
+            
+            
+            <a href="/ecen625/overview/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-chalkboard-teacher"></i>
+                
+                Overview
+            </a>
+            
+            
+            
+            <a href="/ecen625/lab-setup/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-wrench"></i>
+                
+                Lab Setup
+            </a>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a href="/ecen625/links/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-box-open"></i>
+                
+                Links
+            </a>
+            
+            
+            
+            
+            
+            <a href="/ecen625/paper-reviews/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-book-open"></i>
+                
+                Research Papers
+            </a>
+            
+            
+            
+            <a href="/ecen625/schedule/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-calendar-alt"></i>
+                
+                Schedule
+            </a>
+            
+            
+            
+            
+            
+            
+            <a href="https://slack.com/app_redirect?team=T01J887F8MU&channel=C01JF1N6TH8"
+                class="list-item-normal list-group-item list-group-item-action sidebar-item" target="_blank"><i
+                    class="fa fa-question-circle"></i>
+                Slack</a>
+            <!-- <a href="https://learningsuite.byu.edu/.qD2F/cid-B84_MqETGWke/calendar"
+                class="list-group-item list-group-item-action bg-light sidebar-item" target="_blank">
+                <i class="far fa-calendar"></i>
+                Schedule
+            </a> -->
+        </div>
+
+        <div class="sidebar-heading">Labs</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen625/labs/lab-graphs/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">1</span>
+                Graphs & C++ Warmup
+            </a>
+            
+            <a href="/ecen625/labs/lab-llvm/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">2</span>
+                LLVM
+            </a>
+            
+            <a href="/ecen625/labs/lab-scheduling/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">3</span>
+                Scheduling
+            </a>
+            
+            <a href="/ecen625/labs/lab-vitis-hls/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">4</span>
+                Vitis HLS
+            </a>
+            
+            <a href="/ecen625/labs/lab-vitis/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">5</span>
+                Vitis Integration
+            </a>
+            
+            <a href="/ecen625/final-project/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <i class="fa fa-microscope"></i>
+                Final Project
+            </a>
+        </div>
+
+        <div class="list-group list-group-flush">
+
+        </div>
+
+        <!-- <div class="sidebar-heading">Homeworks</div>
+        <div class="list-group list-group-flush">
+            
+        </div> -->
+    </div>
+</div>
+<!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar sticky-top navbar-expand-lg border-bottom">
+        <button class="btn btn-brand" id="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <a href="" class="navbar-brand mb-0 h1 page-title-bar text-center mx-auto" id="page-title-bar"></a>
+
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link btn btn-brand suggest-edits" target="_blank" rel="noopener noreferrer"
+              href="https://github.com/byu-cpe/ecen625/issues/new?labels=website&title=Updates to Vitis HLS Integration Tutorial page"><i
+                class="fab fa-github"></i> Suggest
+              Edits</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="container">
+        <article class="page">
+  <h1 class="page-title" id="page-title">
+    
+    Vitis HLS Integration Tutorial
+  </h1>
+
+  <div class="page-content">
+    
+
+    <h3 id="previous-vitis-tutorial">Previous: <a href="/ecen625/vitis-tutorial/">Vitis Tutorial</a></h3>
+
+<p>This page discusses how you can export your IP from Vitis HLS to be used in a Vivado project, and ultimately to communicate with the HLS accelerator from a Vitis software proj ect.</p>
+
+<h2 id="modifying-your-hardware">Modifying Your Hardware</h2>
+
+<h3 id="exporting-your-hls-as-ip">Exporting your HLS as IP</h3>
+<p>Since our goal is to communicate with the HLS IP from software, we will add a Slave AXI connection to our HLS IP core so that it can be connected to the ARM AXI bus.</p>
+
+<ul>
+  <li>Run Vitis HLS and open your project from the last assignment.</li>
+  <li>Add a directive to your top-level hardware function.  Choose the <em>INTERFACE</em> directive type, and change the mode to an AXI4-Lite Slave (<em>s_axilite</em>).</li>
+  <li>Set the <em>INTERFACE</em> of the <em>input</em> parameter to also be the AXI4-Lite bus.</li>
+  <li>Run C Synthesis.</li>
+  <li>Click <em>Solution-&gt;Export RTL</em>, and make sure the Format Selection is set to * Vivado IP (.zip)*.</li>
+  <li>Close Vitis HLS.</li>
+  <li>Unzip your IP to a folder, for example, I used <code class="language-plaintext highlighter-rouge">unzip digitrec.zip -d lab_vitis/ip/digitrec/</code></li>
+</ul>
+
+<p><strong>Bug fix</strong>: I ran into a bug in Vitis 2020.2 that I had to fix.  Look in your <em>&lt;ip_dir&gt;/drivers/digitrec_v1_0/src/Makefile</em> and look for <strong>three</strong> commented out lines that start with ‘#echo’.  Remove these lines from the Makefile.  See <a href="https://forums.xilinx.com/t5/High-Level-Synthesis-HLS/Bug-HLS-2020-2-generated-makefile-compilation-error-in-vitis/td-p/1206772">https://forums.xilinx.com/t5/High-Level-Synthesis-HLS/Bug-HLS-2020-2-generated-makefile-compilation-error-in-vitis/td-p/1206772</a></p>
+
+<h3 id="adding-your-ip-to-vivado">Adding your IP to Vivado</h3>
+<ul>
+  <li>Run Vivado, open your existing project, and open the block design.</li>
+  <li>If you do not already have a <code class="language-plaintext highlighter-rouge">Processor System Reset</code> IP, add one to your design.  This will use the reset signal output by the processing system to reset IP in the FPGA fabric.
+    <ul>
+      <li>Connect the system clock ( <code class="language-plaintext highlighter-rouge">FCLK_CLK0</code> from <em>ZYNQ7 Processing System</em>) to the <em>slowest_sync_clk</em> input.</li>
+      <li>Connect the processor reset output (<em>FCLK_RESET0_N</em>) to the <em>ext_reset_in</em> input.</li>
+    </ul>
+  </li>
+  <li>If you do not already have an <em>AXI Interconnect</em> IP, add one to your design.  This is the bus that will allow the ARM CPU to communicate with the IP implemented in the FPGA fabric.
+    <ul>
+      <li>Configure the bus to have 1 Slave Interface and 1 Master Interface.</li>
+      <li>Connect the PS bus master (<em>M_AXI_GP0</em> from <em>ZYNQ7 Processing System</em>) to the <em>S00_AXI</em> slave port.</li>
+      <li>Connect your clock (<em>FCLK_CLK0</em> from <em>ZYNQ7 Processing System</em>) to all the clock inputs (<em>*ACLK</em>)</li>
+      <li>Connect your interconnect reset (<em>interconnect_aresetn</em> from <em>Processor System Reset</em>) to the <em>ARESETN</em> input.</li>
+      <li>Connect your peripheral reset (<em>peripheral_aresetn</em> from <em>Processor System Reset</em>) to the other reset inputs (<em>*ARESETN</em>)</li>
+    </ul>
+  </li>
+  <li>Add your HLS IP:
+    <ul>
+      <li>Open the IP catalog
+        <ul>
+          <li>Right-click, <em>Add Repository</em></li>
+          <li>Navigate to the <em>ip</em> folder that contains your HLS IP extracted in the earlier step, and add this directory.</li>
+        </ul>
+      </li>
+      <li>Go back to your block design and add the HLS IP to your design.</li>
+    </ul>
+  </li>
+  <li>Connect up your HLS IP:
+    <ul>
+      <li>Connect the clock (<em>FCLK_CLK0</em>) to the clock input (<em>ap_clk</em>)</li>
+      <li>Connect the reset (<em>peripheral_aresetn</em>) to the reset input (<em>ap_rst_n</em>)</li>
+      <li>Connect the bus (<em>M00_AXI</em> from the <em>AXI Interconnect</em>) to the bus slave port (<em>s_axi_control</em>)</li>
+    </ul>
+  </li>
+  <li>Assign an address to your HLS IP:
+    <ul>
+      <li>Open the <em>Address Editor</em>, find your IP, right-click <em>Assign</em>.</li>
+      <li>Save the block design.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Run <em>Generate Bitstream</em>.</p>
+  </li>
+  <li>
+    <p>Export the new XSA file and overwrite your old one.</p>
+  </li>
+  <li>Close Vivado</li>
+</ul>
+
+<h2 id="communicating-with-your-hls-ip-from-software">Communicating with your HLS IP from Software</h2>
+
+<h3 id="updating-platform-project">Updating Platform Project</h3>
+<ul>
+  <li>Launch Vitis and reopen your existing workspace.</li>
+  <li>Right-click on your platform project, and choose <em>Update Hardware Specifiction</em>. Make sure you select your new XSA file.</li>
+  <li>If done correctly, you should see your HLS driver located at <em>ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/ps7_cortexa9_0/libsrc/digitrec_v1_0/src</em>.  Inspect the source code and locate:
+    <ul>
+      <li><em>xdigitrec_hw.h</em> has register offsets for your IP core.  If you followed the steps correctly, you should have:
+        <ul>
+          <li>control register (<em>XDIGITREC_CONTROL_ADDR_AP_CTRL</em>)</li>
+          <li>interrupt registers</li>
+          <li>return value register (<em>XDIGITREC_CONTROL_ADDR_AP_RETURN</em>)</li>
+          <li>function argument register (<em>XDIGITREC_CONTROL_ADDR_INPUT_R_DATA</em>) and more.</li>
+        </ul>
+      </li>
+      <li><em>xdigitrec.h</em> provides a higher-level driver interface, with functions for starting your accelerator, checking if it’s done, setting argument inputs, etc.</li>
+    </ul>
+  </li>
+  <li>Build your platform project.</li>
+</ul>
+
+<h3 id="using-the-driver-in-your-code">Using the Driver in Your Code</h3>
+<ul>
+  <li>Include the necessary header file in your application code and write software to test that you can start your IP, wait for it to complete, and retrieve the return value.</li>
+  <li>You will need to initialize the HLS device driver before you can call any of the function.  As with most Xilinx drivers, this is done by calling <em>_LookupConfig</em>, providing the device ID from <em>xparameters.h</em>, and then calling <em>_CfgInitialize</em>:</li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">XDigitrec</span> <span class="n">digitrec</span><span class="p">;</span>
+<span class="n">XDigitrec_Config</span><span class="o">*</span> <span class="n">digitrec_config</span> <span class="o">=</span> <span class="n">XDigitrec_LookupConfig</span><span class="p">(</span><span class="n">XPAR_DIGITREC_0_DEVICE_ID</span><span class="p">);</span>
+<span class="n">XDigitrec_CfgInitialize</span><span class="p">(</span><span class="o">&amp;</span><span class="n">digitrec</span><span class="p">,</span> <span class="n">digitrec_config</span><span class="p">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Try running the HLS accelerator and waiting for it to complete.  Provide a test value and check the return value.</li>
+</ul>
+
+  </div>
+</article>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<script src=/ecen625/js/jquery.visible.min.js></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    var prevVisible = $('#page-title').visible();
+
+    $(window).scroll(function () {
+        currentVisible = $('#page-title').visible()
+        if (prevVisible && !currentVisible) {
+            console.log("Do something!");
+            $("#page-title-bar").html($('#page-title').text());
+        }
+
+        if (!prevVisible && currentVisible) {
+            $("#page-title-bar").html("")
+        }
+
+        prevVisible = currentVisible;
+    });
+
+</script>
+
+</body>
+
+</html>
