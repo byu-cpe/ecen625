@@ -3,24 +3,25 @@ name: Build and check links
 on: [push, pull_request]
 
 jobs:
-  link-checker:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2      
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.6 
-          bundler-cache: true           
-      - name: Check links
-        run: make check_links
-        
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2      
+      - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.6 
-          bundler-cache: true           
+          ruby-version: '3.3' 
+          bundler-cache: true 
+
       - name: Build
         run: make build
+          
+  link-checker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true 
+      - name: Check links
+        run: make check_links
