@@ -6,6 +6,26 @@ toc: false
 icon: fas fa-calendar-alt
 ---
 
+| Week          | Monday                |   Tuesday                             |   Wednesday  |   Thursday                                            | Friday    |
+|---------------| ----------------------|---------------------------------------|--------------|-------------------------------------------------------|-----------|
+|1 (Jan 6)      |                       |                                       |              | Course Overview, Vitis HLS Demo                       |           |
+|2 (Jan 13)     |                       | NO CLASS                              |              | Graphs, Lab 1                                         |           | 
+|3 (Jan 20)     |                       |                                       |              |                                                       |           |
+|4 (Jan 27)     |                       |                                       |              |                                                       |           |
+|5 (Feb 3)      |                       |                                       |              |                                                       |           |
+|6 (Feb 10)     |                       |                                       |              |                                                       |           |
+|7 (Feb 17)     |                       | NO CLASS - MON INSTRUCTION            |              |                                                       |           |
+|8 (Feb 24)     |                       |                                       |              |                                                       |           |
+|9 (Mar 2)      |                       |                                       |              |                                                       |           |
+|10 (Mar 9)     |                       |                                       |              |                                                       |           |
+|11 (Mar 16)    |                       |                                       |              |                                                       |           |
+|12 (Mar 23)    |                       |                                       |              |                                                       |           |
+|13 (Mar 30)    |                       |                                       |              |                                                       |           |
+|14 (Apr 6)     |                       |                                       |              |                                                       |           |
+|15 (Apr 13)    |                       | LAST DAY OF CLASS                     |              |                                                       |           |
+
+
+<!-- 
 | Week          | Monday                |   Tuesday                             |   Wednesday                           |   Thursday                                            | Friday    |
 |---------------| ----------------------|---------------------------------------|---------------------------            |-------------------------------------------------------|-----------|
 |1 (Jan 9)      |                       |Course Overview, Graphs                |                                       |Lab 1 Overview, Specialized Computing                  |           |
@@ -22,7 +42,7 @@ icon: fas fa-calendar-alt
 |12 (Mar 27)    |                       | Research Paper #1                     | **Asst 5 Due, 11:59pm**, Midterm Exam | **Project Proposals** & Midterm Exam                      |Midterm Exam
 |13 (Apr 3)     |                       | Research Paper #2                     |                                       | NO CLASS                                              |
 |14 (Apr 10)    |                       | Research Paper #3                     |                                       | Project Presentations                                 |
-|14 (Apr 17)    |                       | Project Presentations                 |                                       | NO CLASS                                              |
+|14 (Apr 17)    |                       | Project Presentations                 |                                       | NO CLASS                                              | -->
 
 <!-- ### 2021 Schedule -->
 
