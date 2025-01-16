@@ -74,10 +74,9 @@ Your graphs should have the following properties:
 
 ### Code Checking
 In addition to completing the code functionality described above, you code should also:
-1. Build without warnings.  I have configured *clang-tidy* to be run when you compile your code.  This will enforce some extra checking that you might have not seen in the past.  Hopefully this will help you learn more about C++ best practises and improving your coding skills.  
+1. Build without warnings.  I have configured *clang-tidy* to be run when you compile your code.  This will enforce some extra checking that you might have not seen in the past.  Hopefully this will help you learn more about C++ best practices and improving your coding skills.  
 1. Run in Valgrind without any reported issues.
 
-These two checks are new for this year, so please reach out on Slack if you have questions.
 
 
 ### Part 1: Visualizing Graphs
