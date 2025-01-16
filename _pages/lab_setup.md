@@ -15,7 +15,7 @@ In this class you are expected to be familiar with the Linux command line, Git a
 
 ## Environment
 
-The assignments assume you are running an Ubuntu 22.04 Linux Operating System.  You may be able to complete some assignments on other Linux variants; however, for the assignments that use the Xilinx Vivado tools, you will need a supported operating system.
+The assignments assume you are running an Ubuntu 24.04 Linux Operating System.  You may be able to complete some assignments on other Linux variants; however, for the assignments that use the Xilinx Vivado tools, you will need a supported operating system.
 
 You will need a Linux OS environment set up to complete the assignments.  A few options:
 * You install a full Ubuntu image (including Xilinx tools) in Windows using [WSL2](https://docs.microsoft.com/en-us/windows/wsl/install-win10).  
@@ -27,15 +27,33 @@ _Note:_ The Xilinx Vitis tool that we will be using requires about 80-90GB of di
 ## Tools
 Some notes on software tools we will be using.
 * I recommend you use VS Code for code editing as the repository is preconfigured for VS Code.
-* We will be using Xilinx's Vitis 2022.2 tool, but not starting until Lab 4.
+* We will be using Xilinx's Vitis 2024.2 tool, but not starting until Lab 4.
 * The earlier labs will only use open-source software available via apt.  Make sure you have sudo permissions on your Linux machine so that you can install the necessary packages (ie. you can't complete the class labs using the CAEDM servers).
 
 ## Class Repository
-1. You must use this invitation link to set up a Github classroom repo for the class: <https://classroom.github.com/a/DryPhSIw>
+1. You must use this invitation link to set up a Github classroom repo for the class: <https://classroom.github.com/a/2I46beht>
 
-2. This will create a blank repository for you.  On the github website for your repo, click the **Import Code** button (shown below), and import from <https://github.com/byu-cpe/ecen625_student>.
-![Screen shot of how to import code]({% link assets/import-code.png %})
-3. Clone your repository to your local machine.  
+1. This will create a blank repository for you. 
+
+1. Your repository will begin empty, but you will need to import the starter code.  To do this we will do a bare clone of the starter code repository, and push it to your repository.  Then you can delete this clone.  Make sure to replace the URL in the third step with the URL of your repository, that you can find by clicking the *SSH* button on your repository page.  You can run these commands in any directory you want. 
+
+        git clone --bare git@github.com:byu-cpe/ecen625_student.git
+        cd ecen625_student.git/
+        git push --mirror git@github.com:byu-ecen625-classroom/625-labs-jgoeders.git
+        cd ..
+        rm -rf ecen625_student.git
+
+
+### Clone your Repo
+
+  - Go to your newly created repo.  
+  - Click the **Code** button, and then the **Use SSH** link
+  - Copy the URL that is shown.  It should be something like: *git@github.com:byu-cpe-classroom/625-labs-\<your_id\>.git*
+  - Clone the repository into a directory you want to use, for example:  
+
+        git clone <github_ssh_address> ~/625
+
+  - Open this in VS Code by running `code ~/625`
 
 
 ## Getting Code Updates
