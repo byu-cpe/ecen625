@@ -14,7 +14,9 @@ The goals of this assignment are to:
 * Practice C++ skills.
 
 ## Preliminary
-This assignent is located in the [lab_graphs](https://github.com/byu-cpe/ecen625_student/tree/main/lab_graphs) folder.  All commands shown assume you are located in that folder in your terminal.
+1. Make sure you have gone through the [Lab Setup]({% link _pages/lab_setup.md %}) instructions.
+
+1. This assignent is located in the [lab_graphs](https://github.com/byu-cpe/ecen625_student/tree/main/lab_graphs) folder.  All commands shown assume you are located in that folder in your terminal.
 
 ### Install Packages
 You will need the following packages:
