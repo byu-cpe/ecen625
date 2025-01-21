@@ -4,6 +4,7 @@ toc: true
 title: Vitis HLS
 number: 4
 repo: lab_vitis_hls
+under_construction: true
 ---
 
 ## Learning Outcomes
