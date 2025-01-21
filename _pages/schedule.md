@@ -12,13 +12,13 @@ icon: fas fa-calendar-alt
 |2 (Jan 13)     |                       | NO CLASS                              |              | Graphs, Lab 1                                         |           | 
 |3 (Jan 20)     |                       | Specialized Computing                 |              | Compilers                                             |**Asst 1 Due, 11:59pm**           |
 |4 (Jan 27)     |                       |                                       |              |                                                       |           |
-|5 (Feb 3)      |                       |                                       |              |                                                       |           |
+|5 (Feb 3)      |                       |                                       |              |                                                       |**Asst 2 Due, 11:59pm**                      |
 |6 (Feb 10)     |                       |                                       |              |                                                       |           |
-|7 (Feb 17)     |                       | NO CLASS - MON INSTRUCTION            |              |                                                       |           |
+|7 (Feb 17)     |                       | NO CLASS - MON INSTRUCTION            |              |                                                       |**Asst 3 Due, 11:59pm**                      |
 |8 (Feb 24)     |                       |                                       |              |                                                       |           |
-|9 (Mar 2)      |                       |                                       |              |                                                       |           |
+|9 (Mar 2)      |                       |                                       |              |                                                       |**Asst 4 Due, 11:59pm**                      |
 |10 (Mar 9)     |                       |                                       |              |                                                       |           |
-|11 (Mar 16)    |                       |                                       |              |                                                       |           |
+|11 (Mar 16)    |                       |                                       |              |                                                       |**Asst 5 Due, 11:59pm**                      |
 |12 (Mar 23)    |                       |                                       |              |                                                       |           |
 |13 (Mar 30)    |                       |                                       |              |                                                       |           |
 |14 (Apr 6)     |                       |                                       |              |                                                       |           |
