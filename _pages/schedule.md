@@ -10,8 +10,8 @@ icon: fas fa-calendar-alt
 |---------------| ----------------------|---------------------------------------|--------------|-------------------------------------------------------|-----------|
 |1 (Jan 6)      |                       |                                       |              | Course Overview, Vitis HLS Demo                       |           |
 |2 (Jan 13)     |                       | NO CLASS                              |              | Graphs, Lab 1                                         |           | 
-|3 (Jan 20)     |                       | Specialized Computing                 |              | Compilers                                             |**Asst 1 Due, 11:59pm**           |
-|4 (Jan 27)     |                       |                                       |              |                                                       |           |
+|3 (Jan 20)     |                       | Specialized Computing                 |              | Arch Exploration                           |**Asst 1 Due, 11:59pm**           |
+|4 (Jan 27)     |                       | Compilers                             |              | Compilers                                             |           |
 |5 (Feb 3)      |                       |                                       |              |                                                       |**Asst 2 Due, 11:59pm**                      |
 |6 (Feb 10)     |                       |                                       |              |                                                       |           |
 |7 (Feb 17)     |                       | NO CLASS - MON INSTRUCTION            |              |                                                       |**Asst 3 Due, 11:59pm**                      |

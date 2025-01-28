@@ -4,7 +4,7 @@ toc: true
 title: LLVM
 number: 2
 repo: lab_llvm
-under_construction: true
+under_construction: false
 ---
 
 
@@ -59,7 +59,7 @@ The above code will end up creating a cascading adder tree as shown in the left 
 
 ### Required Packages
 ```
-sudo apt install llvm-12 llvm-12-dev libclang-common-12-dev clang-12 liblpsolve55-dev texlive-latex-base texlive-pictures
+sudo apt install llvm-18 llvm-18-dev libclang-common-18-dev clang-18 liblpsolve55-dev texlive-latex-base texlive-pictures
 ```
 
 ### Running LLVM 
@@ -80,18 +80,27 @@ Look through the LLVM IR file and try to understand how it implements the `simpl
 
 While you could download the LLVM source code, and add your pass code to it, compiling LLVM from source can take 20-30 minutes.  Instead, we are going to develop your pass _out-of-tree_.  Above you should have installed the LLVM binaries using the Ubuntu package manger.  We are going to compile your pass code into a shared library object (.so) file, than can be loaded by LLVM at runtime.
 
-Your pass code and [CMakeLists.txt](https://github.com/byu-cpe/ecen625_student/blob/main/lab_llvm/src/CMakeLists.txt) file are provided in the `src` directory. For this assignment we will be using a `FunctionPasfs` in LLVM.  That is, it is a transformation pass that modifies code contained with a single function.  
+Your pass code and [CMakeLists.txt](https://github.com/byu-cpe/ecen625_student/blob/main/lab_llvm/src/CMakeLists.txt) file are provided in the `src` directory. Take a look at [AdderTreeBalancer.cpp](https://github.com/byu-cpe/ecen625_student/blob/main/lab_llvm/src/AdderTreeBalancer.cpp):
 
-Take a look at [AdderTreeBalancer.cpp](https://github.com/byu-cpe/ecen625_student/blob/main/lab_llvm/src/AdderTreeBalancer.cpp), specifically these lines:
-
+The declaration of our class inherits from `PassInfoMixin`, which is a helper class for creating new passes:
 ```
-char AdderTreeBalancer::ID = 0;
-static RegisterPass<AdderTreeBalancer> X("ATB_625", "Adder Tree Balancer Pass");
-
-bool AdderTreeBalancer::runOnFunction(Function &f) {
-	...
-}
+class AdderTreeBalancer : public PassInfoMixin<AdderTreeBalancer> {
 ```
+
+The `run()` method is where the pass code is implemented.  This function is polymorphic, and by specifying the argument type as `Function &`, we are creating a *Function Pass*, that will be run on each `Function` in our code.
+```
+PreservedAnalyses run(Function &F, FunctionAnalysisManager &AM);
+```
+
+This pass returns a `PreservedAnalyses` object, which is used to tell LLVM which analyses are invalidated by the pass.  Since we will be modifying the IR, we will return `PreservedAnalyses::none()`, which means that all previous analyses are invalidated. 
+
+The final step is to register your pass with LLVM.  This would be more straightforward if we were compiling it into LLVM, but since we are dynamically linking it, we have to define a specific function that LLVM will call to allow us to register the pass. This is by defining the `llvmGetPassPluginInfo()` function:
+```
+extern "C" ::llvm::PassPluginLibraryInfo LLVM_ATTRIBUTE_WEAK
+llvmGetPassPluginInfo() {
+  return {LLVM_PLUGIN_API_VERSION, "ATB_625", "v0.1", [](PassBuilder &PB) {...}
+```
+If you inspect the full code inside this
 
 
 The `RegisterPass` registers your pass with LLVM and specifies that it can be called using the `-ATB_625` flag.  The `AdderTreeBalancer` class is a subclass of `llvm::FunctionPass `, meaning this pass should be called for every *Function* in the code.  Specifically, the `runOnFunction()` function will be called for each *Function*.
