@@ -104,7 +104,7 @@ If you inspect the [full code inside this function](https://github.com/byu-cpe/e
 
 ### Compiling Your LLVM Pass
 
-Compile the provided code, which 
+Compile the provided code into the shared library object file using the following commands:
 ```
 cd lab_llvm/build
 cmake ../src
@@ -117,8 +117,8 @@ This will produce your library `ATB_625.so`.
 
 The benchmark Makfile contains several targets that can be used to run your AdderTreeBalancer pass.:
 * `make atb`: This will run your pass, followed by dead code elimination (which will remove unused instructions).  This will produce a file `*.atb.ll` which contains the LLVM IR after your pass is run.
-* `make atb_check`: Since you are modifying the original program, you will want to double check that you haven't broken the functionality. This target will first run the `atb` target to produce the transformed IR, followed by running it using the LLVM emulator (`lli`).  The `simple_unrolled_partitioned` and `shared_add_tree` benchmarks both print **CORRECT** or **ERROR**, depending on whether the sum is correct. 
-* `make atb_schedule`: This will run the `atb` pass, and then pass the new LLVM IR to an HLS scheduler, which will determine which instructions can run in each cycle in hardware.  This will produce PDF files which display the schedule of each IR instructions.  If you implement the pass correctly, you will see improvements made to the produced schedule.
+* `make atb_check`: Since you are modifying the original program, you will want to double check that you haven't broken the functionality. This target will first run the `atb` target to produce the transformed IR, followed by running it using the LLVM emulator (`lli`).  The benchmarks print **CORRECT** or **ERROR**, depending on whether the sum is correct. 
+* `make atb_schedule`: This will run the `atb` pass, and then provide the new LLVM IR to an HLS scheduler, which will determine which instructions can run in each cycle in hardware.  This will produce PDF files which display the schedule of each IR instructions.  If you implement the pass correctly, you will see improvements made to the produced schedule.
 * `make schedule`: This will run the HLS schedule without your ATB pass.
 
 
@@ -152,9 +152,9 @@ Here are a few suggestions to help you with the LLVM API.  If you are still unsu
 
 ### Resources
 
-We are using LLVM version 12.0.  The documentation can be found at <https://releases.llvm.org/12.0.0/docs/>.  Some useful pages:
-* The [Language Reference Manual](https://releases.llvm.org/12.0.0/docs/LangRef.html) describes each LLVM IR instruction.
-* The [Programmers Manual](https://releases.llvm.org/12.0.0/docs/ProgrammersManual.html) is a good place to start reading about coding in LLVM.
+We are using LLVM version 18.1.  The documentation can be found at <https://releases.llvm.org/18.1.0/docs/>.  Some useful pages:
+* The [Language Reference Manual](https://releases.llvm.org/18.1.0/docs/LangRef.html) describes each LLVM IR instruction.
+* The [Programmers Manual](https://releases.llvm.org/18.1.0/docs/ProgrammersManual.html) is a good place to start reading about coding in LLVM.
 
 ### The LLVM Classes
 
@@ -208,33 +208,10 @@ BinaryOperator * bo = BinaryOperator::Create(BinaryOperator::Add, in1, in2, "myI
 
 The last argument in this case is a pointer to an existing `Instruction`, and the new Instruction will be inserted preceeding it. If you pass in NULL, the new instruction is not inserted into the code, but you will need to do so later.
 
-### Inserting Instructions
-There are many ways to insert instructions into a basic block.  These are discussed in the [Programmers Manual](https://releases.llvm.org/12.0.0/docs/ProgrammersManual.html#creating-and-inserting-new-instructions), although I have found this is somewhat out of date. In particular, the pages gives this example, but it is missing the required `->getIterator()` on the existing Instruction.
+### Inserting Instructions, Replacing Instructions or Usage
+There are many ways to insert instructions into a basic block.  These are discussed in the Programmers Manual, in sections [Creating and inserting new Instructions](https://releases.llvm.org/18.1.0/docs/ProgrammersManual.html#id110) and [Replacing an Instruction with another Value](https://releases.llvm.org/18.1.0/docs/ProgrammersManual.html#id112).
 
-### Replacing Instructions or Usage
 	
-If you want to swap out an Instruction for a different one, there are a few options:	
-```
-void ReplaceInstWithInst(Instruction *From, Instruction *To);
-```
-This adds the instruction `To` to a basic block, such that it is positioned immediately before `From`, replaces all uses of `From` with `To` and then removes `From`.  **Important**: This function will add the new `To` instruction to the basic block, so make sure you have not already added it.  If you have, you can use this method instead:
-	
-```
-/// Replace all uses of an instruction (specified by BI) with a value, then
-/// remove and delete the original instruction.
-void ReplaceInstWithValue(BasicBlock::InstListType &BIL,
-                          BasicBlock::iterator &BI, Value *V);
-```						
-This replaces all uses of the instruction referenced by the iterator `BI` with the Value `V`, and then removes the instruction referenced by the iterator `BI`.	This is similar to `ReplaceInstWithInst`, except that it doesn't add `V` into the code anywhere -- it assumes this was already done.  It also requires you to pass in an interator to the old instruction, rather than a pointer to the instruction itself.  This can easily be done with code such as the following: 
-
-```
-BinaryOperator * oldAdder = ...;
-BinaryOperator * adderTree = ...;
-BasicBlock::iterator BI(oldAdder);
-ReplaceInstWithValue(BB.getInstList(), BI, adderTree);
-```
-
-
 
 ## Deliverables
 
