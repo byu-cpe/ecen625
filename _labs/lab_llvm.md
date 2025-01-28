@@ -100,16 +100,11 @@ extern "C" ::llvm::PassPluginLibraryInfo LLVM_ATTRIBUTE_WEAK
 llvmGetPassPluginInfo() {
   return {LLVM_PLUGIN_API_VERSION, "ATB_625", "v0.1", [](PassBuilder &PB) {...}
 ```
-If you inspect the full code inside this
+If you inspect the [full code inside this function](https://github.com/byu-cpe/ecen625_student/blob/main/lab_llvm/src/AdderTreeBalancer.cpp#L27-L36), you will see code that looks for passes on the `opt` command line, and if it finds the *ATB_625* pass listed, it will add the `AdderTreeBalancer` pass to the list of passes to be run.
 
+### Compiling Your LLVM Pass
 
-The `RegisterPass` registers your pass with LLVM and specifies that it can be called using the `-ATB_625` flag.  The `AdderTreeBalancer` class is a subclass of `llvm::FunctionPass `, meaning this pass should be called for every *Function* in the code.  Specifically, the `runOnFunction()` function will be called for each *Function*.
-
-
-You can also create passes that operate at different scopes, including Module (entire C program), Loop, Region, and more.  More information on these types of passes can be found at [WritingAnLLVMPass](https://releases.llvm.org/12.0.0/docs/WritingAnLLVMPass.html).
-
-
-Go ahead and compile the provided code:
+Compile the provided code, which 
 ```
 cd lab_llvm/build
 cmake ../src
