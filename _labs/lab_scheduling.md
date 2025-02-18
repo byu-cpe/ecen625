@@ -4,14 +4,13 @@ toc: true
 title: Scheduling
 number: 3
 repo: lab_scheduling
-under_construction: true
+under_construction: false
 ---
 
 
 ## Learning Outcomes
 The goals of this assignment are to:
 * Familiarize yourself with HLS scheduling algorithms.
-* Use and explore a popular open-source HLS tool, LegUp, which is built on a widely used open-source compiler framework, LLVM.
 * Gain experience formulating and coding linear programming solutions.
 * Practice C++ skills.
 
@@ -19,7 +18,7 @@ The goals of this assignment are to:
 
 ### Required Packages
 ```
-sudo apt install llvm-12 libclang-common-12-dev clang-12 liblpsolve55-dev texlive-latex-base texlive-pictures
+sudo apt install llvm-18 libclang-common-18-dev clang-18 liblpsolve55-dev texlive-latex-base texlive-pictures
 ```
 
 ### How this lab works
@@ -30,13 +29,7 @@ This provided code isn't part of a real HLS tool (your schedule won't be used to
 Like the last lab, you will be writing an LLVM pass.  Your pass won't be changing the LLVM code, but rather reading the LLVM IR for a basic block (DAG), and using information about the hardware units for each instructions in order to determine a good HLS schedule.
 
 ### Compiling your LLVM pass
-Your pass code and [CMakeLists.txt](https://github.com/byu-cpe/ecen625_student/blob/main/lab_scheduling/src/CMakeLists.txt) file are provided in the `src` directory. Your LLVM pass will be a `FunctionPass`, and will be run via the `runOnFunction()` function:
-```
-bool Scheduler625::runOnFunction(Function &F) {
-  ...
-}
-```
-The code for this function is already given to you.   You can look through it and see that it will call `scheduleASAP()` and `scheduleILP()` to perform the scheduling, and then generate the reports that you should have already used last lab.
+Your pass code and [CMakeLists.txt](https://github.com/byu-cpe/ecen625_student/blob/main/lab_scheduling/src/CMakeLists.txt) file are provided in the `src` directory. Your LLVM pass will be a *Function Pass*, similar to last lab. The code for the `run()` function is already given to you.   You can look through it and see that it will call `scheduleASAP()` and `scheduleILP()` to perform the scheduling, and then generate the reports that you should have already used last lab.
 
 You can compile this pass in the same manner as last lab:
 ```
@@ -46,11 +39,9 @@ make
 ```
 
 This will produce your library `scheduler_625.so`.  
-<!-- You can now go back and try re-compiling the `simple` benchmark.  You should now see an "Invalid schedule" error, since you haven't coded up the scheduler yet! -->
-
 
 ### Running Your Scheduler
-You can run your scheduler the same way you ran the provided scheduler in the last lab, except you should define `MYSCHEDULER=1`.  For example, you can schedule the  `simple` benchmark:
+You can run your scheduler the same way you ran the provided scheduler in the last lab, except you should define `MYSCHEDULER=1`.  For example, you can schedule the `simple` benchmark:
 ```
 cd benchmarks/simple
 make schedule MYSCHEDULER=1
@@ -85,7 +76,7 @@ Not all instructions need to be scheduled.  Some instructions don't get translat
 ```
 static bool SchedHelper::needsScheduling(Instruction &I);
 ```
-For example, the following code is a very simple (and invalid) scheduler that would schedule all Instructions to cycle number 0.
+For example, the following code is a very simple scheduler that would schedule all Instructions to cycle number 0 (of course this is not a valid schedule).
 ```
 for (auto & I : bb) {
   if (!SchedHelper::needsScheduling(I))
@@ -103,9 +94,11 @@ I've given you a few aids to help you debug your code.  You will see that after 
 LLVM has no idea that you are going to perform mock HLS scheduling, and knows nothing about the potential hardware we are going to target.  As such, you are given some extra classes that contain the information you need:
 * `FunctionHLS`: This is a wrapper aound each `Function` and contains HLS-specific information for the function.  This object is available as a private variable `fHLS` inside your Scheduler class.  It provides the following information:
   * `FunctionalUnit *getFU(Instruction &I)` returns the `FunctionalUnit` for an Instruction. This will return NULL for certain Instructions that don't require hardware units (ie control-flow instructions). 
-  * `std::vector<Instruction *> &getDeps(Instruction &I)` returns a list of Instructions that the scheduling of Instruction `I` is dependent upon.  These dependencies will always be Instructions that execute earlier in the same BasicBlock.  This includes:
+  * `std::vector<Instruction *> &getDeps(Instruction &I)` returns a list of Instructions that the scheduling of Instruction `I` is dependent upon.  These dependencies will always be Instructions that execute earlier in the same BasicBlock. This includes:
     * _Data dependencies:_ For example, if `I`=`%3 = add %1, %2` then both the `%1 = ...` and `%2 = ...` Instructions could be in the list.
 	* _Memory dependencies:_ For example, if you have two instructions that access the same physical memory, `store %A, %1` and `load %A, %2`, then the former would be included in the dependency list of the latter.
+  
+    **Make sure to use this list of dependencies, and do not build your own from the LLVM operand/user information, as that will only capture data dependencies, and not memory dependencies.**
 
 * `bool needsScheduling(Instruction &I)`: Not all Instructions need to be scheduled.  Make sure you check this value before trying to schedule an Instruction.  For example, if you pass a non-scheduled Instruction to `getDeps()` it will throw an error.
 * `int SchedHelper::getInsnLatency(Instruction &I)`: Returns the number of cycles of latency for Instruction `I`.  For example, a latency of 1 means the data produced by this operation can be used in the next cycle.  A latency of 0 means that this Instruction is implemented by purely combinational logic, and it's output can be _chained_ into the input of another operation in the same cycle. 
