@@ -15,10 +15,10 @@ icon: fas fa-calendar-alt
 |5 (Feb 3)      |                       | Lab 2 Help Session                    |                           | Scheduling & ILP                                      |                           |
 |6 (Feb 10)     |                       | NO CLASS                              | **Asst 2 Due, 11:59pm**   | ILP Scheduling                                        |                           |
 |7 (Feb 17)     |                       | NO CLASS - MON INSTRUCTION            |                           | Modulo Scheduling                                     |**Asst 3 Due, 11:59pm**    |
-|8 (Feb 24)     |                       | Vitis HLS - Pragmas                   |                           | NO CLASS                                              |                           |
-|9 (Mar 2)      |                       | Student Presentations                 |                           | Student Presentations                                 |                           |
-|10 (Mar 9)     |                       | Student Presentations                 |                           | NO CLASS                                              |**Asst 4 Due, 11:59pm**    |
-|11 (Mar 16)    |                       | Vitis HLS - Interfaces                |                           | Vitis HLS - Dataflow                                  |                           |
+|8 (Feb 24)     |                       | Vitis HLS                             |                           | NO CLASS (Instructor at conference)                                             |                           |
+|9 (Mar 2)      |                       | Vitis HLS                             |                           | Vitis HLS                                            |                           |
+|10 (Mar 9)     |                       | Student Presentations                 |                           | NO CLASS (Instructor at conference)                                              |**Asst 4 Due, 11:59pm**    |
+|11 (Mar 16)    |                       | Student Presentations                 |                           | Student Presentations                                 |                           |
 |12 (Mar 23)    |                       |                                       |                           |                                                       |**Asst 5 Due, 11:59pm**    |
 |13 (Mar 30)    |                       |                                       |                           |                                                       |                           |
 |14 (Apr 6)     |                       |                                       |                           |                                                       |                           |
