@@ -4,12 +4,12 @@ toc: true
 title: Vitis HLS
 number: 4
 repo: lab_vitis_hls
-under_construction: true
+under_construction: false
 ---
 
 ## Learning Outcomes
 The goals of this assignment are to:
-* Gain experience using a commerical HLS tool, Xilinx's Vitis HLS tool.
+* Gain experience using a commercial HLS tool, Xilinx's Vitis HLS tool.
 * Observe how changes to the source code affect the resulting resource usage and performance.
 * Explore HLS design optimization techniques, and the effect on resource usage and performance.
 * Learn about a simple machine learning algorithm.
@@ -26,13 +26,6 @@ In the assignment you are provided with a set of already classified handwritten 
 
 ## Getting Started
 
-### Install Dependencies
-
-
-```
-sudo apt install libc6-dev-i386 libtinfo5 libswt-gtk-4-java
-```
-
 ### Code Organization
 You are provided the following files:
 * `digitrec.cpp`: an incomplete source file where you write your k-NN based digit recognition algorithm
@@ -43,15 +36,18 @@ in C++.
 * `test_data.h`: a set of test data with golden values for testing your prediction accuracy.
 * `digitrec_test.cpp`: a test bench (only useful for simulation) that helps verify your code and perform
 experiments with various handwritten input digits.
-* `Makefile`: a makefile for you to easily compile source code into an executable named digitrec and execute
-the program to check results (enter `make`).
-* `run.tcl`: the template project Tcl script that allows you to run Vitis HLS synthesis in command line
-(`vivado_hls -f run.tcl`). 
+* `hls_config.cfg.in`: a configuration file that contains settings for the Vitis HLS compilation.  There are some options in the file that disable optimizations, that you can remove and/or replace later in the assignment.  You may want to add your own options as well.  The file is named with a `.in` extension as it is a template file that has a parameterized `K` value that will be filled in by the Makefile before being used by Vitis HLS.
+* `Makefile`: a makefile for you to easily run:
+	* C simulation: `make c_simulation`
+	* C synthesis: `make c_synthesis`
+	* You can also override the value of `K_CONST` in your code [here](https://github.com/byu-cpe/ecen625_student/blob/b5d0d6664b12852421a69700f1c5b0fee104979f/lab_vitis_hls/digitrec.h#L14), by providing `K=?` to the make command.  Example: `make c_simulation K=2` or `make c_synthesis K=5`.
+
+* `scripts/collect_results.py`: This Python script will run both *C simulation* and *C synthesis* to collect accuracy, Fmax and resource usage for `K` values 1-5.  It will output a csv file with the results in the `results` folder.
 
 
 ### Setting up Vitis HLS
 For this assignment we will be using Vitis HLS. 
-You can install Vitis on your local machine (<https://www.xilinx.com/support/download.html>).  If you do this, you should install Vitis 2022.2 on an Ubuntu 22.04 (or newer) machine.  
+You can install Vitis on your local machine (<https://www.xilinx.com/support/download.html>).  If you do this, you should install Vitis 2024.2.  If you run into problems launching the GUI, you can try [this fix](https://community.amd.com/t5/general-discussions/vitis-unified-ide-2024-2-fail-to-start-ubuntu-20-04/m-p/744328#M51955).
 
 _Note: If you prefer, you can install Vitis on a Windows machine.  I haven't tested this.  It should work with the assignment, with a few extra considerations.  For example, the Makefile which has been provided to quickly compile and run your design may not work unless you have a build system setup.  You can still build and run within Vitis HLS, so it is not a big difference, but keep in mind you may run into problems such as this._
 
@@ -61,32 +57,17 @@ _Note: If you prefer, you can install Vitis on a Windows machine.  I haven't tes
 export LM_LICENSE_FILE=2100@ece-xilinx.byu.edu
 ``` -->
 
-To run the Vitis tools you should do the following (*Note:* Exporting the *LIBRARY_PATH* was necessary on a prevous version of Vitis, but may have been fixed in 2022 and may not be necessary):
+Before running the Vitis tools you should do the following:
 ```
-source /tools/Xilinx/Vitis_HLS/2022.2/settings64.sh
-export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LIBRARY_PATH
-vitis_hls
+source /tools/Xilinx/Vitis/2024.2/settings64.sh
 ```
 
-The first step will add the Xilinx binaries to your `PATH`. I second step was needed on my machine to solve a bug (might not be needed with different Ubuntu versions).  The last command runs Vitis HLS.  If you don't want to setup your own machine, contact me and I can give you access to a server with Vitis 2020.2 installed.
 
 
-### Vivado GUI vs command line
-For this assignment you can use the Vitis HLS GUI, or you can work entirely via command line.  If you are using the GUI, create a new project with this configuration:
-* Design Files: 
-	* `digitrec.cpp` (Top Function: `digitrec`)
-* TestBench Files: 
-	* `digitrec_test.cpp`
-	* `data` _(this is a folder)_
-* Part: `xc7z020clg484-1`
+### Vitis GUI vs command line
+For this assignment you can use the Vitis GUI, or you can work entirely via command line.  The GUI provides the advantage of being able to view the schedule, violations, and other information in graphical form.  You will need a free Vitis HLS license in order to use certain features in the GUI.  If you are using CCL1, there is a license file available at `/data/625_hls/Xilinx.lic`.  Copy it to your `~/.Xilinx/` directory:
 
-When you are ready to collect results you can use the `run.tcl` script to automatically run C simulation and synthesis, and extract results for _k=1,2,3,4,5_.
-
-```
-vitis_hls -f run.tcl
-```
-
-If you look inside `run.tcl` you will see it creates five projects with the same properties as above, each with a different `k` value.
+	cp /data/625_hls/Xilinx.lic ~/.Xilinx/
 
 ## Design Overview
 
@@ -116,14 +97,12 @@ Your first task is to complete the digit recognition algorithm based on the code
 * `update_knn`: Given the testing instance and a (new) training instance, this function maintains/updates an array of *k* minimum distances per training set.
 * `knn_vote`: Among *10&middot;k* minimum distance values, this function finds the *k* nearest neighbors and determines the final output based on the most common digit represented by these nearest neighbors.
 
-Note that the skeleton code takes advantage of arbitrary precision integer type `ap_uint`. \textbf{A useful reference of arbitrary precision integer data types can be found starting on p.144 and p.485 of the [user guide](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1399-vitis-hls.pdf).
+Note that the skeleton code takes advantage of arbitrary precision integer type `ap_uint`. A useful reference of arbitrary precision integer data types can be found in the [user guide](https://docs.amd.com/r/en-US/ug1399-vitis-hls/Arbitrary-Precision-AP-Data-Types).
 
-How you choose to implement the algorithm may affect the resulting accuracy of your design as reported by the test bench. **We expect that your design would achieve an error of less than 10% on the provided testing set**. You may use the console output or the generated *out.dat* file to debug your code.
+How you choose to implement the algorithm may affect the resulting accuracy of your design as reported by the test bench. **We expect that your design would achieve an accuracy of at least 89% on the provided testing set**. You may use the console output or the generated *out.dat* file to debug your code.
 
 ### Design Exploration
-The second part of the assignment is to explore the impact of the *k* value on your digit recognition design. Specifically, you are expected to experiment with the *k* values ranging from 1 through 5, and collect the performance and area numbers of the synthesized design for each specific *k*.
-* The actual *k* value can be provided to the Makefile (`make K=4`) and changed in *run.tcl*. You can run simulation and synthesis in batch with *run.tcl*. This script will also automatically collect important stats (i.e., accuracy, performance, and resource usage) from the Vitis HLS reports and generate a \emph{knn_result.csv} file under the result folder.
-* In this assignment, you will use a fixed 10ns clock period targeting a specific Xilinx Zynq FPGA device. Clock period and target device have been specified in the run Tcl script.
+The second part of the assignment is to explore the impact of the *k* value on your digit recognition design. Specifically, you are expected to experiment with the *k* values ranging from 1 through 5, and collect the performance and area numbers of the synthesized design for each specific *k*.  A script is provided to do this automatically.
 
 
 ### Design Optimization
@@ -135,7 +114,9 @@ to **minimize the latency of the synthesized design**.
 * **array partitioning**: partitions an array into smaller arrays, which may result in an RTL with multiple small memories or multiple registers instead of one large memory. This effectively increases the amount
 of read and write ports for the storage.
 
-Please refer to the [user guide](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1399-vitis-hls.pdf) for details on how to apply these optimizations.  You may insert pragmas or set directives to apply optimizations. You can find code snippets with inserted pragmas throughout the user guide, and a full reference is given in Chapter 4.
+Please refer to the [user guide](https://docs.amd.com/r/en-US/ug1399-vitis-hls/HLS-Programmers-Guide) for details on how to apply these optimizations.  You may insert pragmas or modify the configuration file to apply optimizations. 
+
+You are encouraged to experiment with these optimizations, and others (eg. code restructuring), to achieve the best solution possible.  You are welcome to remove the lines in the configuration file that disable optimizations.  For this part of the assignment, you only need to set *k* to 3.
 
 **Your proposed solution must meet the clock period constraint, and must not exceed the resources available on the targeted FPGA (xc7z020clg484-1).**
 
@@ -143,8 +124,8 @@ For the sake of simplicity, please try to only use fixed-bound
 *for* loop(s) in your program. Note that data-dependent *for* and *while* loops are synthesizable but may lead to a variable-latency design that would complicate your reporting (*You would need to perform C-RTL co-simulation to get the actual cycle count for a design with data-dependent loop bounds*).
 
 ## Class Results
-On Slack I will post a link to a Google Sheets document where you should post the results of your best solution.  There will be two categories for rankings:
-* **Minimum Latency:** Minimum latency provided the design fits within the resources constraints of the chip, and achieves 90% accuracy. 
+On Teams I will post a link to a spreadsheet where you should post the results of your best solution.  There will be two categories for rankings:
+* **Minimum Latency:** Minimum latency provided the design fits within the resources constraints of the chip, and achieves 89% accuracy. 
 * **Most resource efficient:**  The goal in this category is to minimize the expression _r<sup>2</sup> &#xb7; L_, where _r_ is the resource usage and _L_ is the total latency.  The resource usage will be defined as the maximum fraction of resource usage for any given resource type (BRAM, DSP, FF, LUT).
  
 
@@ -152,7 +133,7 @@ On Slack I will post a link to a Google Sheets document where you should post th
 
 Include a short report located as `lab_vitis_hls/report.pdf` with the following:
 * Describe how you implemented the *update_knn* and *knn_vote* functions.
-* Compare different _k_ values with a table that summarizes the key statistics including the error rate (accuracy), area in terms of resource utilization (number of BRAMs, DSP48s, LUTs, and FFs), and and performance in latency in number of clock cycles. Use the csv file generated by the script, or manually inspect _knn.prj/solution1/syn/report/_.  
+* Compare different _k_ values with a table that summarizes the key statistics including the error rate (accuracy), area in terms of resource utilization (number of BRAMs, DSP48s, LUTs, and FFs), and and performance in latency in number of clock cycles. Use may want to use the csv file generated by the script.  
 * Describe how you added HLS pragmas/directives to minimize the latency of the synthesized design. Please contrast the performance and area of your most optimized design (i.e., with smallest latency) with the baseline design. For this comparison, you only need to set _k_ to 3.
 * Use charts, snippets of code, or any other presentation techniques to communicate your design decisions and results.
 			
