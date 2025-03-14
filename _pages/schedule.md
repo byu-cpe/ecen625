@@ -17,10 +17,10 @@ icon: fas fa-calendar-alt
 |7 (Feb 17)     |                       | NO CLASS - MON INSTRUCTION            |                           | Modulo Scheduling                                     |                           |
 |8 (Feb 24)     |                       | Vitis HLS                             | **Asst 3 Due, 11:59pm**   | NO CLASS (Instructor at conference)                   |                           |
 |9 (Mar 2)      |                       | Vitis HLS                             |                           | Vitis HLS                                             |                           |
-|10 (Mar 9)     |                       | Vitis HLS                             |                           | NO CLASS (Instructor at conference)                   |**Asst 4 Due, 11:59pm**    |
-|11 (Mar 16)    |                       | Student Presentations                 |                           | Student Presentations                                 |                           |
-|12 (Mar 23)    |                       | Student Presentations                 |                           |                                                       |**Asst 5 Due, 11:59pm**    |
-|13 (Mar 30)    |                       |                                       |                           |                                                       |                           |
+|10 (Mar 9)     |                       | Vitis HLS                             |                           | NO CLASS (Instructor at conference)                   |    |
+|11 (Mar 16)    |                       | Student Presentations                 |                           | Student Presentations                                 |**Asst 4 Due, 11:59pm**                           |
+|12 (Mar 23)    |                       | Student Presentations                 |                           |                                                       |    |
+|13 (Mar 30)    |                       |                                       |                           |                                                       |**Asst 5 Due, 11:59pm**                           |
 |14 (Apr 6)     |                       |                                       |                           |                                                       |                           |
 |15 (Apr 13)    |                       | LAST DAY OF CLASS                     |                           |                                                       |                           |
 
