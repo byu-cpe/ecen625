@@ -22,6 +22,13 @@ The goals of this assignment are to:
 
 In this lab you will export your HLS accelerator as an IP to include in a Vivado project on the FPGA.  You will then create an embedded software application in Vitis (different from Vitis HLS), that will communicate with your accelerator.  
 
+<span style="color:red">
+
+xhub::install [xhub::get_xitems tul.com.tw:xilinx_board_store:pynqzu:1.1]
+
+</span>
+
+
 Most of the direction for this lab are included in a set of tutorial pages.  Depending on your experience you may need to complete some or all of these tutorials in order to complete this lab:
 * [Vivado Tutorial]({% link _pages/vivado_tutorial.md %}): Tutorial on creating a block-design Vivado project with the ARM processor.
 * [Vitis Tutorial]({% link _pages/vitis_tutorial.md %}): Running a bare-metal *Hello World* application in Vitis.
