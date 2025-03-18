@@ -9,17 +9,19 @@ title: Vivado Tutorial
 ## Setup
 
 ### Installing Boards
-If you are using a Digilent board, such as the Zedboard, you need to setup the board files in Vivado.  See <https://github.com/Xilinx/XilinxBoardStore>.
+If you are using a Digilent board, such as the Zedboard, you need to setup the board files in Vivado.  See <https://github.com/Xilinx/XilinxBoardStore>.  For example, to install the files for the PYNQ-Z2 board, you would run:
+```
+xhub::refresh_catalog [xhub::get_xstores xilinx_board_store]
+xhub::install [xhub::get_xitems *pynq*]
+```
 
 ### Running Vivado
 Before you can run the Vivado tools you should first run the configuration script:
 ```
-source /tools/Xilinx/Vivado/2022.2/settings64.sh
+source /tools/Xilinx/Vivado/2024.2/settings64.sh
 ```
 
-This will add the tools to your _PATH_.  
-
-To run Vivado, simply run `vivado`.
+This will add the tools to your _PATH_.  To run Vivado, simply run `vivado`.
 
 
 
@@ -28,9 +30,9 @@ To run Vivado, simply run `vivado`.
 
 ### Creating the Project
 After launching Vivado, follow these steps to create a hardware project:
-1. _Create Project_..., and choose a project name and location.  You can name your project whatever you want, but make sure you place the project in it's own directory.  For example, my project was named *625_lab5* and located at *lab_vitis/hw/vivado_proj*. (Note that I chose to add a _hw_ subdirectory and then created a project directory within this.  You will see why this is useful when you get to the section on _Committing to Git_). Click Next.  Choose an RTL project. Click _Next_.  
+1. _Create Project_..., and choose a project name and location.  You can name your project whatever you want, but make sure you place the project in it's own directory.  For example, my project was named *625_lab5* and located at *lab_vitis/hw/625_lab5*. (Note that I chose to add a _hw_ subdirectory and then created a project directory within this.  You will see why this is useful when you get to the section on _Committing to Git_). Click Next.  Choose an RTL project. Click _Next_.  
 2. You don't need to add any sources or constraints yet, just click _Next_.
-2. On the next you will be asked to choose an FPGA part.  Click _Boards_ at the top, and choose your board (ie. Zedboard).  Click Finish to create your project.
+2. On the next you will be asked to choose an FPGA part.  Click _Boards_ at the top, and choose your board (ie. Tul PYNQ).  Click Finish to create your project.
 
 ### Creating a Base Design
 In these steps we will create a basic system, containing only the Zynq processing system (PS).

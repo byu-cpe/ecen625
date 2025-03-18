@@ -12,40 +12,36 @@ title: Vitis Tutorial
 Run Vitis (`vitis`), and choose a workspace location. I used _lab_vitis/sw_ for my workspace location.
 
 
-### Create the platform project
+### Create the platform component
 
 The platform project generates the _standalone_ software layer code, which provides a software layer to access hardware and processor features (timers, interrupts, etc) in a bare-metal environment.
-  1. _File->New->Platform Project_.  
-  2. Chose a _Platform Project name_.  I chose *625_hw*.  
-  3. Browse to your _.xsa_ file name.  
-<img src = "{% link media/tutorials/hw_platform.png %}" width="800" alt="Wizard image of hardware platform selection">
-  4. Click *Finish*.
-  
-
-2. Change the _stdout_ output.  By default, the output from your program will be sent over the physical UART pins present on the board.  But instead of having to connect a UART to the board, we will use the option that allows us to send stdout over an virtual UART using the JTAG (USB) connection.
-  * Expand your platform project, and double click on the _platform.spr_ file.  Select the *standalone on ps7_cortexa9_0->Board Support Package*, and click _Modify BSP Settings_.  
-<img src = "{% link media/tutorials/open_bsp.png %}" width="800" alt="Image of BSP menu">
-  * In the _Board Support Package Settings_ popup, go to the _standalone_ menu, and change _stdout_ to use *coresight_comp_0*.  
+  1. _File->New Component->Platform_.  
+  1. Chose a _Component name_.  I chose *625_hw*.  
+  1. On the next tab you must select the hardware design.  Browse to your _.xsa_ file.  
+<img src = "{% link media/tutorials/hw_platform.png %}" width="700" alt="Wizard image of hardware platform selection">
+  1. On the next tab, select the *standalone* operating system (i.e. bare metal), and choose the *ps7_cortexa9_0* processor.  Leave *Generate Boot artifacts* checked.
+  1. Click *Finish*.
+  1. Change the _stdout_ output.  By default, the output from your program will be sent over the physical UART pins present on the board.  But instead of having to connect a UART to the board, we will use the option that allows us to send stdout over an virtual UART using the JTAG (USB) connection.
+  * Expand your platform component, and double click on the _Settings->vitis-comp.json_ file.  Select the *standalone_ps7_coretexa9_0->Board Support Package->standalone* menu, and change _standalone_stdout_ to use *ps7_coresight_comp_0*.  
 <img src = "{% link media/tutorials/bsp_stdout.png %}" width="800" alt="BSP stdout selection">
-  * Click _OK_ to close the window and save the BSP settings.
+  1. Build the BSP code using the *Build* button in the *Flow* section in the bottom-left.
 
-3. Build the BSP code.  Right click on your platform project and choose _Build Project_. 
-
-### Create the application project
-  1.  _File->New->Application Project_. 
-  1. Chose your platform that you created in the last step.  
+### Create the application component
+  1.  _File->New Component->Application_.
+  1. Choose a component name (ie. 625_sw), and continue through the next screens.
+  1. Chose your platform that you created in the last step.
 <img src = "{% link media/tutorials/vitis_application.png %}" width="800" alt="Wizard menu for application selection">
-  1. Choose an application name (ie. HelloWorld), and continue through the next screens.
-  1. On the _Templates_ screen, choose _Empty Application (C++)_, and then click _Finish_.
-  1. After you complete the wizard, find the _src_ directory, and right click *New->File*, and create a *main.cpp*.  
-  1. Create a simple application:  
+  1. Select the only available domain (*standalone_ps7_coretexa9_0*).
+  1. Skip past the *Add Source Files* tab, and click *Finish*. 
+  
+  1. Create a simple application.  Right-click on your *src* directory in your application component, and choose *New File*. Add a *main.cpp* file with the following code: 
 ```
 #include <stdio.h>  
 int main() {
   printf("Hello World\n");
 }
 ```
-  1. Build your application.  Right click on your application project and choose _Build Project_. 
+  1. Build your application.  Change the flow in the bottom-left to your application component, and click *Build*.
 
 
 ## Run Your Applicaton on the Board
