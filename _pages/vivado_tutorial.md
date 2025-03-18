@@ -57,6 +57,7 @@ clean:
 
 ### Synthesizing the hardware
 1. Run _Generate Bitstream_.
+1. Copy the produced bitstream to your `lab_vitis/hw` directory.  Commit this bitstream to Git.
 2. Once the bitstream generation is complete, export the hardware:
  *  _File->Export Hardware_.  
  * Chose the _Include Bitstream_ option, and choose a location to store the Xilinx Shell Archive (.xsa). Mine is placed at `lab_vitis/hw/625_lab5_hw.xsa`.  This file will be provided to the software tools in the next section to tell the software tools all about our hardware system configuration.
