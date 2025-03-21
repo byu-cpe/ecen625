@@ -9,22 +9,16 @@ title: Vivado Tutorial
 ## Setup
 
 ### Installing Boards
-If you are using a Digilent board, such as the Zedboard, you need to setup the board files in Vivado.  See <https://github.com/Xilinx/XilinxBoardStore>.  For example, to install the files for the PYNQ-Z2 board, you would run:
+If you are using a Digilent board, such as the PYNQ Z-2, you need to setup the board files in Vivado.  See <https://github.com/Xilinx/XilinxBoardStore>.  For example, to install the files for the PYNQ-Z2 board, you would run:
 ```
 xhub::refresh_catalog [xhub::get_xstores xilinx_board_store]
 xhub::install [xhub::get_xitems *pynq*]
 ```
 
 ### Running Vivado
-Before you can run the Vivado tools you should first run the configuration script:
 ```
-source /tools/Xilinx/Vivado/2024.2/settings64.sh
+/tools/Xilinx/Vivado/2024.2/bin/vivado
 ```
-
-This will add the tools to your _PATH_.  To run Vivado, simply run `vivado`.
-
-
-
 
 ## Creating a Simple Hardware Project
 
@@ -37,10 +31,16 @@ After launching Vivado, follow these steps to create a hardware project:
 ### Creating a Base Design
 In these steps we will create a basic system, containing only the Zynq processing system (PS).
 1. Click _Create Block Design_, and click _OK_ on the popup.
-2. Add the _ZYNQ7 Processing System_ IP to the design (right-click, Add IP).
-3. A green banner should appear with a link to _Run Block Automation_.  Run this. This will configure the ZYNQ for your board.
-4. The `FCLK_CLK0` output of the _Zynq Processing System_ will serve as your system clock.  It is set to 100MHz by default.  Connect it to the `M_AXI_GP0_ACLK` input.	
-5. Generate a top-level module: In the _Sources_ window, expand _Design Sources_ and right-click on your block design (_design_1.bd_) and select _Create HDL Wrapper_. Use the option to _Let Vivado manager wrapper and auto-update_.
+1. Add the _ZYNQ7 Processing System_ IP to the design (right-click, Add IP).
+1. A green banner should appear with a link to _Run Block Automation_.  Run this. This will configure the ZYNQ for your board, including configuring the DDR memory controller.
+1. Add a _Processor System Reset_ IP to the design.
+1. Add a _AXI Timer_ IP to the design.
+1. Add a _AXI SmartConnect_ IP to the design.
+1. Manually connect up the blocks like shown, or use the _Connection Automation_ tool to connect them.
+<img src="{% link media/tutorials/block_diagram.png %}" width="800">
+1. Open the _Address Editor_ and assign addresses to the _AXI Timer_ (right-click, _Assign Address_).
+1. Go back to the _Diagram_ view and _Validate Design_.
+1. Generate a top-level module: In the _Sources_ window, expand _Design Sources_ and right-click on your block design (_design_1.bd_) and select _Create HDL Wrapper_. Use the option to _Let Vivado manager wrapper and auto-update_.
 
 ### Committing to Git
 Want to commit your project to Git? Don't try and commit your actual project files, as this won't work.  Instead, we will instruct Vivado to create a single Tcl script that can be used to re-create our project from scratch:
@@ -59,11 +59,11 @@ clean:
 
 ### Synthesizing the hardware
 1. Run _Generate Bitstream_.
-1. Copy the produced bitstream to your `lab_vitis/hw` directory.  Commit this bitstream to Git.
-2. Once the bitstream generation is complete, export the hardware:
- *  _File->Export Hardware_.  
- * Chose the _Include Bitstream_ option, and choose a location to store the Xilinx Shell Archive (.xsa). Mine is placed at `lab_vitis/hw/625_lab5_hw.xsa`.  This file will be provided to the software tools in the next section to tell the software tools all about our hardware system configuration.
-3. You should commit this _.xsa_ file to Git.
+1. Run _File->Export->Export Bitstream File_ and save the bitstream (*.bit* file) to your `lab_vitis/hw` directory.
+1. Run _File->Export->Export Hardware_ and save the hardware description (*.xsa* file) to your `lab_vitis/hw` directory. This file will be provided to the software tools in the next section to tell the software tools all about our hardware system configuration.
+1.  Commit these files to Git.
 
+
+ <span style="color:red">**Important:**</span> Any time you change the hardware design (eg. changing your HLS IP) or block diagram.  You need to recompile the bitstream in Vivado, and re-export the bitstream and xsa file.  In addition, if you update your HLS designs, you will need to *Refresh* the IP in Vivado, *before* recompiling the bitstream.  Vivado keeps a cache of the IP, and if you don't refresh it, it will use the old IP.
 
 ### Next:  [Vitis Tutorial]({% link _pages/vitis_tutorial.md %})
