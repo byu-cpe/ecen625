@@ -5,7 +5,7 @@ title: Vitis HW/SW HLS Integration
 short_title: HW/SW Integration
 number: 5
 repo: lab_vitis
-under_construction: true
+under_construction: false
 ---
 
 
