@@ -18,13 +18,14 @@ The platform project generates the _standalone_ software layer code, which provi
   1. _File->New Component->Platform_.  
   1. Chose a _Component name_.  I chose *625_hw*.  
   1. On the next tab you must select the hardware design.  Browse to your _.xsa_ file.  
-<img src = "{% link media/tutorials/hw_platform.png %}" width="700" alt="Wizard image of hardware platform selection">
+<img src = "{% link media/tutorials/hw_platform.png %}" width="600" alt="Wizard image of hardware platform selection">
   1. On the next tab, select the *standalone* operating system (i.e. bare metal), and choose the *ps7_cortexa9_0* processor.  Leave *Generate Boot artifacts* checked.
   1. Click *Finish*.
-  1. Change the _stdout_ output.  By default, the output from your program will be sent over the physical UART pins present on the board.  But instead of having to connect a UART to the board, we will use the option that allows us to send stdout over an virtual UART using the JTAG (USB) connection.
-  * Expand your platform component, and double click on the _Settings->vitis-comp.json_ file.  Select the *standalone_ps7_coretexa9_0->Board Support Package->standalone* menu, and change _standalone_stdout_ to use *ps7_coresight_comp_0*.  
-<img src = "{% link media/tutorials/bsp_stdout.png %}" width="800" alt="BSP stdout selection">
   1. Build the BSP code using the *Build* button in the *Flow* section in the bottom-left.
+
+  <span style="color:red">**Important:**</span> If you change your hardware and regenerate your *.xsa* file, you will need to update your platform component.  In your platform component, open *Settings->vitis-comp.json*, and then look for the *Switch XSA* button.  Browse to your new *.xsa* file (may be the same path as before, but there is no refresh mechanism in the tool).  Then rebuild your platform component.
+
+<img src = "{% link media/tutorials/new_xsa.png %}" width="1000" alt="Switch XSA button in platform settings">
 
 ### Create the application component
   1.  _File->New Component->Application_.
@@ -45,12 +46,31 @@ int main() {
 
 
 ## Run Your Applicaton on the Board
-*  Right-click on your executable folder (down one level from the *_system* project created in the last step -- see image below), choose *Run As->Launch on Hardware (Single Application Debug*.  
-<img src = "{% link media/tutorials/run_program.png %}" width="800" alt="Right click menu to run program on hardware">
 
-* To view the program output, you will need to use the console selector button in the *Console window to select the *TCF Debug Virtual Terminal - ARM Cortex-A9 MPCore #0* console.  This is the JTAG console for core 0.
-<img src = "{% link media/tutorials/select_console.png %}" width="800" alt="Menu to select proper console output">
+If you are running this on your own computer, you would use the *Run* button in the bottom left to program your board.  
 
-* You should see the message *Hello World*.
+However, if you are using a PYNQ board on CCL1, you need to follow a different process to make sure you can share the boards with other users.
+
+### Find an Available Board
+Check <http://ccl1.ee.byu.edu:5000/> to see what boards are available.  If they are all in use, please send a message on Teams and we can possibly add more boards.
+
+Make note of the device name (ie. *tul-ecen625-3*).
+
+### Run Your Application on the Board
+
+Use the *run_elf_on_pynq_board.py* script located in *lab_vitis/program*.  Provide the following arguments:
+  * The path to your bitstream file.
+  * The path to your xsa file.
+  * The path to your ELF file.
+  * The device name.
+
+For example:
+```
+python3 run_elf_on_pynq_board.py ../hw/pynq_z2.bit ../hw/pynq_z2.xsa ../sw/digitrec_local/build/digitrec_local.elf tul-ecen625-3
+```
+
+This should program the board and print the output of your program to the console. If you run into issues with this script, please reach out.
+
+
 
 ### Next:  [Vitis HLS Integration Tutorial]({% link _pages/hls_integration_tutorial.md %})

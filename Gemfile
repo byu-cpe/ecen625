@@ -31,3 +31,5 @@ gem "jekyll-watch"
 gem 'html-proofer'
 gem 'jekyll-sass-converter', "~> 2.0"
 
+gem "jekyll-sitemap"
+gem 'jekyll-target-blank'

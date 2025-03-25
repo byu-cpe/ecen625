@@ -35,7 +35,7 @@
             <a href="{% link {{ item.path }} %}"
                 class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
                 <span class="badge badge-pill badge-dark-grey">{{ item.number }}</span>
-                {{ item.title }}
+                {{ item.short_title | default: item.title }}
             </a>
             {% endfor %}
             <a href="{% link _pages/final_project.md %}"

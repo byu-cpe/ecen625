@@ -8,79 +8,50 @@ title: Vitis HLS Integration Tutorial
 
 This page discusses how you can export your IP from Vitis HLS to be used in a Vivado project, and ultimately to communicate with the HLS accelerator from a Vitis software proj ect.
 
+## Package your HLS IP
+Leave your HLS files from the last lab in the *lab_vitis_hls* folder.  There are new directories to use in *lab_vitis/hls* for this lab.
+
+First, go to *lab_vitis/hls/digitrec_local*, and paste your *digitrec.cpp* solution from the last lab.  You can use an optimized or unoptimized version, just be aware that if your solution uses a lot of resources, it may not fit in the FPGA with the other components we will add, or may not compile, meet timing, etc.
+
+This directory will be used for a solution where the traning memory is stored locally on the FPGA.  In a later part of the lab, you will create another variant where the training data is stored in main memory.
+
+1. Run `make c_simulation` to verify that your code still works.  You will need to rename your *digitrec* function to *digitrec_local*.
+1. Since our goal is to communicate with the HLS IP from software, we will add a Slave AXI connection to our HLS IP core so that it can be connected to the ARM AXI bus.  
+	* Use the *#pragma HLS INTERFACE* directive to indicate that the function control should be an AXI4-Lite slave interface (*port=return* is used for the block-level interface protocol)
+	* Use the *#pragma HLS INTERFACE* directive to indicate that the input data should also be an AXI4-Lite slave interface.  Make sure these are bundled together (this is the default if you don't specify separate bundles).
+1. Run `make c_synthesis`.  Inspect the report and make sure it is reporting an AXI4-Lite interface.
+1. Run `make package` to create a Vivado IP package.  This package will be placed in *temp/hls/impl/ip*.  You can look at the drivers that are created in the *drivers* subdirectory.  
+
+
+
 ## Modifying Your Hardware
 
-### Exporting your HLS as IP
-  Since our goal is to communicate with the HLS IP from software, we will add a Slave AXI connection to our HLS IP core so that it can be connected to the ARM AXI bus.
+Add you IP to your Vivado project:
 
-* Run Vitis HLS and open your project from the last assignment.
-* Add a directive to your top-level hardware function.  Choose the *INTERFACE* directive type, and change the mode to an AXI4-Lite Slave (*s_axilite*).
-* Set the *INTERFACE* of the *input* parameter to also be the AXI4-Lite bus.
-* Run C Synthesis.
-* Click *Solution->Export RTL*, and make sure the Format Selection is set to * Vivado IP (.zip)*.
-* Close Vitis HLS.
-* Unzip your IP to a folder, for example, I used `unzip digitrec.zip -d lab_vitis/ip/digitrec/`
-
-**Bug fix**: I ran into a bug in Vitis 2020.2 that I had to fix.  Look in your *\<ip_dir\>/drivers/digitrec_v1_0/src/Makefile* and look for **three** commented out lines that start with '#echo'.  Remove these lines from the Makefile.  See <https://forums.xilinx.com/t5/High-Level-Synthesis-HLS/Bug-HLS-2020-2-generated-makefile-compilation-error-in-vitis/td-p/1206772>
-
-
-### Adding your IP to Vivado
-* Run Vivado, open your existing project, and open the block design.
-* If you do not already have a `Processor System Reset` IP, add one to your design.  This will use the reset signal output by the processing system to reset IP in the FPGA fabric.  
-	* Connect the system clock ( `FCLK_CLK0` from *ZYNQ7 Processing System*) to the *slowest_sync_clk* input.
-	* Connect the processor reset output (*FCLK_RESET0_N*) to the *ext_reset_in* input.		
-* If you do not already have an *AXI Interconnect* IP, add one to your design.  This is the bus that will allow the ARM CPU to communicate with the IP implemented in the FPGA fabric.
-	* Configure the bus to have 1 Slave Interface and 1 Master Interface.
-	* Connect the PS bus master (*M_AXI_GP0* from *ZYNQ7 Processing System*) to the *S00_AXI* slave port.
-	* Connect your clock (*FCLK_CLK0* from *ZYNQ7 Processing System*) to all the clock inputs (_*ACLK_)
-	* Connect your interconnect reset (*interconnect_aresetn* from *Processor System Reset*) to the *ARESETN* input.
-	* Connect your peripheral reset (*peripheral_aresetn* from *Processor System Reset*) to the other reset inputs (_*ARESETN_)
-
-
-* Add your HLS IP:
-	* Open the IP catalog
-		* Right-click, *Add Repository*
-		* Navigate to the *ip* folder that contains your HLS IP extracted in the earlier step, and add this directory.
-	* Go back to your block design and add the HLS IP to your design.
-	
-* Connect up your HLS IP:
-	* Connect the clock (*FCLK_CLK0*) to the clock input (*ap_clk*)
-	* Connect the reset (*peripheral_aresetn*) to the reset input (*ap_rst_n*)
-	* Connect the bus (*M00_AXI* from the *AXI Interconnect*) to the bus slave port (*s_axi_control*)
-	
-* Assign an address to your HLS IP:
-	* Open the *Address Editor*, find your IP, right-click *Assign*.
-	* Save the block design.
-	
-* Run *Generate Bitstream*.
-	
-* Export the new XSA file and overwrite your old one.  
-
-* Close Vivado
+1. Click *Project Manager->Settings* and in the pop-up window, go to *IP->Repository*,  Add the path to your *ip* directory.  
+	<img src = "{% link media/tutorials/ip_repos.png %}" width="600" alt="Vivado IP Repository">
+1. Go to your block diagram, and add your *digitrec_local* IP.  If you completed the last step correctly, you should see your IP with an AXI4-Lite interface.
+1. Connect up your IP, or use the *Run Connection Automation* tool to connect it to the ARM processor.  Assign a base address to your IP.
+	<img src = "{% link media/tutorials/block_diagram_w_hls.png %}" width="800" alt="HLS IP in Vivado">
+1. Generate a new bitstream and XSA file.
 
 
 ## Communicating with your HLS IP from Software
 
-### Updating Platform Project
-* Launch Vitis and reopen your existing workspace.
-* Right-click on your platform project, and choose *Update Hardware Specifiction*. Make sure you select your new XSA file.
-* If done correctly, you should see your HLS driver located at *ps7_cortexa9_0/standalone_ps7_cortexa9_0/bsp/ps7_cortexa9_0/libsrc/digitrec_v1_0/src*.  Inspect the source code and locate:
-	* *xdigitrec_hw.h* has register offsets for your IP core.  If you followed the steps correctly, you should have:
-	  * control register (*XDIGITREC_CONTROL_ADDR_AP_CTRL*)
+### Updating Your Platform Component
+* Launch Vitis update your Platform Component.  Go back to the {% link _pages/vitis_tutorial.md %} page for instructions on updating the platform component with your new XSA file.
+* Compile your platform component.
+
+### Creating a Software Application
+* Update your application software.  You can use the [main.cpp](https://github.com/byu-cpe/ecen625_student/blob/main/lab_vitis/sw/main.cpp) provided.
+* You will see that this code includes *xdigitrec_local.h*.  Take a look at this file, along with *xdigitrec_local_hw.h*.  Inspect the source code and locate:
+	* *xdigitrec_local_hw.h* has register offsets for your IP core.  If you followed the steps correctly, you should have:
+	  * control register 
 	  * interrupt registers
-	  * return value register (*XDIGITREC_CONTROL_ADDR_AP_RETURN*)
-	  * function argument register (*XDIGITREC_CONTROL_ADDR_INPUT_R_DATA*) and more.
+	  * return value register
+	  * function argument register, and more.
 	* *xdigitrec.h* provides a higher-level driver interface, with functions for starting your accelerator, checking if it's done, setting argument inputs, etc.
-* Build your platform project.
+* Look over the timer code in *main.cpp*.  This code will measure the time it takes to run your accelerator.  
+* Build your application and run it on the board.  The runtime should be very similar to the predicted latency from your HLS report.  Make note of the runtime, as you will need to provide it in your report.
 
-### Using the Driver in Your Code
-* Include the necessary header file in your application code and write software to test that you can start your IP, wait for it to complete, and retrieve the return value.  
-* You will need to initialize the HLS device driver before you can call any of the function.  As with most Xilinx drivers, this is done by calling *_LookupConfig*, providing the device ID from *xparameters.h*, and then calling *_CfgInitialize*:
-
-```c
-XDigitrec digitrec;
-XDigitrec_Config* digitrec_config = XDigitrec_LookupConfig(XPAR_DIGITREC_0_DEVICE_ID);
-XDigitrec_CfgInitialize(&digitrec, digitrec_config);
-```
-
-* Try running the HLS accelerator and waiting for it to complete.  Provide a test value and check the return value.
+### Next:  Return to the [Lab Page]({% link _labs/lab_vitis.md %}) and complete the next steps

@@ -1,10 +1,11 @@
 ---
 layout: lab
 toc: true
-title: Vitis Integration
+title: Vitis HW/SW HLS Integration
+short_title: HW/SW Integration
 number: 5
 repo: lab_vitis
-under_construction: true
+under_construction: false
 ---
 
 
@@ -16,98 +17,87 @@ The goals of this assignment are to:
 * Test your HLS hardware from the last lab, and implement it on an SoC platform.
 * Learn how to connect Vitis HLS cores in a larger Vivado hardware project.
 * Learn how to call HLS accelerators from software in an SoC environment.
-* Measure performance of your HLS accelerator.
+* Gain experience using off-chip memory and streaming interfaces in HLS.
 
 ## Preliminary
 
 In this lab you will export your HLS accelerator as an IP to include in a Vivado project on the FPGA.  You will then create an embedded software application in Vitis (different from Vitis HLS), that will communicate with your accelerator.  
-
-<span style="color:red">
-
-xhub::install [xhub::get_xitems tul.com.tw:xilinx_board_store:pynqzu:1.1]
-
-</span>
-
 
 Most of the direction for this lab are included in a set of tutorial pages.  Depending on your experience you may need to complete some or all of these tutorials in order to complete this lab:
 * [Vivado Tutorial]({% link _pages/vivado_tutorial.md %}): Tutorial on creating a block-design Vivado project with the ARM processor.
 * [Vitis Tutorial]({% link _pages/vitis_tutorial.md %}): Running a bare-metal *Hello World* application in Vitis.
 * [HLS Integration Tutorial]({% link _pages/hls_integration_tutorial.md %}): Exporting your HLS accelerator as an AXI4 IP and integrating it into your hardware and software projects.
 
-**Note:** The tutorials were created with an earlier version of Vivado, and are somewhat brief.  You can earn an a bonus 10\% on this assignment if you create a pull request on Github to improve the tutorials in some meaningful way (adding extra explanation text, updating images, etc.; basically anything beyond just fixing a small typo).
-
 ## Implementation
 
-### Part 1: System Setup
-As described in the tutorials, export your HLS IP to RTL, include it in an SoC Vivado project, and write software to run your accelerator.  You can use any version of your HLS IP from the last lab (ie, unoptimized, min area, min latency, etc.)
-  * Add your Vivado project Tcl file to your Git repo in the *lab_vitis/hw* folder.
-  * Add your IP files to your Git repo in the *lab_vitis/ip* folder.
+### Part 1: Local Memory
+As described in the tutorials, export your HLS IP to RTL, include it in an SoC Vivado project, and write software to run your accelerator (you are provided with most of the code in [main.cpp](https://github.com/byu-cpe/ecen625_student/blob/main/lab_vitis/sw/main.cpp)).  You can use any version of your HLS IP from the last lab (ie, unoptimized, min area, min latency, etc.)
 
-### Part 2: Measuring Execution Time
+* Take a screenshot of your project in Vivado
+* Run your software on the board, and save the output in your report.  Comment on the runtime of your accelerator.  Does it match the latency reported by Vitis HLS? (it should be pretty close)	
 
-You are provided with an incomplete [main.cpp](https://github.com/byu-cpe/ecen625_student/blob/main/lab_vitis/sw/main.cpp) that is similar to the test program used in the last lab.  It will test the accuracy of your accelerator with the same set of test data.  Complete the rest of the program and measure the runtime of your accelerator.
 
-There are a few different ways you can perform high-resolution timing on your board.  A few alternatives:
-* For the 7-series ZYNQ, the ZYNQ global timer *xtime_l.h*
-* For the 7-series ZYNQ, the per-core private timer *xscutimer.h*
-* Adding an AXI Timer to the FPGA fabric (\url{https://www.xilinx.com/support/documentation/ip_documentation/axi_timer/v2_0/pg079-axi-timer.pdf})
-* If you are using an MPSoC platform, the A53 also has public/privates timers that can be used.  Be sure you understand the API for these timers so that you know you are measuring time accurately. 
+In order to minimize the time spent in software, you should disable any printing while timing your code (set `logging` to `false`), and you should set compiler optimizations to *O2* or *O3*.  You can enable compiler optimizations in Vitis by opening your application settings, going to *Compiler Settings->Optimization->Optimization Level*.
 
-In order to minimize the time spent in software, you should disable any printing while timing your code (set `logging` to `false`), and you should set compiler optimizations to *O2* or *O3*.  You can enable compiler optimizations in Vitis by right-clicking your application project (ie, *625_lab5*, not *625_lab5_system*), selecting *Properties*, and in the popup navigate to *C/C++ Build->Settings->Tool Settings->ARM v7 g++ compiler->Optimization* (may be slightly different for your processor/tool version).
 
-### Part 3: Software Runtime
-
+### Part 2: Software-Only Runtime
 Replace the call to your hardware accelerator with a software implementation of the function.  You should be able to use your existing HLS code with some minor modifications.  Measure and collect the runtime.
 
 
-### Part 4: Exploring Interfaces 
-The way your kNN accelerator is currently configured, the training samples are stored within the accelerator, which means they are implemented using the FPGA fabric, likely using the BRAMs.
+### Part 3: Off-chip Memory (Main Memory) 
+The way your kNN accelerator is currently configured, the training samples are stored within the accelerator, which means they are implemented using the FPGA fabric, likely using the BRAMs.  This is fast, but it limits the size of the training data that can be used, and requires a lot of FPGA memory resources.
 
-Modify your design in order to build a system where the training data is stored within main memory.  To do this, the training arrays should be declared in your software code, not in the code that is synthesized to hardware.
+In this part of the assignment you will modify your design to store the training data in main memory (DDR), and pass it to your accelerator as needed.  The [Vitis HLS manual](https://docs.amd.com/r/en-US/ug1399-vitis-hls/Interfaces-of-the-HLS-Design) contains descriptions of how you can alter the interfaces to your IP block.
 
-The [Vitis HLS manual](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2022_2/ug1399-vitis-hls.pdf) contains descriptions of how you can alter the interfaces to your IP block (Chapter 15: Managing Interface Synthesis).  At this point you should have already changed the *Block-Level Interface Protocol*, when you added the interface directive to control your HLS core using an AXILite slave connection.
 
-In order for your HLS core to receive the training data, you will have to add a new argument to your function, `const digit training_data[]`.  You must then decide how you want to provide training data to your HLS core through this new argument, that will become a port on the hardware block.  The section on *Port-Level I/O Protocols* discusses this in detail.  You probably want to implement either an *AXI4-Stream interface* or *AXI4 master*.  It is completely up to you how you implement this, and what protocols you would like to explore.  Make sure you read the section titled *Using AXI4 Interfaces*.
+##### Digitrec Global
+* Go to *lab_vitis/hls/digitrec_global* and copy your *digitrec.cpp* implementation.  Inspect *digitrec.h* and note that the traning data is now pass as an *hls::stream*.  Update your code to use *.read()* to get the training data from the stream, rather than accessing it from an array.  **Be careful to fix the array ordering in your code.**  In the provided *digitrec* code, the training data was accessed in this order:
+```
+  for (int i = 0; i < TRAINING_SIZE; ++i) {
+    for (int j = 0; j < 10; j++) {
+```
+However, this is not how the traning data is laid out in the array.  It did not matter in the previous implementation, because you were accessing it using arbitrary *i* and *j* indexing, but now you will need to access the data in the correct order as it is passed to you in the stream.  The correct order is:
+```
+  for (int i = 0; i < 10; ++i) {
+	for (int j = 0; j < TRAINING_SIZE; j++) {
+```
+* You are provided a new *digitrec_test.cpp* program that uses the new stream interface.  Run `make c_simulation` to verify that your code still works.
 
-If you're not sure where to start, try something like this:
-1. Add a pointer or array argument to your function to provide the training data.
-2. Pass in this data from your test function and make sure your solution still passes *C Simulation*.
-2. Choose between a memory-mapped or streaming interface:
-	* Memory Mapped:
-		*  Configure the interface for this port to be an memory-mapped AXI Master (*m_axi*)
-		* Read about how the master port determines the address offset to use, and configure your interface appropriately.
-		* Modify you your Vivado project to add a Slave interface (*HP Slave AXI Interface*) on your *ZYNQ7 Processing System*.  This gives a different block access to the DRAM. 
-		* Connect your new AXI master port in your HLS IP to this port.give the new master port access to the main memory.
-	* Streaming:
-		* Configure the interface for this port to be an AXI Stream (\emph{axis})
-		* Add a DMA core to your Vivado project that can read data from main memory and send it over an AXI Stream to your IP core.
-		* Modify you your Vivado project to add a Slave interface (*HP Slave AXI Interface*) on your *ZYNQ7 Processing System*.  This can be used to give the DMA core access to the DRAM. 
+##### MM2S
+Next, you will need to create another HLS component (*mm2s*) that will serve as an AXI master, perform memory-mapped reads of the traning data from memory, and send the data over a stream to the *digitrec_global* accelerator.  Go to the *lab_vitis/hls/mm2s*.  
+* Implement *mm2s.cpp*.  This should only require a few lines of code to read from the array and send it over the stream.
+* Add *pragma HLS INTERFACE* directives to your code to:
+	* Assign AXI4-Lite control of the function (as you did in the local memory version).
+	* Assign an AXI4-Master interface to the training data memory pointer.  Indicate that the offset in main memory will be provided via the AXI4-Lite interface.
+	* Assign an AXI4-Stream interface to the output stream.
+* Run `make c_synthesis` and inspect the report to make sure your interfaces are correct.
 
-**Bug Reminder**: Just a reminder of the Vitis HLS 2020.2 driver [Makefile bug]({% link _pages/hls_integration_tutorial.md %}).  When you export your new IP core, remember to fix the Makefile.  (I'm not sure if this has been fixed in 2022.2)
+##### Vivado
+Add these two new blocks (*digitrec_global* and *mm2s*) to your Vivado project, and connect everything together.  
+  * You will need to enable the *S_AXI_HP0* interface on your ZYNQ7 Processing System, in order to allow the *mm2s* block to access the main memory.  You should add another *AXI SmartConnect* block between the *S_AXI_HP0* and the *mm2s* block.  
+  * Assign all addresses in the system.
+  * Validate your design and generate a new bitstream and XSA file.
 
-Once configured, create a Vitis software application that will run this modified system and measure its runtime.
+##### Software Runtime
+Update your software:
+  * After running the local memory version of your accelerator, run the global memory version. 
+  * For best performance, you can try using the Auto Restart feature of the *mm2s* block. 
 
-## Report
+Run you software and collect the runtime.  
+
+
+## Report and Submission
+
+Make sure your github includes the following:
+* A tcl file for your Vivado project that I can run to recreate your project.  This should be in the *hw* directory.
+* The C++ source code that you used to run your accelerator and collect runtimes.  This should be in the *sw* directory.
+
 Include a short PDF report, located at `lab_vitis/report.pdf`.  Include the following items:
 * Briefly describe your hardware implementation.  What board did you use?  What version of your HLS accelerator did you use?  For example, you may find your largest configuration does not actually fit on the FPGA.  How did you verify that your HLS core was operating correctly?
-		
-* **Runtimes:**
-	* Provide software-only runtime (from Part 3)
-	* Provide accelerated runtime (from Part 2).  Does the per item runtime match the latency reported by Vitis HLS? (it should be pretty close)
-
-* **Interfaces:**
-	* Describe the approach you used to provide training data from main memory to your HLS accelerator. 
-	* Include HLS resource usage before/after making this change, to demonstrate that BRAMs are no longer being used for the training data.
-	* Provide runtime data for this configuration, and comment on how it compares to the previous approach of storing training data within the accelerator.  
-	* What are the advantages and disadvantages of storing the data in the hardware accelerator versus in main memory?
+* **Question:** We could have added the AXI master interface directly to the *digitrec_global* accelerator, rather than creating a separate *mm2s* block.  Why do you think we chose to create a separate block? Hint: 
+* Runtimes: provide and compare software-only, local memory, and global memory runtimes.  Comment on the differences.  For the HLS versions, does the per item runtime match the latency reported by Vitis HLS? 
+* Screenshot of your final Vivado project.
 
 ## Submission 
 Submit your code on Github using the tag `lab5_submission`.
-
-Be sure your Git repo contains at minimum:
-  * The .tcl file that can be used to create your project in Vivado.  I'll run this when grading, so please make sure it works.  This means that you need to have your HLS IP committed into your repo or it won't work.  This should be committed to the [hw](https://github.com/byu-cpe/ecen625_student/tree/main/lab_vitis/hw) directory.
-  * The C/C++ source file that you use to run your accelerator and collect runtimes.  This should be committed to the [sw](https://github.com/byu-cpe/ecen625_student/tree/main/lab_vitis/sw) directory.
- 
-	
-
 
