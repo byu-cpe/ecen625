@@ -19,7 +19,7 @@ icon: fas fa-calendar-alt
 |9 (Mar 2)      |                       | Vitis HLS                             |                           | Vitis HLS                                             |                           |
 |10 (Mar 9)     |                       | Vitis HLS                             |                           | NO CLASS (Instructor at conference)                   |    |
 |11 (Mar 16)    |                       | Student Presentations                 |                           | Student Presentations                                 |                           |
-|12 (Mar 23)    |**Asst 4 Due, 11:59pm**                       | Student Presentations                 |                           |                                                       |    |
+|12 (Mar 23)    |**Asst 4 Due, 11:59pm**| Student Presentations                 |                           | Lab 4 Recap, Project, Lab 5 Intro                     |    |
 |13 (Mar 30)    |                       |                                       |                           |                                                       |**Asst 5 Due, 11:59pm**                           |
 |14 (Apr 6)     |                       |                                       |                           |                                                       |                           |
 |15 (Apr 13)    |                       | LAST DAY OF CLASS                     |                           |                                                       |                           |
