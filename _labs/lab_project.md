@@ -20,7 +20,6 @@ You can work alone, or in a group of two or more with permission from the instru
 ### Project Deliverables
 There will be three deliverables for the project:
 
-### Project Proposal 
 1. An in-class presentation. You will present your project in a **5 minute presentation in class on Apr 8th or 10th**.  Prepare a few slides about: 1) what you are working on 2) challenges or anticipated challenges, and you and how you plan to mitigate them, and 3) what results you plan to collect, or any preliminary results you have.
 
 1. Your code or other work products in a *lab_project* folder in your Github repo, which should be submitted using the tag *lab6_submission*.  
