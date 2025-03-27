@@ -33,11 +33,11 @@ Students should be familiar with RTL (Verilog or VHDL), and be comfortable writi
 
 | Component                 | % of Grade    |
 |---------------------------|---------------|
-| Labs                      | 45            |
-| Project & Presentation    | 15            |
+| Labs                      | 60            |
+| Project Presentation      | 5             |
 | Midterm Exam              | 15            |
 | Mini-Lecture              | 10            |
-| Research Papers           | 10            |
+| Research Papers           | 5             |
 | Class Participation       | 5             |
 
 
