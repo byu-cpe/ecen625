@@ -20,6 +20,11 @@ xhub::install [xhub::get_xitems *pynq*]
 /tools/Xilinx/Vivado/2024.2/bin/vivado
 ```
 
+After launching Vivado, open the Tcl console and run the following to make sure you can access the installed boards from the last step:
+```
+set_param board.repoPaths [get_property LOCAL_ROOT_DIR [xhub::get_xstores xilinx_board_store]]
+```
+
 ## Creating a Simple Hardware Project
 
 ### Creating the Project
